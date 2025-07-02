@@ -69,6 +69,8 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  scaleSpeed: 10
+  maxHeight: 0.5
 --- !u!143 &7446723959827962228
 CharacterController:
   m_ObjectHideFlags: 0
