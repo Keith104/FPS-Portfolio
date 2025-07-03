@@ -482,6 +482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2120501673}
   - component: {fileID: 2120501675}
+  - component: {fileID: 2120501676}
   - component: {fileID: 2120501672}
   - component: {fileID: 2120501671}
   - component: {fileID: 2120501674}
@@ -625,6 +626,32 @@ MonoBehaviour:
   playerCam: {fileID: 2120501672}
   inFOV: 30
   outFOV: 60
+--- !u!114 &2120501676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120501670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 10
+  damage: 7
+  reloadSpeed: 45
+  reloadTimer: 0
+  fireRate: 2
+  fireRateTimer: 0
+  ammo: 90
+  currentAmmo: 0
+  currentFire: 0
+  burstAmount: 15
+  burstCount: 0
+  fired: 0
+  spreadRange: 0.2
+  pellets: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
