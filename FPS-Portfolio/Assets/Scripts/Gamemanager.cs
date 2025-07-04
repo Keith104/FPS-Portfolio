@@ -5,9 +5,13 @@ public class Gamemanager : MonoBehaviour
 {
     public static Gamemanager instance;
 
+    [SerializeField] GameObject menuActive;
+
+
     [Header("UI References")]
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] GameObject menuPause;
 
 
     float timer;
@@ -28,8 +32,19 @@ public class Gamemanager : MonoBehaviour
 
     private void Update()
     {
-        if (isPaused)
-            return;
+        if(Input.GetButtonDown("Cancel"))
+        {
+            if(menuActive == null)
+            {
+                statePause();
+                menuActive = menuPause;
+                menuActive.SetActive(true);
+            }
+            else if (menuActive == menuPause)
+            {
+                stateUnPause();
+            }
+        }
 
         timer += Time.deltaTime;
         UpdateTimerText();
@@ -66,5 +81,21 @@ public class Gamemanager : MonoBehaviour
         timerText.text = $"Timer: {formatted}";
     }
 
-    
+    public void statePause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = 0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void stateUnPause()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = timeScaleOrig;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        menuActive.SetActive(false);
+        menuActive = null;
+    }
 }
