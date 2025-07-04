@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Player Stuff")]
     [SerializeField] CharacterController controller;
+    [SerializeField] int health;
 
     [Header("Movement Settings")]
     [SerializeField] int speed;
@@ -25,6 +26,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float scaleSpeed;
     [SerializeField] float maxHeight;
 
+    [Header("Respawn Settings")]
+    [SerializeField] Transform PlayerTransform;
+    [SerializeField] Transform RespawnPoint;
+    
+    
     float initialScale;
     float currentScale;
     Vector3 originalPosition;
@@ -33,6 +39,7 @@ public class PlayerController : MonoBehaviour
     int jumpCount;
     float shootTimer;
     bool isCrouched;
+    bool playerDead;
 
     void Start()
     {
@@ -49,7 +56,16 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.K))
         {
-            Gamemanager.instance.UpdateScoreText(1);
+            health -= 1;
+            if(health <= 0)
+            {
+                playerDead = true;
+            }
+        }
+
+        if(playerDead)
+        {
+            RespawnPlayer();
         }
     }
 
@@ -124,5 +140,9 @@ public class PlayerController : MonoBehaviour
         Vector3 pos = originalPosition;
         pos.y = (initialScale - currentScale) * 0.5f;
         transform.localPosition = pos;
+    }
+    void RespawnPlayer()
+    {
+        PlayerTransform.position = RespawnPoint.position;
     }
 }
