@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour
         Crouch();
         Sprint();
         Movement();
+
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            Gamemanager.instance.UpdateScoreText(1);
+        }
     }
 
     void Movement()
