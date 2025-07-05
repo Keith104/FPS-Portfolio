@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class WeaponSelection : MonoBehaviour
 {
+    public string gunName;
     [SerializeField] int range;
     [SerializeField] int damage;
     [SerializeField] int reloadSpeed;
-    [SerializeField] int reloadTimer;
+    private int reloadTimer;
 
     [SerializeField] int fireRate;
-    [SerializeField] float fireRateTimer;
+    private float fireRateTimer;
 
-    [SerializeField] int ammo;
-    [SerializeField] int currentAmmo;
+    public int ammo;
+    public int currentAmmo;
 
     public enum FireType
     {
@@ -21,8 +22,8 @@ public class WeaponSelection : MonoBehaviour
     }
     public FireType currentFire;
     [SerializeField] int burstAmount; // only used when in Burst
-    [SerializeField] int burstCount; // only used when in Burst
-    [SerializeField] bool fired; // used for everything but auto
+    private int burstCount; // only used when in Burst
+    private bool fired; // used for everything but auto
 
     [SerializeField] float spreadRange; // put 0 for no spread, I suggest not going above 1
     [SerializeField] int pellets; // amount of bullets per shot, only used when spreadRange is in effect
@@ -39,7 +40,8 @@ public class WeaponSelection : MonoBehaviour
     }
     void shoot()
     {
-        if (Input.GetMouseButton(0) && fired == false && currentAmmo > 0 || burstCount > 0)
+        if (Input.GetMouseButton(0) && fired == false && currentAmmo > 0 // for any other type
+            || burstCount > 0 && currentAmmo > 0 && fired == false)      // for burst type
         {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * range, Color.red);
             if(spreadRange != 0)
@@ -77,7 +79,7 @@ public class WeaponSelection : MonoBehaviour
                     break;
 
                 case FireType.Burst:
-                    currentAmmo -= burstAmount;
+                    currentAmmo--;
                     burstCount++;
                     if (burstCount >= burstAmount)
                     {
@@ -104,6 +106,7 @@ public class WeaponSelection : MonoBehaviour
         {
             Reload();
         }
+        updateGunUI();
     }
     void Reload()
     {
@@ -113,5 +116,10 @@ public class WeaponSelection : MonoBehaviour
             reloadTimer = 0;
             currentAmmo = ammo;
         }
+    }
+
+    void updateGunUI()
+    {
+        UIManager.instance.SetGun();
     }
 }
