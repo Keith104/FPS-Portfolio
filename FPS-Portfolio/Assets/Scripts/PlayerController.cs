@@ -1,11 +1,14 @@
+using NUnit.Framework.Constraints;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("Player Stuff")]
     [SerializeField] CharacterController controller;
     [SerializeField] int health;
+    [SerializeField] float hpBarLerpSpeed;
 
     [Header("Movement Settings")]
     [SerializeField] int speed;
@@ -41,11 +44,20 @@ public class PlayerController : MonoBehaviour
     bool isCrouched;
     bool playerDead;
 
+    int hpOrig;
+
+    float hpBarTarget;
+    
+
     void Start()
     {
         initialScale = transform.localScale.y;
         currentScale = initialScale;
         originalPosition = transform.localPosition;
+
+        hpOrig = health;
+        hpBarTarget = 1f;
+
     }
 
     void Update()
@@ -56,17 +68,16 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.K))
         {
-            health -= 1;
-            if(health <= 0)
-            {
-                playerDead = true;
-            }
+            TakeDamage(1);
         }
 
-        if(playerDead)
-        {
-            RespawnPlayer();
-        }
+        //if(playerDead)
+        //{
+        //    RespawnPlayer();
+        //}
+
+        var bar = UIManager.instance.playerHPBar;
+        bar.fillAmount = Mathf.Lerp(bar.fillAmount, hpBarTarget, hpBarLerpSpeed * Time.deltaTime);
     }
 
     void Movement()
@@ -141,8 +152,30 @@ public class PlayerController : MonoBehaviour
         pos.y = (initialScale - currentScale) * 0.5f;
         transform.localPosition = pos;
     }
+
+    public void TakeDamage(int amount)
+    {
+        health -= amount;
+
+        hpBarTarget = (float)health / hpOrig;
+        StartCoroutine(damageFlashScreen());
+
+        if(health <= 0)
+        {
+            Debug.Log("Player Dead");
+        }
+    }
+
     void RespawnPlayer()
     {
         PlayerTransform.position = RespawnPoint.position;
     }
+
+    IEnumerator damageFlashScreen()
+    {
+        UIManager.instance.playerDamagePanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        UIManager.instance.playerDamagePanel.SetActive(false);
+    }
+
 }

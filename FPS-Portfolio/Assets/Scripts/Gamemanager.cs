@@ -9,8 +9,6 @@ public class Gamemanager : MonoBehaviour
 
 
     [Header("UI References")]
-    [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] GameObject menuPause;
 
 
@@ -53,8 +51,6 @@ public class Gamemanager : MonoBehaviour
     public void UpdateScoreText(int amount)
     {
         score += amount;
-
-        scoreText.text = "Score: " + score;
     }
 
     void UpdateTimerText()
@@ -78,7 +74,7 @@ public class Gamemanager : MonoBehaviour
             formatted = $"{minutes:00}:{seconds:00}";
         }
 
-        timerText.text = $"Timer: {formatted}";
+        //timerText.text = $"Timer: {formatted}";
     }
 
     public void statePause()
