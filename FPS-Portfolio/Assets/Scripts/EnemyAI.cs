@@ -154,7 +154,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     }
     void Shoot()
     {
-        Debug.Log("FIRE");
         shootTimer = 0;
         Instantiate(bullet, shootPos.position, transform.rotation);
     }
