@@ -12,7 +12,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void Resume()
     {
-        Gamemanager.instance.stateUnPause();
+        GameManager.instance.stateUnPause();
     }
 
     public void Quit()
@@ -22,5 +22,10 @@ public class ButtonFunctions : MonoBehaviour
 #else
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
+    }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

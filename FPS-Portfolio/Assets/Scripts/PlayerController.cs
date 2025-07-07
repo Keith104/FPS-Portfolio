@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Shoot()
     {
-        if(!Gamemanager.instance.GetPause())
+        if(!GameManager.instance.GetPause())
         {
             shootTimer = 0;
             RaycastHit hit;

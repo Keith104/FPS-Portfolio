@@ -1,9 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-public class Gamemanager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static Gamemanager instance;
+    public static GameManager instance;
 
     [SerializeField] GameObject menuActive;
     [SerializeField] bool inGame;
