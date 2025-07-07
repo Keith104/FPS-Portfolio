@@ -6,10 +6,15 @@ public class Gamemanager : MonoBehaviour
     public static Gamemanager instance;
 
     [SerializeField] GameObject menuActive;
+    [SerializeField] bool inGame;
 
 
     [Header("UI References")]
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject creditsMenu;
+
+    [Header("References")]
+    [SerializeField] Animator animator;
 
 
     float timer;
@@ -19,6 +24,8 @@ public class Gamemanager : MonoBehaviour
     float timeScaleOrig;
 
     int score;
+
+    
 
     private void Awake()
     {
@@ -30,22 +37,38 @@ public class Gamemanager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetButtonDown("Cancel"))
+        if(animator != null && menuActive != null)
         {
-            if(menuActive == null)
+            var state = animator.GetCurrentAnimatorStateInfo(0);
+            if (state.IsName("Credits") && state.normalizedTime >= 1f && !animator.IsInTransition(0))
             {
-                statePause();
-                menuActive = menuPause;
-                menuActive.SetActive(true);
-            }
-            else if (menuActive == menuPause)
-            {
-                stateUnPause();
+                endCredits();
             }
         }
 
-        timer += Time.deltaTime;
-        UpdateTimerText();
+        if (inGame)
+        {
+            if(Input.GetButtonDown("Cancel"))
+            {
+                if(menuActive == null)
+                {
+                    statePause();
+                    menuActive = menuPause;
+                    menuActive.SetActive(true);
+                }
+                else if (menuActive == menuPause)
+                {
+                    stateUnPause();
+                }
+            }
+        }
+
+        if(inGame)
+        {
+            timer += Time.deltaTime;
+            UpdateTimerText();
+        }
+
     }
 
     public void UpdateScoreText(int amount)
@@ -93,5 +116,23 @@ public class Gamemanager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+    }
+
+    public void startCredits()
+    {
+        menuActive = creditsMenu;
+        creditsMenu.SetActive(true);
+        creditsMenu.GetComponent<Animator>().Play("Credits");
+    }
+
+    void endCredits()
+    {
+        menuActive.SetActive(false);
+        menuActive = null;
+    }
+
+    public bool GetPause()
+    {
+        return isPaused;
     }
 }
