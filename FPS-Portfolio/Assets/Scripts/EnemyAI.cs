@@ -5,57 +5,57 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour, IDamage
 {
     [SerializeField] int health;
-
     [SerializeField] Renderer model;
-
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Transform shootPos;
+    [SerializeField] GameObject bullet;
+    [SerializeField] float searchDist;
+    [SerializeField] int searchPauseTime;
+    [SerializeField] float attackCooldown;
+    [SerializeField] int FOV;
+    [SerializeField] int faceTargetSpeed;
 
-    [SerializeField] Transform player;
-
-    [SerializeField] LayerMask whatIsGround, whatIsPlayer;
+    GameObject player;
 
     Color colorOg;
 
-    //Variables for Searching
-    [SerializeField] Vector3 walkPath;
-    [SerializeField] bool pathSet;
-    [SerializeField] float walkRange;
+    float searchTime;
+    float angleToPlayer;
+    float stoppingDistOg;
+    float shootTimer;
 
-    //Variables for Attacking
-    [SerializeField] float attackCooldown;
+    bool playerInTrigger;
     bool isAttacking;
 
-    //For checking states
-    [SerializeField] float sightRange, attackRange;
-    [SerializeField] bool inSightRange, inAttackRange;
+    Vector3 startingPos;
+    Vector3 playerDir;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        startingPos = transform.position;
         colorOg = model.material.color;
-        player = GameObject.Find("Player").transform;
+        stoppingDistOg = agent.stoppingDistance;
+        player = GameObject.FindWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.F)) TakeDamage(1); Debug purposes
-
-        inSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        inAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        if (player == inSightRange && player != inAttackRange)
+        if (agent.remainingDistance < 0.01f)
         {
-            ChasePlayer();
+            searchTime += Time.deltaTime;
         }
-        else if (player == inSightRange && player == inAttackRange)
+
+        if (player == playerInTrigger && !CanSeePlayer())
         {
-            AttackPlayer();
+            SearchCheck();
         }
         else
         {
-            Search();
+            SearchCheck();
         }
     }
 
@@ -78,57 +78,84 @@ public class EnemyAI : MonoBehaviour, IDamage
         model.material.color = colorOg;
     }
 
-    private void Search()
+    void SearchCheck()
     {
-        if (!pathSet)
+        if (searchTime >= searchPauseTime && agent.remainingDistance < 0.01f)
         {
-            SearchWalkPoint();
+            Search();
         }
+    }
+    void Search()
+    {
+        searchTime = 0;
+        agent.stoppingDistance = 0;
 
-        if (pathSet) 
+        Vector3 ranPos = Random.insideUnitSphere * searchDist;
+        ranPos += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, searchDist, 1);
+        agent.SetDestination(hit.position);
+    }
+
+    bool CanSeePlayer()
+    {
+        playerDir = player.transform.position - transform.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
+        Debug.DrawRay(transform.position, playerDir);
+
+        RaycastHit hit;
+        if ((Physics.Raycast(transform.position, playerDir, out hit)))
         {
-            agent.SetDestination(walkPath);
+            Debug.Log("RayCast hit");
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
+            {
+                shootTimer += Time.deltaTime;
+                if (shootTimer >= attackCooldown)
+                {
+                    Shoot();
+                }
+
+                agent.SetDestination(player.transform.position);
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                    FaceTarget();
+
+                agent.stoppingDistance = stoppingDistOg;
+                return true;
+            }
         }
+        agent.stoppingDistance = 0;
+        return false;
+    }
 
-        Vector3 distanceToDest = transform.position - walkPath;
+    void FaceTarget()
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, transform.position.y, playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, faceTargetSpeed * Time.deltaTime);
+    }
 
-        if (distanceToDest.magnitude <= 1f)
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            pathSet = false;
+            playerInTrigger = true;
         }
     }
 
-    private void SearchWalkPoint()
+    private void OnTriggerExit(Collider other)
     {
-        //Gives the enemy a place to walk to
-        float randomRangeX = Random.Range(-walkRange, walkRange);
-        float randomRangeZ = Random.Range(-walkRange, walkRange);
-
-        walkPath = new Vector3(transform.position.x + randomRangeX, transform.position.y ,transform.position.x + randomRangeZ);
-
-        //Hopefully this makes it so they doesn't fall off the map
-        if(Physics.Raycast(walkPath, -transform.up, 2f, whatIsGround))
+        if (other.CompareTag("Player"))
         {
-            pathSet = true;
+            playerInTrigger = false;
+            agent.stoppingDistance = 0;
         }
     }
-
-    private void ChasePlayer()
+    void Shoot()
     {
-        agent.SetDestination(player.position);
-    }
-
-    private void AttackPlayer()
-    {
-        agent.SetDestination(transform.position);
-        transform.LookAt(player.position);
-
-        if (!isAttacking)
-        {
-            //they shoot
-
-            isAttacking = true;
-
-        }
+        Debug.Log("FIRE");
+        shootTimer = 0;
+        Instantiate(bullet, shootPos.position, transform.rotation);
     }
 }
