@@ -9,25 +9,25 @@ public class Equipment : ScriptableObject
         meleeWeapon,
         throwable
     }
-    public enum FireType
-    {
-        Single,
-        Burst,
-        FullAuto,
-        Single_Burst,
-        Single_FullAuto,
-        Burst_FullAuto,
-
-    }
+    
     public string weaponName;
     public WeaponType currentWeapon;
-    public FireType firingMode;
+    public bool singleFireMode;
+    public bool burstFireMode;
+    public bool fullAutoFireMode;
     public int range;
     public float damageAmount;
+
+    [SerializeField] int burstAmount;
+    [SerializeField] float spreadRange; // put 0 for no spread, I suggest not going above 1
+    [SerializeField] int pellets; // amount of bullets per shot, only used when spreadRange is in effect
+
     public int reloadSpeed;
     public float fireRate;
-    public AudioClip shootSound;
-    public GameObject weaponPrefab;
     public int maxAmmo;
     public int currentMag;
+
+    public AudioClip shootSound;
+    public GameObject weaponPrefab;
+
 }
