@@ -91,6 +91,7 @@ MonoBehaviour:
   playerCam: {fileID: 3091274671604081914}
   inFOV: 40
   outFOV: 60
+  lerpSpeed: 10
 --- !u!143 &7446723959827962228
 CharacterController:
   m_ObjectHideFlags: 0
