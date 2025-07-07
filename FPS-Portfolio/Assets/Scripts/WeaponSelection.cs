@@ -1,26 +1,15 @@
 using UnityEngine;
+using static Equipment;
 
 public class WeaponSelection : MonoBehaviour
 {
-    public string gunName;
-    [SerializeField] int range;
-    [SerializeField] int damage;
-    [SerializeField] int reloadSpeed;
+    [SerializeField] Equipment equipment;
+
     private int reloadTimer;
-
-    [SerializeField] int fireRate;
     private float fireRateTimer;
+    private int currentAmmo;
+    private int currentHeldAmmo;
 
-    public int ammo;
-    public int currentAmmo;
-
-    public enum FireType
-    {
-        Single,
-        Burst,
-        Auto
-    }
-    public FireType currentFire;
     [SerializeField] int burstAmount; // only used when in Burst
     private int burstCount; // only used when in Burst
     private bool fired; // used for everything but auto
@@ -30,7 +19,7 @@ public class WeaponSelection : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentAmmo = ammo;
+        currentAmmo = equipment.maxAmmo;
     }
 
     // Update is called once per frame
@@ -43,35 +32,35 @@ public class WeaponSelection : MonoBehaviour
         if (Input.GetMouseButton(0) && fired == false && currentAmmo > 0 // for any other type
             || burstCount > 0 && currentAmmo > 0 && fired == false)      // for burst type
         {
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * range, Color.red);
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * equipment.range, Color.red);
             if(spreadRange != 0)
             {
                 Vector3 dirUp = Camera.main.transform.forward;
                 dirUp.y += spreadRange;
-                Debug.DrawRay(Camera.main.transform.position, dirUp * range, Color.blue);
+                Debug.DrawRay(Camera.main.transform.position, dirUp * equipment.range, Color.blue);
 
                 Vector3 dirDown = Camera.main.transform.forward;
                 dirDown.y -= spreadRange;
-                Debug.DrawRay(Camera.main.transform.position, dirDown * range, Color.blue);
+                Debug.DrawRay(Camera.main.transform.position, dirDown * equipment.range, Color.blue);
 
                 Vector3 dirLeft = Camera.main.transform.forward;
                 dirLeft.x += spreadRange;
-                Debug.DrawRay(Camera.main.transform.position, dirLeft * range, Color.blue);
+                Debug.DrawRay(Camera.main.transform.position, dirLeft * equipment.range, Color.blue);
 
                 Vector3 dirRight = Camera.main.transform.forward;
                 dirRight.x -= spreadRange;
-                Debug.DrawRay(Camera.main.transform.position, dirRight * range, Color.blue);
+                Debug.DrawRay(Camera.main.transform.position, dirRight * equipment.range, Color.blue);
 
                 for (int shotDex = 0; shotDex < pellets; shotDex++)
                 {
                     Vector3 dirRan = Camera.main.transform.forward;
                     dirRan.y += Random.Range(-spreadRange, spreadRange);
                     dirRan.x += Random.Range(-spreadRange, spreadRange);
-                    Debug.DrawRay(Camera.main.transform.position, dirRan * range, Color.yellow);
+                    Debug.DrawRay(Camera.main.transform.position, dirRan * equipment.range, Color.yellow);
                 }
             }
 
-            switch (currentFire)
+            switch (equipment.firingMode)
             {
                 case FireType.Single:
                     currentAmmo--;
@@ -88,7 +77,7 @@ public class WeaponSelection : MonoBehaviour
                     }
                     break;
 
-                case FireType.Auto:
+                case FireType.FullAuto:
                     currentAmmo--;
                     break;
             }
@@ -96,7 +85,7 @@ public class WeaponSelection : MonoBehaviour
         else if (fired == true)
         {
             fireRateTimer += Time.deltaTime;
-            if (fireRateTimer >= fireRate)
+            if (fireRateTimer >= equipment.fireRate)
             {
                 fireRateTimer = 0;
                 fired = false;
@@ -111,10 +100,11 @@ public class WeaponSelection : MonoBehaviour
     void Reload()
     {
         reloadTimer++;
-        if (reloadTimer > reloadSpeed)
+        if (reloadTimer > equipment.reloadSpeed)
         {
             reloadTimer = 0;
-            currentAmmo = ammo;
+            currentAmmo = equipment.currentMag;
+            currentHeldAmmo = equipment.maxAmmo - equipment.currentMag;
         }
     }
 
