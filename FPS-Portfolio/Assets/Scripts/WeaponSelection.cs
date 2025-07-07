@@ -9,11 +9,10 @@ public class WeaponSelection : MonoBehaviour
     private float fireRateTimer;
     private int currentAmmo;
     private int currentHeldAmmo;
-
-    [SerializeField] int burstAmount; // only used when in Burst
     private int burstCount; // only used when in Burst
     private bool fired; // used for everything but auto
 
+    [SerializeField] int burstAmount; // only used when in Burst
     [SerializeField] float spreadRange; // put 0 for no spread, I suggest not going above 1
     [SerializeField] int pellets; // amount of bullets per shot, only used when spreadRange is in effect
     // Start is called once before the first execution of Update after the MonoBehaviour is created
