@@ -5,9 +5,9 @@ public class Equipment : ScriptableObject
 {
     public enum WeaponType
     {
-        Firearm,
-        MeleeWeapon,
-        Throwable
+        firearm,
+        meleeWeapon,
+        throwable
     }
     public enum FireType
     {
@@ -19,15 +19,15 @@ public class Equipment : ScriptableObject
         Burst_FullAuto,
 
     }
-    public string WeaponName;
-    public WeaponType CurrentWeapon;
-    public FireType FiringMode;
-    public int Range;
-    public float DamageAmount;
-    public int ReloadSpeed;
-    public float RireRate;
-    public AudioClip ShootSound;
-    public GameObject WeaponPrefab;
-    public int MaxAmmo;
-    public int CurrentMag;
+    public string weaponName;
+    public WeaponType currentWeapon;
+    public FireType firingMode;
+    public int range;
+    public float damageAmount;
+    public int reloadSpeed;
+    public float fireRate;
+    public AudioClip shootSound;
+    public GameObject weaponPrefab;
+    public int maxAmmo;
+    public int currentMag;
 }
