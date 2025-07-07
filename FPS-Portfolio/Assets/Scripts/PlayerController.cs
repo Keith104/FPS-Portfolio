@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour, IDamage
         currentScale = initialScale;
         originalPosition = transform.localPosition;
 
-        hpOrig = health;
+        hpOrig = Mathf.Max(health, 1);
         hpBarTarget = 1f;
 
     }
@@ -77,7 +77,8 @@ public class PlayerController : MonoBehaviour, IDamage
         //}
 
         var bar = UIManager.instance.playerHPBar;
-        bar.fillAmount = Mathf.Lerp(bar.fillAmount, hpBarTarget, hpBarLerpSpeed * Time.deltaTime);
+        float next = Mathf.Lerp(bar.fillAmount, hpBarTarget, hpBarLerpSpeed * Time.deltaTime);
+        bar.fillAmount = Mathf.Clamp01(next);
     }
 
     void Movement()
@@ -155,18 +156,18 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void TakeDamage(int amount)
     {
-        health -= amount;
-
-        hpBarTarget = (float)health / hpOrig;
+        health = Mathf.Max(health - amount, 0);
+        hpBarTarget = Mathf.Clamp01((float)health / hpOrig);
         StartCoroutine(damageFlashScreen());
 
-        if(health <= 0)
+        if (health <= 0 && !playerDead)
         {
+            playerDead = true;
             Debug.Log("Player Dead");
         }
     }
 
-    void RespawnPlayer()
+        void RespawnPlayer()
     {
         PlayerTransform.position = RespawnPoint.position;
     }
