@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     public Image playerHPBar;
+    public GameObject playerDamagePanel;
 
     public TextMeshProUGUI playerGunText;
     [SerializeField] WeaponSelection gun;
@@ -26,19 +27,14 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        SetHealth();
-
-        SetGun();
+        if(gun != null)
+            SetGun();
     }
 
     // Update is called once per frame
     void Update()
     {
 
-    }
-    void SetHealth()
-    {
-        // add stuff from the playerController here
     }
     public void SetGun()
     {
