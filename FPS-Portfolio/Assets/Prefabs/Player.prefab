@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5451766402942236603}
   - component: {fileID: 27630252136409864}
   - component: {fileID: 7784430193642803728}
+  - component: {fileID: 4865474513736462136}
   - component: {fileID: 7446723959827962228}
   - component: {fileID: 9217356845865749448}
   - component: {fileID: 1312792134952347254}
@@ -58,6 +59,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 7446723959827962228}
+  health: 3
+  hpBarLerpSpeed: 5
   speed: 5
   sprintMod: 3
   jumpVel: 12
@@ -69,6 +72,26 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  scaleSpeed: 10
+  maxHeight: 0.5
+  PlayerTransform: {fileID: 0}
+  RespawnPoint: {fileID: 0}
+--- !u!114 &4865474513736462136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285367405762129571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1f73002d2582f4a9bd63b486fd7d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 3091274671604081914}
+  inFOV: 40
+  outFOV: 60
+  lerpSpeed: 10
 --- !u!143 &7446723959827962228
 CharacterController:
   m_ObjectHideFlags: 0
