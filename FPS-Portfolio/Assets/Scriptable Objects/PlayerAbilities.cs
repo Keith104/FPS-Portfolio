@@ -3,11 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerAbilities", menuName = "Scriptable Objects/PlayerAbilities")]
 public class PlayerAbilities : ScriptableObject
 {
-    public string AbilityName;
+    public string abilityName;
     enum AbilityType { movement, damage, information }
-    [SerializeField] AbilityType type;
+    [SerializeField] AbilityType abilities;
 
-    public AudioClip AbilitySound;
-    public GameObject AbilityObject;
+    public AudioClip abilitySound;
+    public GameObject abilityObject;
 }
 
