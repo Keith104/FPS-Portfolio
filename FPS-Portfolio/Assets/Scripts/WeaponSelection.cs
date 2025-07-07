@@ -20,6 +20,7 @@ public class WeaponSelection : MonoBehaviour
     void Start()
     {
         currentAmmo = equipment.maxAmmo;
+        updateGunUI();
     }
 
     // Update is called once per frame
@@ -110,6 +111,6 @@ public class WeaponSelection : MonoBehaviour
 
     void updateGunUI()
     {
-        UIManager.instance.SetGun();
+        UIManager.instance.SetGun(equipment.weaponName, currentAmmo, currentHeldAmmo);
     }
 }

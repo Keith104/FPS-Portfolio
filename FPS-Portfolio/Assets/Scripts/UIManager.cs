@@ -27,8 +27,6 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        if(gun != null)
-            SetGun();
     }
 
     // Update is called once per frame
@@ -36,8 +34,8 @@ public class UIManager : MonoBehaviour
     {
 
     }
-    public void SetGun()
+    public void SetGun(string name, int ammoLeft, int totalAmmo)
     {
-        playerGunText.text = gun.gunName + "\n" + gun.currentAmmo + "/" + gun.ammo;
+        playerGunText.text = name + "\n" + ammoLeft + "/" + totalAmmo;
     }
 }
