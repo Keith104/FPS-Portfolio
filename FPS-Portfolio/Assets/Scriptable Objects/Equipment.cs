@@ -18,9 +18,9 @@ public class Equipment : ScriptableObject
     public int range;
     public float damageAmount;
 
-    [SerializeField] int burstAmount;
-    [SerializeField] float spreadRange; // put 0 for no spread, I suggest not going above 1
-    [SerializeField] int pellets; // amount of bullets per shot, only used when spreadRange is in effect
+    public int burstAmount;
+    public float spreadRange; // put 0 for no spread, I suggest not going above 1
+    public int pellets; // amount of bullets per shot, only used when spreadRange is in effect
 
     public int reloadSpeed;
     public float fireRate;
