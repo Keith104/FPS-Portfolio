@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             playerDead = true;
             Debug.Log("Player Dead");
+            GameManager.instance.Lose();
         }
     }
 
