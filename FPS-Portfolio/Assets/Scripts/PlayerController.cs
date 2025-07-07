@@ -113,13 +113,16 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Shoot()
     {
-        shootTimer = 0;
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
+        if(!Gamemanager.instance.GetPause())
         {
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if (dmg != null)
-                dmg.TakeDamage(shootDamage);
+            shootTimer = 0;
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
+            {
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
+                if (dmg != null)
+                    dmg.TakeDamage(shootDamage);
+            }
         }
     }
 

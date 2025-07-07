@@ -1487,7 +1487,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuActive: {fileID: 0}
+  inGame: 1
   menuPause: {fileID: 1662591864540606567}
+  creditsMenu: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &5878097932938308109
 GameObject:
   m_ObjectHideFlags: 0
