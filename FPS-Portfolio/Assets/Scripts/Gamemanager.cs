@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
     [SerializeField] GameObject creditsMenu;
 
     [Header("References")]
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     int score;
 
-    
+    int goalCount;
 
     private void Awake()
     {
@@ -74,6 +76,14 @@ public class GameManager : MonoBehaviour
     public void UpdateScoreText(int amount)
     {
         score += amount;
+        
+        if (score <= 0)
+        {
+            //Winner Winner Chicken Dinner
+            statePause();
+            menuActive = menuWin;
+            menuActive.SetActive(true);
+        }
     }
 
     void UpdateTimerText()
@@ -134,5 +144,12 @@ public class GameManager : MonoBehaviour
     public bool GetPause()
     {
         return isPaused;
+    }
+
+    public void Lose()
+    {
+        statePause();
+        menuActive = menuLose;
+        menuActive.SetActive(true);
     }
 }
