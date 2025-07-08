@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6634323562284646165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3668149471114854387}
+  - component: {fileID: 3622126768160715280}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3668149471114854387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634323562284646165}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6812629341137359061}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3622126768160715280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6634323562284646165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d897f91604b68f049a255489df968e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorOpenClip: {fileID: 8300000, guid: d25fec750a94f734d94b028fbbea97a4, type: 3}
+  explosionClip: {fileID: 8300000, guid: a7f3ac175c7a0c2429f6f033ec16fa43, type: 3}
+  gunClickClip: {fileID: 8300000, guid: 8facdda82ad5ee84eb191aeaa972c726, type: 3}
+  gunShotClip: {fileID: 8300000, guid: f35601480f2672a4cb5a4fbbbe19e608, type: 3}
+  gunReloadClip: {fileID: 8300000, guid: 773025859a337ae40a718f9bad9cf731, type: 3}
+  moveClips:
+  - {fileID: 8300000, guid: 390b609d6ecd5b8428a8992032796702, type: 3}
+  - {fileID: 8300000, guid: fd6117e572743204bb8f3adc4ce3dd27, type: 3}
+  - {fileID: 8300000, guid: 4d46ae468af56d04ca84daea71a51780, type: 3}
+  - {fileID: 8300000, guid: c0351ec8faebc994d922067cb0918f84, type: 3}
+  - {fileID: 8300000, guid: 92019faf873de90439f9eb55a03fc9a0, type: 3}
+  - {fileID: 8300000, guid: 687146dbee351e64bb67945062e775b8, type: 3}
+  - {fileID: 8300000, guid: 367f22fdade87224cb4f2a304379173f, type: 3}
+  - {fileID: 8300000, guid: 0ea0d53b56116754a9b752fba9651719, type: 3}
+  - {fileID: 8300000, guid: 42c13ca2c1e240344a4186672c4d0ac6, type: 3}
+  hurtClips:
+  - {fileID: 8300000, guid: 8850d4e0740edf040957e5c2b73ae970, type: 3}
+  - {fileID: 8300000, guid: d2b981ba60eac794a82a71ed3405167a, type: 3}
+  - {fileID: 8300000, guid: 934180b12f77056448edf8258b99aa09, type: 3}
+  - {fileID: 8300000, guid: 5e936f3af43783c479725d14c82ca4ea, type: 3}
+  - {fileID: 8300000, guid: f2cf733e18d4bb04ea225a801e67db0f, type: 3}
+  - {fileID: 8300000, guid: 02322e35f832ffb47b426124c2b04fb0, type: 3}
+  jumpClips:
+  - {fileID: 8300000, guid: ff0adb30ed1cf0c48b1d58c1273cc66e, type: 3}
+  - {fileID: 8300000, guid: 48b987564e8ef6845a3d18df450a5cab, type: 3}
+  - {fileID: 8300000, guid: 71b512ebf50df7c42b17ef5558387657, type: 3}
+  buttonClickClip: {fileID: 0}
+--- !u!1 &7906417953057109897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6812629341137359061}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6812629341137359061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906417953057109897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.058036, y: 2.7166255, z: -8.012938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3668149471114854387}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

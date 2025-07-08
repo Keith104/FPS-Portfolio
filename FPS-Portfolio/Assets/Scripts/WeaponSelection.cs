@@ -1,36 +1,21 @@
 using UnityEngine;
+using static Equipment;
 
 public class WeaponSelection : MonoBehaviour
 {
-    public string gunName;
-    [SerializeField] int range;
-    [SerializeField] int damage;
-    [SerializeField] int reloadSpeed;
+    [SerializeField] Equipment equipment;
+
     private int reloadTimer;
-
-    [SerializeField] int fireRate;
     private float fireRateTimer;
-
-    public int ammo;
-    public int currentAmmo;
-
-    public enum FireType
-    {
-        Single,
-        Burst,
-        Auto
-    }
-    public FireType currentFire;
-    [SerializeField] int burstAmount; // only used when in Burst
+    private int currentAmmo;
+    private int currentHeldAmmo;
     private int burstCount; // only used when in Burst
     private bool fired; // used for everything but auto
-
-    [SerializeField] float spreadRange; // put 0 for no spread, I suggest not going above 1
-    [SerializeField] int pellets; // amount of bullets per shot, only used when spreadRange is in effect
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentAmmo = ammo;
+        currentAmmo = equipment.maxAmmo;
+        updateGunUI();
     }
 
     // Update is called once per frame
@@ -43,60 +28,56 @@ public class WeaponSelection : MonoBehaviour
         if (Input.GetMouseButton(0) && fired == false && currentAmmo > 0 // for any other type
             || burstCount > 0 && currentAmmo > 0 && fired == false)      // for burst type
         {
-            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * range, Color.red);
-            if(spreadRange != 0)
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * equipment.range, Color.red);
+            if(equipment.spreadRange != 0)
             {
                 Vector3 dirUp = Camera.main.transform.forward;
-                dirUp.y += spreadRange;
-                Debug.DrawRay(Camera.main.transform.position, dirUp * range, Color.blue);
+                dirUp.y += equipment.spreadRange;
+                Debug.DrawRay(Camera.main.transform.position, dirUp * equipment.range, Color.blue);
 
                 Vector3 dirDown = Camera.main.transform.forward;
-                dirDown.y -= spreadRange;
-                Debug.DrawRay(Camera.main.transform.position, dirDown * range, Color.blue);
+                dirDown.y -= equipment.spreadRange;
+                Debug.DrawRay(Camera.main.transform.position, dirDown * equipment.range, Color.blue);
 
                 Vector3 dirLeft = Camera.main.transform.forward;
-                dirLeft.x += spreadRange;
-                Debug.DrawRay(Camera.main.transform.position, dirLeft * range, Color.blue);
+                dirLeft.x += equipment.spreadRange;
+                Debug.DrawRay(Camera.main.transform.position, dirLeft * equipment.range, Color.blue);
 
                 Vector3 dirRight = Camera.main.transform.forward;
-                dirRight.x -= spreadRange;
-                Debug.DrawRay(Camera.main.transform.position, dirRight * range, Color.blue);
+                dirRight.x -= equipment.spreadRange;
+                Debug.DrawRay(Camera.main.transform.position, dirRight * equipment.range, Color.blue);
 
-                for (int shotDex = 0; shotDex < pellets; shotDex++)
+                for (int shotDex = 0; shotDex < equipment.pellets; shotDex++)
                 {
                     Vector3 dirRan = Camera.main.transform.forward;
-                    dirRan.y += Random.Range(-spreadRange, spreadRange);
-                    dirRan.x += Random.Range(-spreadRange, spreadRange);
-                    Debug.DrawRay(Camera.main.transform.position, dirRan * range, Color.yellow);
+                    dirRan.y += Random.Range(-equipment.spreadRange, equipment.spreadRange);
+                    dirRan.x += Random.Range(-equipment.spreadRange, equipment.spreadRange);
+                    Debug.DrawRay(Camera.main.transform.position, dirRan * equipment.range, Color.yellow);
                 }
             }
 
-            switch (currentFire)
+            if (equipment.singleFireMode)
             {
-                case FireType.Single:
-                    currentAmmo--;
-                    fired = true;
-                    break;
-
-                case FireType.Burst:
-                    currentAmmo--;
-                    burstCount++;
-                    if (burstCount >= burstAmount)
-                    {
-                        burstCount = 0;
-                        fired = true;
-                    }
-                    break;
-
-                case FireType.Auto:
-                    currentAmmo--;
-                    break;
+                currentAmmo--;
+                fired = true;
             }
+            else if (equipment.burstFireMode)
+            {
+                currentAmmo--;
+                burstCount++;
+                if (burstCount >= equipment.burstAmount)
+                {
+                    burstCount = 0;
+                    fired = true;
+                }
+            }
+            else if(equipment.fullAutoFireMode)
+                 currentAmmo--;
         }
         else if (fired == true)
         {
             fireRateTimer += Time.deltaTime;
-            if (fireRateTimer >= fireRate)
+            if (fireRateTimer >= equipment.fireRate)
             {
                 fireRateTimer = 0;
                 fired = false;
@@ -111,15 +92,16 @@ public class WeaponSelection : MonoBehaviour
     void Reload()
     {
         reloadTimer++;
-        if (reloadTimer > reloadSpeed)
+        if (reloadTimer > equipment.reloadSpeed)
         {
             reloadTimer = 0;
-            currentAmmo = ammo;
+            currentAmmo = equipment.currentMag;
+            currentHeldAmmo = equipment.maxAmmo - equipment.currentMag;
         }
     }
 
     void updateGunUI()
     {
-        UIManager.instance.SetGun();
+        UIManager.instance.SetGun(equipment.weaponName, currentAmmo, currentHeldAmmo);
     }
 }
