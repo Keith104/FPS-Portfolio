@@ -28,4 +28,10 @@ public class ButtonFunctions : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.instance.stateUnPause();
+    }
 }
