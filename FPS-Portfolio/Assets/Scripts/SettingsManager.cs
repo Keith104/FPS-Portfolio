@@ -43,9 +43,31 @@ public class SettingsManager : MonoBehaviour
         qualityDropdown.ClearOptions();
         qualityDropdown.AddOptions(QualitySettings.names.ToList());
 
-        tempWindowMode = Mathf.Clamp(PlayerPrefs.GetInt("windowMode", System.Array.IndexOf(screenModes, Screen.fullScreenMode)), 0, screenModes.Length - 1);
-        tempResolution = Mathf.Clamp(PlayerPrefs.GetInt("resolution", resolutions.Length - 1), 0, resolutions.Length - 1);
-        tempQuality = Mathf.Clamp(PlayerPrefs.GetInt("quality", QualitySettings.GetQualityLevel()), 0, QualitySettings.names.Length - 1);
+        tempWindowMode = Mathf.Clamp(
+            PlayerPrefs.GetInt("windowMode", System.Array.IndexOf(screenModes, Screen.fullScreenMode)),
+            0,
+            screenModes.Length - 1
+        );
+
+        int defaultResIndex = resolutions.ToList().FindIndex(r =>
+            r.width == Screen.currentResolution.width &&
+            r.height == Screen.currentResolution.height &&
+            r.refreshRate == Screen.currentResolution.refreshRate
+        );
+        if (defaultResIndex < 0) defaultResIndex = 0;
+
+        tempResolution = Mathf.Clamp(
+            PlayerPrefs.GetInt("resolution", defaultResIndex),
+            0,
+            resolutions.Length - 1
+        );
+
+        tempQuality = Mathf.Clamp(
+            PlayerPrefs.GetInt("quality", QualitySettings.GetQualityLevel()),
+            0,
+            QualitySettings.names.Length - 1
+        );
+
         tempVsync = PlayerPrefs.GetInt("vSync", 1) == 1;
         tempVolume = Mathf.Clamp01(PlayerPrefs.GetFloat("volume", 1f));
 
@@ -53,8 +75,6 @@ public class SettingsManager : MonoBehaviour
         sensSlider.minValue = 0;
         sensSlider.maxValue = 600;
         tempSens = PlayerPrefs.GetInt("sens", 400);
-
-        Debug.Log("Player Pref Loaded as: " +  tempSens);
 
         windowModeDropdown.value = tempWindowMode;
         resolutionDropdown.value = tempResolution;
@@ -99,8 +119,6 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("volume", tempVolume);
         PlayerPrefs.SetInt("sens", tempSens);
         PlayerPrefs.Save();
-
-        Debug.Log("Player Pref Saved As:" + PlayerPrefs.GetInt("sens"));
 
         if (GameManager.instance != null)
             GameManager.instance.SetSens(tempSens);
