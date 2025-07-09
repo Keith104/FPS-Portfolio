@@ -37,6 +37,5 @@ public class Equipment : ScriptableObject
     public bool isImpact;
     public int forceMult;
     public float detonationCountdown;
-    public int damageAmount;
 
 }
