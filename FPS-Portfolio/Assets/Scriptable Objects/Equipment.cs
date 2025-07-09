@@ -16,7 +16,7 @@ public class Equipment : ScriptableObject
     public bool burstFireMode;
     public bool fullAutoFireMode;
     public int range;
-    public float damageAmount;
+    public int damageAmount;
 
     public int burstAmount;
     public float spreadRange; // put 0 for no spread, I suggest not going above 1
@@ -29,5 +29,14 @@ public class Equipment : ScriptableObject
 
     public AudioClip shootSound;
     public GameObject weaponPrefab;
+
+    [Header("Throwable Data")]
+    public bool isSpining;
+    public int spinSpeed;
+    public bool isSticky;
+    public bool isImpact;
+    public int forceMult;
+    public float detonationCountdown;
+    public int damageAmount;
 
 }

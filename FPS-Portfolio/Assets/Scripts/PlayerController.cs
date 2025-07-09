@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] int health;
     [SerializeField] float hpBarLerpSpeed;
     [SerializeField] AudioSource source;
+    [SerializeField] Animator animate;
 
     [Header("Movement Settings")]
     [SerializeField] int speed;
