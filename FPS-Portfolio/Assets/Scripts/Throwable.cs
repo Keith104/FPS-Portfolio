@@ -13,6 +13,7 @@ public class Throwable : MonoBehaviour
     [SerializeField] LayerMask trajectoryLayerMask;
 
     private bool thrown;
+    private bool hasExploded = true;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +36,11 @@ public class Throwable : MonoBehaviour
         else if (equipment.detonationCountdown > 0 && equipment.isImpact == false && thrown == true)
         {
             equipment.detonationCountdown -= Time.deltaTime; 
+        }
+        else if (hasExploded == true)
+        {
+            // sometimes Destroy doesn't work in Explode() so this is a backup to make sure it gets destroyed
+            Destroy(gameObject);
         }
     }
 
@@ -59,6 +65,7 @@ public class Throwable : MonoBehaviour
 
     void Explode()
     {
+        hasExploded = true;
         Vector3 explosionCenter = transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(explosionCenter, explosionRadius.radius);
 
@@ -71,7 +78,6 @@ public class Throwable : MonoBehaviour
                 dmg.TakeDamage(equipment.damageAmount);
             }
         }
-
 
         Destroy(gameObject);
     }

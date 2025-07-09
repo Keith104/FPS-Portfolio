@@ -683,6 +683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThrowObj
       objectReference: {fileID: 0}
+    - target: {fileID: 4728932020735946309, guid: 63e5263a64c0c51468627c1b322f2dbe, type: 3}
+      propertyPath: equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
     - target: {fileID: 7701211997443645245, guid: 63e5263a64c0c51468627c1b322f2dbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.45
