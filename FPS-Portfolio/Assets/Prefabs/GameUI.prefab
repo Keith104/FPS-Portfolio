@@ -1991,6 +1991,7 @@ MonoBehaviour:
   menuLose: {fileID: 4297379263636359186}
   creditsMenu: {fileID: 0}
   animator: {fileID: 0}
+  sens: 400
 --- !u!1 &5776099942772201710
 GameObject:
   m_ObjectHideFlags: 0
