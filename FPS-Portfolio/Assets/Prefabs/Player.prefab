@@ -65,7 +65,7 @@ MonoBehaviour:
   source: {fileID: 6473604063781411379}
   speed: 5
   sprintMod: 3
-  stepInterval: 0.5
+  stepInterval: 2
   jumpVel: 12
   jumpMax: 1
   gravity: 35
@@ -435,7 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e71a347397f3b42b6832c2bec0bb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 400
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0
