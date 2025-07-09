@@ -4,12 +4,6 @@ using UnityEngine.SceneManagement;
 public class ButtonFunctions : MonoBehaviour
 {
 
-    public void Play()
-    {
-        SceneManager.LoadScene("GameScene");
-    }
-
-
     public void Resume()
     {
         GameManager.instance.stateUnPause();
@@ -26,6 +20,32 @@ public class ButtonFunctions : MonoBehaviour
 
     public void ToMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        GameManager.instance.stateUnPause();
+    }
+
+    public void LoadLevel(int lvl)
+    {
+        // When player has ability that needs different time scale set here.
+
+        SceneManager.LoadScene(lvl);
+    }
+
+
+    // Settings Menu
+    public void ApplySettings()
+    {
+        SettingsManager.instance.ApplySettings();
+    }
+
+    public void Back()
+    {
+        SettingsManager.instance.RevertSettings();
     }
 }

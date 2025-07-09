@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &115808939 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5451766402942236603, guid: 0745e68bded21d24bb89eae1b5db0080, type: 3}
-  m_PrefabInstance: {fileID: 902333641923344153}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &172981352
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,6 +361,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1714978057165969180, guid: 4e8b4ccb7f3ff294e828593a6ecc0d6b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3137355929179418199, guid: 4e8b4ccb7f3ff294e828593a6ecc0d6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.446271
@@ -512,21 +511,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7784430193642803728, guid: 0745e68bded21d24bb89eae1b5db0080, type: 3}
-      propertyPath: health
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7784430193642803728, guid: 0745e68bded21d24bb89eae1b5db0080, type: 3}
       propertyPath: RespawnPoint
       value: 
       objectReference: {fileID: 1544783516}
-    - target: {fileID: 7784430193642803728, guid: 0745e68bded21d24bb89eae1b5db0080, type: 3}
-      propertyPath: hpBarLerpSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7784430193642803728, guid: 0745e68bded21d24bb89eae1b5db0080, type: 3}
-      propertyPath: PlayerTransform
-      value: 
-      objectReference: {fileID: 115808939}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -624,6 +611,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5332426499037621658, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6775432978836031240, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: m_Name
       value: GunText

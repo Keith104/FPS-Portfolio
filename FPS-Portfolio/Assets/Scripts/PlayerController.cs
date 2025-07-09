@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
     [SerializeField] int health;
     [SerializeField] float hpBarLerpSpeed;
+    [SerializeField] AudioSource source;
 
     [Header("Movement Settings")]
     [SerializeField] int speed;
     [SerializeField] int sprintMod;
+    [SerializeField] float stepInterval;
 
     [Header("Jump Settings")]
     [SerializeField] int jumpVel;
@@ -32,8 +34,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("Respawn Settings")]
     [SerializeField] Transform PlayerTransform;
     [SerializeField] Transform RespawnPoint;
-    
-    
+
+    float stepTimer;
     float initialScale;
     float currentScale;
     Vector3 originalPosition;
@@ -91,7 +93,22 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
+
         controller.Move(moveDir * speed * Time.deltaTime);
+
+        if(controller.isGrounded && moveDir.magnitude > 0f)
+        {
+            stepTimer += Time.deltaTime;
+            if(stepTimer >= stepInterval)
+            {
+                AudioManager.instance.AudioMovement(source);
+                stepTimer = 0f;
+            }
+        }
+        else
+        {
+            stepTimer = stepInterval;
+        }
 
         Jump();
 
@@ -106,6 +123,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (Input.GetButtonDown("Jump") && jumpCount < jumpMax)
         {
+            AudioManager.instance.AudioJump(source);
             playerVel.y = jumpVel;
             jumpCount++;
         }
@@ -115,6 +133,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if(!GameManager.instance.GetPause())
         {
+            AudioManager.instance.AudioGunShot(source);
             shootTimer = 0;
             RaycastHit hit;
             if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
@@ -161,12 +180,14 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         health = Mathf.Max(health - amount, 0);
         hpBarTarget = Mathf.Clamp01((float)health / hpOrig);
+        AudioManager.instance.AudioHurt(source);
         StartCoroutine(damageFlashScreen());
 
         if (health <= 0 && !playerDead)
         {
             playerDead = true;
             Debug.Log("Player Dead");
+            GameManager.instance.Lose();
         }
     }
 

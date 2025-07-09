@@ -15,73 +15,70 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip buttonClickClip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
-        
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void AudioDoorOpen(AudioSource source)
+    public void AudioDoorOpen(AudioSource source)
     {
         source.clip = doorOpenClip;
         if (source.isPlaying == false)
             source.Play();
     }
 
-    void AudioExplosion(AudioSource source)
+    public void AudioExplosion(AudioSource source)
     {
         source.clip = explosionClip;
         if (source.isPlaying == false)
             source.Play();
     }
 
-    void AudioMovement(AudioSource source)
+    public void AudioMovement(AudioSource source)
     {
-        source.clip = moveClips[Random.Range(0, moveClips.Length)];
-        if (source.isPlaying == false)
-            source.Play();
+        if (source.isPlaying)
+            return;
+
+        var clip = moveClips[Random.Range(0, moveClips.Length)];
+        source.clip = clip;
+        source.Play();
     }
 
-    void AudioGunClick(AudioSource source)
+    public void AudioGunClick(AudioSource source)
     {
         source.clip = gunClickClip;
         if (source.isPlaying == false)
             source.Play();
     }
-    void AudioGunShot(AudioSource source)
+    public void AudioGunShot(AudioSource source)
     {
         source.clip = gunShotClip;
         if (source.isPlaying == false)
             source.Play();
     }
 
-    void AudioGunReload(AudioSource source)
+    public void AudioGunReload(AudioSource source)
     {
         source.clip = gunReloadClip;
         if (source.isPlaying == false)
             source.Play();
     }
 
-    void AudioHurt(AudioSource source)
+    public void AudioHurt(AudioSource source)
     {
         source.clip = hurtClips[Random.Range(0, hurtClips.Length)];
         if (source.isPlaying == false)
             source.Play();
     }
 
-    void AudioJump(AudioSource source)
+    public void AudioJump(AudioSource source)
     {
         source.clip = jumpClips[Random.Range(0, jumpClips.Length)];
         if (source.isPlaying == false)
             source.Play();
     }
 
-    void AudioButtonClick(AudioSource source)
+    public void AudioButtonClick(AudioSource source)
     {
         source.clip = buttonClickClip;
         if (source.isPlaying == false)

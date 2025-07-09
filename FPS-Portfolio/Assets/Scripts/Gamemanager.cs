@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem.DualShock;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +12,14 @@ public class GameManager : MonoBehaviour
 
     [Header("UI References")]
     [SerializeField] GameObject menuPause;
+    [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject menuLose;
     [SerializeField] GameObject creditsMenu;
 
     [Header("References")]
     [SerializeField] Animator animator;
 
+    public int sens;
 
     float timer;
 
@@ -25,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     int score;
 
-    
+    int goalCount;
 
     private void Awake()
     {
@@ -33,11 +37,13 @@ public class GameManager : MonoBehaviour
 
         timeScaleOrig = Time.timeScale;
         timer = 0;
+
+        sens = PlayerPrefs.GetInt("sens", sens);
     }
 
     private void Update()
     {
-        if(animator != null && menuActive != null)
+        if (animator != null && menuActive != null)
         {
             var state = animator.GetCurrentAnimatorStateInfo(0);
             if (state.IsName("Credits") && state.normalizedTime >= 1f && !animator.IsInTransition(0))
@@ -48,9 +54,9 @@ public class GameManager : MonoBehaviour
 
         if (inGame)
         {
-            if(Input.GetButtonDown("Cancel"))
+            if (Input.GetButtonDown("Cancel"))
             {
-                if(menuActive == null)
+                if (menuActive == null)
                 {
                     statePause();
                     menuActive = menuPause;
@@ -63,7 +69,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(inGame)
+        if (inGame)
         {
             timer += Time.deltaTime;
             UpdateTimerText();
@@ -74,6 +80,14 @@ public class GameManager : MonoBehaviour
     public void UpdateScoreText(int amount)
     {
         score += amount;
+
+        if (score <= 0)
+        {
+            //Winner Winner Chicken Dinner
+            statePause();
+            menuActive = menuWin;
+            menuActive.SetActive(true);
+        }
     }
 
     void UpdateTimerText()
@@ -84,11 +98,11 @@ public class GameManager : MonoBehaviour
 
         string formatted;
 
-        if(totalSeconds < 60)
+        if (totalSeconds < 60)
         {
             formatted = seconds.ToString("0");
         }
-        else if(totalSeconds < 600)
+        else if (totalSeconds < 600)
         {
             formatted = $"{minutes}:{seconds:00}";
         }
@@ -134,5 +148,19 @@ public class GameManager : MonoBehaviour
     public bool GetPause()
     {
         return isPaused;
+    }
+
+    public void Lose()
+    {
+        statePause();
+        menuActive = menuLose;
+        menuActive.SetActive(true);
+    }
+
+    public void SetSens(int s)
+    {
+        sens = s;
+        PlayerPrefs.SetInt("sens", s);
+        PlayerPrefs.Save();
     }
 }
