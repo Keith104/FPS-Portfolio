@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float hpBarLerpSpeed;
     [SerializeField] AudioSource source;
     [SerializeField] Animator animate;
+    [SerializeField] WeaponSelection Gun; // Takes in a weapon Selection script, that then holds equipment for the type of weapon
 
     [Header("Movement Settings")]
     [SerializeField] int speed;
@@ -134,15 +135,19 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if(!GameManager.instance.GetPause())
         {
-            AudioManager.instance.AudioGunShot(source);
-            shootTimer = 0;
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
-            {
-                IDamage dmg = hit.collider.GetComponent<IDamage>();
-                if (dmg != null)
-                    dmg.TakeDamage(shootDamage);
-            }
+            //AudioManager.instance.AudioGunShot(source);
+            //shootTimer = 0;
+            //RaycastHit hit;
+            //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
+            //{
+            //    IDamage dmg = hit.collider.GetComponent<IDamage>();
+            //    if (dmg != null)
+            //        dmg.TakeDamage(shootDamage);
+            //    Gun.shoot();
+            //}
+
+            //This calls weapon selection shoot
+            Gun.shoot();
         }
     }
 

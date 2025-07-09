@@ -23,7 +23,7 @@ public class WeaponSelection : MonoBehaviour
     {
         shoot();
     }
-    void shoot()
+    public void shoot()
     {
         if (Input.GetMouseButton(0) && fired == false && currentAmmo > 0 // for any other type
             || burstCount > 0 && currentAmmo > 0 && fired == false)      // for burst type

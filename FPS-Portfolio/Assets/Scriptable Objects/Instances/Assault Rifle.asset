@@ -10,21 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
-  m_Name: EquipmentTest
+  m_Name: Assault Rifle
   m_EditorClassIdentifier: 
-  weaponName: Gun
+  weaponName: M416
   currentWeapon: 0
   singleFireMode: 0
-  burstFireMode: 1
-  fullAutoFireMode: 0
+  burstFireMode: 0
+  fullAutoFireMode: 1
   range: 50
   damageAmount: 23
-  burstAmount: 12
+  burstAmount: 0
   spreadRange: 0
   pellets: 0
   reloadSpeed: 3
-  fireRate: 3
+  fireRate: 15
   maxAmmo: 60
-  currentMag: 24
+  currentMag: 30
   shootSound: {fileID: 0}
   weaponPrefab: {fileID: 0}
+  isSpining: 0
+  spinSpeed: 0
+  isSticky: 0
+  isImpact: 0
+  forceMult: 0
+  detonationCountdown: 0
