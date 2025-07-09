@@ -5,25 +5,16 @@ using UnityEngine.UIElements;
 
 public class Throwable : MonoBehaviour
 {
+    [SerializeField] Equipment equipment;
+
     [SerializeField] Rigidbody throwRB;
     [SerializeField] LineRenderer throwLR;
-
-    [SerializeField] bool isSpining;
-    [SerializeField] int spinSpeed;
-
-
-    [SerializeField] bool isSticky;
-    [SerializeField] bool isImpact;
+    [SerializeField] SphereCollider explosionRadius;
+    [SerializeField] LayerMask trajectoryLayerMask;
 
     private bool thrown;
 
-    [SerializeField] int forceMult;
-    [SerializeField] int bouncyness;
-    [SerializeField] float detonationCountdown;
-    [SerializeField] int damageAmount;
 
-    [SerializeField] SphereCollider explosionRadius;
-    [SerializeField] LayerMask trajectoryLayerMask;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,16 +25,16 @@ public class Throwable : MonoBehaviour
     {
         if (thrown == false) 
             Throw();
-        else if (isSpining == true)
+        else if (equipment.isSpining == true)
             Spin();
 
-        if (detonationCountdown <= 0 && isImpact == false)
+        if (equipment.detonationCountdown <= 0 && equipment.isImpact == false)
         {
             Explode();
         }
-        else if (detonationCountdown > 0 && isImpact == false && thrown == true)
+        else if (equipment.detonationCountdown > 0 && equipment.isImpact == false && thrown == true)
         {
-            detonationCountdown -= Time.deltaTime; 
+            equipment.detonationCountdown -= Time.deltaTime; 
         }
     }
 
@@ -55,7 +46,7 @@ public class Throwable : MonoBehaviour
             throwLR.enabled = false;
             throwRB.isKinematic = false;
             transform.SetParent(null); // sets object to root
-            throwRB.AddForce(transform.forward * forceMult, ForceMode.Impulse);
+            throwRB.AddForce(transform.forward * equipment.forceMult, ForceMode.Impulse);
             thrown = true;
         }
         Trajectory();
@@ -63,7 +54,7 @@ public class Throwable : MonoBehaviour
 
     void Spin()
     {
-        transform.Rotate(0, spinSpeed * Time.deltaTime, 0);
+        transform.Rotate(0, equipment.spinSpeed * Time.deltaTime, 0);
     }
 
     void Explode()
@@ -77,7 +68,7 @@ public class Throwable : MonoBehaviour
 
             if (dmg != null)
             {
-                dmg.TakeDamage(damageAmount);
+                dmg.TakeDamage(equipment.damageAmount);
             }
         }
 
@@ -87,13 +78,13 @@ public class Throwable : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(isSticky == true)
+        if(equipment.isSticky == true)
         {
             transform.SetParent(collision.transform, true);
             throwRB.isKinematic = true;
         }
 
-        if(isImpact == true)
+        if(equipment.isImpact == true)
             Explode();
     }
 
@@ -102,7 +93,7 @@ public class Throwable : MonoBehaviour
         List<Vector3> lineRendPonts = new List<Vector3>();
         int totSteps = (int)(10 / 0.01f); // duration div by the amount of time between each check
         Vector3 startPos = transform.position;
-        Vector3 forceVelocity = forceMult * transform.forward;
+        Vector3 forceVelocity = equipment.forceMult * transform.forward;
         
         float time = 0;
         for (int i = 0; i < totSteps; ++i)
