@@ -53,8 +53,7 @@ public class AudioManager : MonoBehaviour
     public void AudioGunShot(AudioSource source)
     {
         source.clip = gunShotClip;
-        if (source.isPlaying == false)
-            source.Play();
+        source.Play();
     }
 
     public void AudioGunReload(AudioSource source)

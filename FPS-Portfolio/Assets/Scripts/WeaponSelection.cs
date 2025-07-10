@@ -5,7 +5,7 @@ public class WeaponSelection : MonoBehaviour
 {
     [SerializeField] Equipment equipment;
 
-    private int reloadTimer;
+    private float reloadTimer;
     private float fireRateTimer;
     private int currentAmmo;
     private int currentHeldAmmo;
@@ -14,7 +14,8 @@ public class WeaponSelection : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentAmmo = equipment.maxAmmo;
+        currentAmmo = equipment.currentMag;
+        currentHeldAmmo = equipment.maxAmmo;
         updateGunUI();
     }
 
@@ -91,12 +92,20 @@ public class WeaponSelection : MonoBehaviour
     }
     void Reload()
     {
-        reloadTimer++;
+        reloadTimer += Time.deltaTime;
         if (reloadTimer > equipment.reloadSpeed)
         {
             reloadTimer = 0;
-            currentAmmo = equipment.currentMag;
-            currentHeldAmmo = equipment.maxAmmo - equipment.currentMag;
+            if (currentHeldAmmo > equipment.currentMag)
+                currentAmmo = equipment.currentMag;
+            else
+                currentAmmo = currentHeldAmmo;
+
+                currentHeldAmmo = currentHeldAmmo - equipment.currentMag;
+            if(currentHeldAmmo < 0)
+            {
+                currentHeldAmmo = 0;
+            }
         }
     }
 
