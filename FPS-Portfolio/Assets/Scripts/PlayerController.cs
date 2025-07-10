@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer > shootRate)
+        if (Input.GetButton("Fire1") && shootTimer > shootRate && !GameManager.instance.GetPause())
             Shoot();
     }
 

@@ -3,10 +3,16 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-
+    
     public void Resume()
     {
         GameManager.instance.stateUnPause();
+    }
+
+    public void Continue()
+    {
+        GameManager.instance.stateUnPause();
+        WaveManager.instance.StartWave();
     }
 
     public void Quit()

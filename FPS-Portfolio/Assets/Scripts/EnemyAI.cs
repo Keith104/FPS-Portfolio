@@ -39,7 +39,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         stoppingDistOg = agent.stoppingDistance;
         player = GameObject.FindWithTag("Player");
         agent = GetComponent<NavMeshAgent>();
-        GameManager.instance.UpdateScoreText(1);
     }
 
     // Update is called once per frame
@@ -68,7 +67,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (health <= 0)
         {
-            GameManager.instance.UpdateScoreText(-1);
+            GameManager.instance.UpdateGameGoal(-1);
             Destroy(gameObject);
         }
     }

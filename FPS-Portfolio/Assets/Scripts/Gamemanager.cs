@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject creditsMenu;
     [SerializeField] GameObject menuSettings;
+    [SerializeField] TMP_Text waveText;
+    [SerializeField] TMP_Text enemyText;
 
     [Header("References")]
     [SerializeField] Animator animator;
@@ -85,13 +87,15 @@ public class GameManager : MonoBehaviour
     public void UpdateScoreText(int amount)
     {
         score += amount;
+    }
 
-        if (score <= 0)
+    public void UpdateGameGoal(int amount)
+    {
+        goalCount += amount;
+        UpdateWaveEnemyText();
+        if(goalCount <= 0)
         {
-            //Winner Winner Chicken Dinner
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
+            Win();
         }
     }
 
@@ -176,10 +180,23 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
+    public void Win()
+    {
+        statePause();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+    }
+
     public void SetSens(int s)
     {
         sens = s;
         PlayerPrefs.SetInt("sens", s);
         PlayerPrefs.Save();
+    }
+
+    public void UpdateWaveEnemyText()
+    {
+        waveText.text = "WAVE: " + WaveManager.instance.waveNum;
+        enemyText.text = "Enemies: " + goalCount;
     }
 }
