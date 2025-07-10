@@ -15,6 +15,12 @@ public class ButtonFunctions : MonoBehaviour
         WaveManager.instance.StartWave();
     }
 
+    public void Respawn()
+    {
+        GameManager.instance.playerController.RespawnPlayer();
+        GameManager.instance.stateUnPause();
+    }
+
     public void Quit()
     {
 #if !UNITY_EDITOR

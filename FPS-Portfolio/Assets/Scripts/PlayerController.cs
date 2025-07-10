@@ -197,9 +197,11 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-        void RespawnPlayer()
+    public void RespawnPlayer()
     {
         PlayerTransform.position = RespawnPoint.position;
+        health = hpOrig;
+        hpBarTarget = 1f;
     }
 
     IEnumerator damageFlashScreen()

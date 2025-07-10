@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Animator animator;
+    [SerializeField] GameObject player;
+    public PlayerController playerController;
 
     public int sens;
 
@@ -40,6 +42,11 @@ public class GameManager : MonoBehaviour
 
         timeScaleOrig = Time.timeScale;
         timer = 0;
+        if(inGame)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerController = player.GetComponent<PlayerController>();
+        }
 
         sens = PlayerPrefs.GetInt("sens", sens);
     }

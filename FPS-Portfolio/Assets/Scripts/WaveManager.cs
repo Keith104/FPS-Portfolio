@@ -4,14 +4,18 @@ public class WaveManager : MonoBehaviour
 {
     public static WaveManager instance;
 
+    [Header("Wave Settings")]
     [SerializeField] int baseMinEnemies;
     [SerializeField] int baseMaxEnemies;
     [SerializeField] int enemiesPerWaveIncrease;
+
+    [Header("Enemy Settings")]
     [SerializeField] GameObject[] enemySpawns;
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] LayerMask enemyLayerMask;
     [SerializeField] float spawnCheckRadius;
 
+    [Header("Current Wave")]
     public int waveNum;
 
 
