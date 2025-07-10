@@ -199,7 +199,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void RespawnPlayer()
     {
+        controller.enabled = false;
+
         PlayerTransform.position = RespawnPoint.position;
+
+        controller.enabled = true;
+
         health = hpOrig;
         hpBarTarget = 1f;
     }

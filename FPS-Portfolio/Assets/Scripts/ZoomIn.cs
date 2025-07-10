@@ -13,7 +13,7 @@ public class ZoomIn : MonoBehaviour
      // Start is called once before the first execution of Update after the MonoBehaviour is created
      void Start()
     {
-        
+        outFOV = (int)playerCam.fieldOfView;
     }
 
     // Update is called once per frame
@@ -26,6 +26,9 @@ public class ZoomIn : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1)) isZooming = true;
         else if (Input.GetMouseButtonUp(1)) isZooming = false;
+
+        // Change later for when it becomes a setting option
+        inFOV = outFOV - 20;
 
         float target = isZooming ? inFOV : outFOV;
 
