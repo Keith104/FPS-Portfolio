@@ -3,9 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-
+    
     public void Resume()
     {
+        GameManager.instance.stateUnPause();
+    }
+
+    public void Continue()
+    {
+        GameManager.instance.stateUnPause();
+        WaveManager.instance.StartWave();
+    }
+
+    public void Respawn()
+    {
+        GameManager.instance.playerController.RespawnPlayer();
         GameManager.instance.stateUnPause();
     }
 
@@ -37,6 +49,10 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene(lvl);
     }
 
+    public void SetActiveMenu(GameObject menuActive)
+    {
+        GameManager.instance.SetActiveMenu(menuActive);
+    }
 
     // Settings Menu
     public void ApplySettings()
@@ -47,5 +63,10 @@ public class ButtonFunctions : MonoBehaviour
     public void Back()
     {
         SettingsManager.instance.RevertSettings();
+    }
+
+    public void backToPauseMenu()
+    {
+        GameManager.instance.backToPauseMenu();
     }
 }

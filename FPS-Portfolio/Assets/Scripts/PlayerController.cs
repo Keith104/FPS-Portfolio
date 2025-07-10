@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
-        if (Input.GetButton("Fire1") && shootTimer > shootRate)
+        if (Input.GetButton("Fire1") && shootTimer > shootRate && !GameManager.instance.GetPause())
             Shoot();
     }
 
@@ -197,9 +197,16 @@ public class PlayerController : MonoBehaviour, IDamage
         }
     }
 
-        void RespawnPlayer()
+    public void RespawnPlayer()
     {
+        controller.enabled = false;
+
         PlayerTransform.position = RespawnPoint.position;
+
+        controller.enabled = true;
+
+        health = hpOrig;
+        hpBarTarget = 1f;
     }
 
     IEnumerator damageFlashScreen()

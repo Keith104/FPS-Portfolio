@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9217356845865749448}
   - component: {fileID: 1312792134952347254}
   - component: {fileID: 6473604063781411379}
+  - component: {fileID: 3211102351082915324}
   m_Layer: 3
   m_Name: Player - Bean
   m_TagString: Player
@@ -63,6 +64,8 @@ MonoBehaviour:
   health: 3
   hpBarLerpSpeed: 5
   source: {fileID: 6473604063781411379}
+  animate: {fileID: 0}
+  Gun: {fileID: 3211102351082915324}
   speed: 5
   sprintMod: 3
   stepInterval: 0.5
@@ -285,6 +288,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3211102351082915324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285367405762129571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 11400000, guid: b8720ae44db8ad941a684a7c0f732910, type: 2}
+  source: {fileID: 6473604063781411379}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &7569148135856479042
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +455,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e71a347397f3b42b6832c2bec0bb67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sens: 400
   lockVertMin: -90
   lockVertMax: 90
   invertY: 0

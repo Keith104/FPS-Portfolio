@@ -15,9 +15,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject creditsMenu;
+    [SerializeField] GameObject menuSettings;
+    [SerializeField] TMP_Text waveText;
+    [SerializeField] TMP_Text enemyText;
 
     [Header("References")]
     [SerializeField] Animator animator;
+    [SerializeField] GameObject player;
+    public PlayerController playerController;
 
     public int sens;
 
@@ -37,6 +42,11 @@ public class GameManager : MonoBehaviour
 
         timeScaleOrig = Time.timeScale;
         timer = 0;
+        if(inGame)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            playerController = player.GetComponent<PlayerController>();
+        }
 
         sens = PlayerPrefs.GetInt("sens", sens);
     }
@@ -65,8 +75,12 @@ public class GameManager : MonoBehaviour
                 else if (menuActive == menuPause)
                 {
                     stateUnPause();
+                }else if(menuActive == menuSettings)
+                {
+                    backToPauseMenu();
                 }
             }
+
         }
 
         if (inGame)
@@ -80,13 +94,15 @@ public class GameManager : MonoBehaviour
     public void UpdateScoreText(int amount)
     {
         score += amount;
+    }
 
-        if (score <= 0)
+    public void UpdateGameGoal(int amount)
+    {
+        goalCount += amount;
+        UpdateWaveEnemyText();
+        if(goalCount <= 0)
         {
-            //Winner Winner Chicken Dinner
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
+            Win();
         }
     }
 
@@ -132,6 +148,20 @@ public class GameManager : MonoBehaviour
         menuActive = null;
     }
 
+    public void backToPauseMenu()
+    {
+        menuActive.SetActive(false);
+        menuActive = menuPause;
+        menuPause.SetActive(true);
+    }
+
+    public void SetActiveMenu(GameObject activeMenu)
+    {
+        menuActive.SetActive(false);
+        menuActive = activeMenu;
+        menuActive.SetActive(true);
+    }
+
     public void startCredits()
     {
         menuActive = creditsMenu;
@@ -157,10 +187,23 @@ public class GameManager : MonoBehaviour
         menuActive.SetActive(true);
     }
 
+    public void Win()
+    {
+        statePause();
+        menuActive = menuWin;
+        menuActive.SetActive(true);
+    }
+
     public void SetSens(int s)
     {
         sens = s;
         PlayerPrefs.SetInt("sens", s);
         PlayerPrefs.Save();
+    }
+
+    public void UpdateWaveEnemyText()
+    {
+        waveText.text = "WAVE: " + WaveManager.instance.waveNum;
+        enemyText.text = "Enemies: " + goalCount;
     }
 }

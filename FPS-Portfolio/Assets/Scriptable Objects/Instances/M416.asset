@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
-  m_Name: Assault Rifle
+  m_Name: M416
   m_EditorClassIdentifier: 
   weaponName: M416
   currentWeapon: 0
-  singleFireMode: 0
+  singleFireMode: 1
   burstFireMode: 0
-  fullAutoFireMode: 1
+  fullAutoFireMode: 0
   range: 50
   damageAmount: 1
   burstAmount: 0
   spreadRange: 0
   pellets: 0
   reloadSpeed: 3
-  fireRate: 1
-  maxAmmo: 60
+  fireRate: 0.25
+  maxAmmo: 500
   currentMag: 30
   shootSound: {fileID: 8300000, guid: f35601480f2672a4cb5a4fbbbe19e608, type: 3}
   weaponPrefab: {fileID: 1117582899397640, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
