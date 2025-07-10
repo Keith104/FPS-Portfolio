@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
   m_Name: Burst Rifle
   m_EditorClassIdentifier: 
-  weaponName: Pistol
+  weaponName: Uzi
   currentWeapon: 0
   singleFireMode: 0
   burstFireMode: 1
   fullAutoFireMode: 0
   range: 50
-  damageAmount: 23
-  burstAmount: 12
+  damageAmount: 1
+  burstAmount: 3
   spreadRange: 0
   pellets: 0
   reloadSpeed: 3
@@ -27,7 +27,7 @@ MonoBehaviour:
   maxAmmo: 60
   currentMag: 24
   shootSound: {fileID: 8300000, guid: f35601480f2672a4cb5a4fbbbe19e608, type: 3}
-  weaponPrefab: {fileID: 0}
+  weaponPrefab: {fileID: 1095254202041702, guid: 6273e2936e9d6a24e9f64c7c70d6bd19, type: 3}
   isSpining: 0
   spinSpeed: 0
   isSticky: 0

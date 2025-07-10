@@ -4,6 +4,8 @@ using static Equipment;
 public class WeaponSelection : MonoBehaviour
 {
     [SerializeField] Equipment equipment;
+    [SerializeField] AudioSource source;
+    [SerializeField] LayerMask ignoreLayer;
 
     private float reloadTimer;
     private float fireRateTimer;
@@ -61,19 +63,23 @@ public class WeaponSelection : MonoBehaviour
             {
                 currentAmmo--;
                 fired = true;
+                fire();
             }
             else if (equipment.burstFireMode)
             {
-                currentAmmo--;
-                burstCount++;
-                if (burstCount >= equipment.burstAmount)
+                while (burstCount <= equipment.burstAmount)
                 {
-                    burstCount = 0;
-                    fired = true;
+                    burstCount++;
+                    currentAmmo--;
+                    fire();
                 }
+                fired = true;
+                burstCount = 0;
             }
-            else if(equipment.fullAutoFireMode)
-                 currentAmmo--;
+            else if(equipment.fullAutoFireMode){
+                currentAmmo--;
+                fire();
+            }
         }
         else if (fired == true)
         {
@@ -90,6 +96,7 @@ public class WeaponSelection : MonoBehaviour
         }
         updateGunUI();
     }
+
     void Reload()
     {
         reloadTimer += Time.deltaTime;
@@ -112,5 +119,17 @@ public class WeaponSelection : MonoBehaviour
     void updateGunUI()
     {
         UIManager.instance.SetGun(equipment.weaponName, currentAmmo, currentHeldAmmo);
+    }
+
+    void fire()
+    {
+        AudioManager.instance.AudioGunShot(source);
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, equipment.range, ~ignoreLayer))
+        {
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            if (dmg != null)
+                dmg.TakeDamage(equipment.damageAmount);
+        }
     }
 }
