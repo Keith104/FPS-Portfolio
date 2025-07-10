@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float hpBarLerpSpeed;
     [SerializeField] AudioSource source;
     [SerializeField] Animator animate;
-    [SerializeField] WeaponSelection Gun; // Takes in a weapon Selection script, that then holds equipment for the type of weapon
+    public WeaponSelection Gun; // Takes in a weapon Selection script, that then holds equipment for the type of weapon
 
     [Header("Movement Settings")]
     [SerializeField] int speed;

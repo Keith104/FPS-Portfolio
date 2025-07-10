@@ -116,7 +116,7 @@ public class WeaponSelection : MonoBehaviour
         }
     }
 
-    void updateGunUI()
+    public void updateGunUI()
     {
         UIManager.instance.SetGun(equipment.weaponName, currentAmmo, currentHeldAmmo);
     }
