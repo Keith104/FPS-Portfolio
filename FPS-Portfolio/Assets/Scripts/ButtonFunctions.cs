@@ -37,6 +37,10 @@ public class ButtonFunctions : MonoBehaviour
         SceneManager.LoadScene(lvl);
     }
 
+    public void SetActiveMenu(GameObject menuActive)
+    {
+        GameManager.instance.SetActiveMenu(menuActive);
+    }
 
     // Settings Menu
     public void ApplySettings()
@@ -47,5 +51,10 @@ public class ButtonFunctions : MonoBehaviour
     public void Back()
     {
         SettingsManager.instance.RevertSettings();
+    }
+
+    public void backToPauseMenu()
+    {
+        GameManager.instance.backToPauseMenu();
     }
 }

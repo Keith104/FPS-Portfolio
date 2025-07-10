@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
     [SerializeField] GameObject creditsMenu;
+    [SerializeField] GameObject menuSettings;
 
     [Header("References")]
     [SerializeField] Animator animator;
@@ -65,8 +66,12 @@ public class GameManager : MonoBehaviour
                 else if (menuActive == menuPause)
                 {
                     stateUnPause();
+                }else if(menuActive == menuSettings)
+                {
+                    backToPauseMenu();
                 }
             }
+
         }
 
         if (inGame)
@@ -130,6 +135,20 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+    }
+
+    public void backToPauseMenu()
+    {
+        menuActive.SetActive(false);
+        menuActive = menuPause;
+        menuPause.SetActive(true);
+    }
+
+    public void SetActiveMenu(GameObject activeMenu)
+    {
+        menuActive.SetActive(false);
+        menuActive = activeMenu;
+        menuActive.SetActive(true);
     }
 
     public void startCredits()
