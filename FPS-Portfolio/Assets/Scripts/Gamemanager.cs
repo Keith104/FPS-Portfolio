@@ -232,4 +232,9 @@ public class GameManager : MonoBehaviour
     {
         waveTimer = 0;
     }
+
+    public int GetGameGoalCount()
+    {
+        return goalCount;
+    }
 }

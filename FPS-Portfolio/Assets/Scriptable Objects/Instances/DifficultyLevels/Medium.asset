@@ -15,4 +15,5 @@ MonoBehaviour:
   difficultyName: Medium
   baseMinSpawn: 2
   baseMaxSpawn: 4
+  maxEnemiesAllowed: 30
   enemiesPerWaveIncrease: 1.6

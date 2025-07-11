@@ -15,4 +15,5 @@ MonoBehaviour:
   difficultyName: Impossible
   baseMinSpawn: 6
   baseMaxSpawn: 12
+  maxEnemiesAllowed: 120
   enemiesPerWaveIncrease: 3.5

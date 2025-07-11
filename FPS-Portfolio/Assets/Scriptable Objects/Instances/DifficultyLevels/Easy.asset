@@ -15,4 +15,5 @@ MonoBehaviour:
   difficultyName: Easy
   baseMinSpawn: 1
   baseMaxSpawn: 2
+  maxEnemiesAllowed: 15
   enemiesPerWaveIncrease: 1.2
