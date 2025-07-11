@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("Respawn Settings")]
     [SerializeField] Transform PlayerTransform;
     [SerializeField] Transform RespawnPoint;
+    [SerializeField] int maxRespawns;
 
     float stepTimer;
     Vector3 originalPosition;
@@ -71,6 +72,8 @@ public class PlayerController : MonoBehaviour, IDamage
         hpOrig = Mathf.Max(health, 1);
         hpBarTarget = 1f;
 
+        maxRespawns = DifficultyManager.instance.GetDifficulty().maxRespawns;
+
     }
 
     void Update()
@@ -82,6 +85,11 @@ public class PlayerController : MonoBehaviour, IDamage
         if(Input.GetKeyDown(KeyCode.K))
         {
             TakeDamage(1);
+        }
+
+        if(maxRespawns <= 0)
+        {
+            GameManager.instance.respawnButton.interactable = false;
         }
 
         //if(playerDead)
@@ -207,16 +215,22 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void RespawnPlayer()
     {
-        playerDead = false;
+        if(maxRespawns > 0)
+        {
+            playerDead = false;
 
-        controller.enabled = false;
+            controller.enabled = false;
 
-        PlayerTransform.position = RespawnPoint.position;
+            PlayerTransform.position = RespawnPoint.position;
 
-        controller.enabled = true;
+            controller.enabled = true;
 
-        health = hpOrig;
-        hpBarTarget = 1f;
+            health = hpOrig;
+            hpBarTarget = 1f;
+
+            maxRespawns--;
+        }
+
     }
 
     IEnumerator damageFlashScreen()

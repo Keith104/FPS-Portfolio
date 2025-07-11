@@ -14256,6 +14256,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7296455425845558596, guid: 859117a31cc40cb418282096c9a9bebf, type: 3}
+      propertyPath: maxRespawns
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296455425845558596, guid: 859117a31cc40cb418282096c9a9bebf, type: 3}
       propertyPath: RespawnPoint
       value: 
       objectReference: {fileID: 1789509734}
