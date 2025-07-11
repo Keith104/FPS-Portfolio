@@ -17,3 +17,4 @@ MonoBehaviour:
   baseMaxSpawn: 2
   maxEnemiesAllowed: 5
   enemiesPerWaveIncrease: 1.2
+  maxRespawns: 8

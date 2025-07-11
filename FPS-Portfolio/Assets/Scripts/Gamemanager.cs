@@ -49,6 +49,9 @@ public class GameManager : MonoBehaviour
 
     int goalCount;
 
+    private int tempQuality;
+    private bool tempVsync;
+
     private void Awake()
     {
         instance = this;
@@ -62,6 +65,18 @@ public class GameManager : MonoBehaviour
         }
 
         sens = PlayerPrefs.GetInt("sens", sens);
+
+        tempQuality = Mathf.Clamp(
+        PlayerPrefs.GetInt("quality", QualitySettings.GetQualityLevel()),
+        0,
+        QualitySettings.names.Length - 1
+    );
+
+        tempVsync = PlayerPrefs.GetInt("vSync", 1) == 1;
+
+        QualitySettings.SetQualityLevel(tempQuality);
+        QualitySettings.vSyncCount = tempVsync ? 1 : 0;
+
     }
 
     private void Update()
