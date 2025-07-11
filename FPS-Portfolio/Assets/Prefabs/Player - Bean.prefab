@@ -78,8 +78,12 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  scaleSpeed: 10
-  maxHeight: 0.5
+  headCheckDistance: 1
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
+  crouchHeight: 1
+  heightAdjustSpeed: 5
   PlayerTransform: {fileID: 5451766402942236603}
   RespawnPoint: {fileID: 0}
 --- !u!114 &4865474513736462136

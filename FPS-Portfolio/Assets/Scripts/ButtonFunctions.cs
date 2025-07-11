@@ -69,4 +69,9 @@ public class ButtonFunctions : MonoBehaviour
     {
         GameManager.instance.backToPauseMenu();
     }
+
+    public void SetDifficulty(Difficulty difficulty)
+    {
+        DifficultyManager.instance.SetDifficulty(difficulty);
+    }
 }

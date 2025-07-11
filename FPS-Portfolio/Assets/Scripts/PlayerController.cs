@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour, IDamage
         //}
 
         var bar = UIManager.instance.playerHPBar;
-        float next = Mathf.Lerp(bar.fillAmount, hpBarTarget, hpBarLerpSpeed * Time.deltaTime);
+        float next = Mathf.Lerp(bar.fillAmount, hpBarTarget, hpBarLerpSpeed * Time.unscaledDeltaTime);
         bar.fillAmount = Mathf.Clamp01(next);
     }
 
