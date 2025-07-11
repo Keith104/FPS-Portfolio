@@ -199,6 +199,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void RespawnPlayer()
     {
+        playerDead = false;
+
         controller.enabled = false;
 
         PlayerTransform.position = RespawnPoint.position;
