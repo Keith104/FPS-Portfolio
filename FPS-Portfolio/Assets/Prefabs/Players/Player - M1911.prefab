@@ -67,7 +67,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -730,8 +730,12 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  scaleSpeed: 10
-  maxHeight: 0.5
+  headCheckDistance: 2
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
+  crouchHeight: 1
+  heightAdjustSpeed: 5
   PlayerTransform: {fileID: 3255918524500830320}
   RespawnPoint: {fileID: 0}
 --- !u!114 &2666811884950384883

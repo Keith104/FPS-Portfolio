@@ -30,16 +30,16 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("Crouch Settings")]
-    [SerializeField] float scaleSpeed;
-    [SerializeField] float maxHeight;
+    [SerializeField] float headCheckDistance;
+    [SerializeField] LayerMask obstacleMask;
+    [SerializeField] float crouchHeight;
+    [SerializeField] float heightAdjustSpeed;
 
     [Header("Respawn Settings")]
     [SerializeField] Transform PlayerTransform;
     [SerializeField] Transform RespawnPoint;
 
     float stepTimer;
-    float initialScale;
-    float currentScale;
     Vector3 originalPosition;
     Vector3 moveDir;
     Vector3 playerVel;
@@ -51,12 +51,20 @@ public class PlayerController : MonoBehaviour, IDamage
     int hpOrig;
 
     float hpBarTarget;
+
+    // Crouching stuff
+    float standingHeight;
+    Vector3 standingCenter;
+    Vector3 crouchCenter;
     
 
     void Start()
     {
-        initialScale = transform.localScale.y;
-        currentScale = initialScale;
+        standingHeight = controller.height;
+        standingCenter = controller.center;
+        crouchCenter = new Vector3(standingCenter.x, crouchHeight / 2f, standingCenter.z);
+
+
         originalPosition = transform.localPosition;
 
         hpOrig = Mathf.Max(health, 1);
@@ -161,25 +169,24 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Crouch()
     {
-        if(Input.GetButtonDown("Crouch"))
+        Vector3 worldCenter = transform.position + controller.center;
+        Vector3 rayOrigin = worldCenter + Vector3.up * (controller.height * 0.5f);
+
+        bool canStand = !Physics.Raycast(rayOrigin, Vector3.up, headCheckDistance, obstacleMask);
+
+        if(Input.GetButton("Crouch"))
         {
             isCrouched = true;
-        }else if (Input.GetButtonUp("Crouch"))
+        }else if(canStand)
         {
             isCrouched = false;
         }
 
-        float targetScale = isCrouched ? maxHeight : initialScale;
+        float targetHeight = isCrouched ? crouchHeight : standingHeight;
+        controller.height = Mathf.MoveTowards(controller.height, targetHeight, heightAdjustSpeed * Time.deltaTime);
 
-        currentScale = Mathf.MoveTowards(currentScale, targetScale, scaleSpeed * Time.deltaTime);
-
-        Vector3 scale = transform.localScale;
-        scale.y = currentScale;
-        transform.localScale = scale;
-
-        Vector3 pos = originalPosition;
-        pos.y = (initialScale - currentScale) * 0.5f;
-        transform.localPosition = pos;
+        Vector3 targetCenter = isCrouched ? crouchCenter : standingCenter;
+        controller.center = Vector3.Lerp(controller.center, targetCenter, heightAdjustSpeed * Time.deltaTime);
     }
 
     public void TakeDamage(int amount)
