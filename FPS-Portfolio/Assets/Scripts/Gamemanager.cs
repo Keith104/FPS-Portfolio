@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text waveTimerText;
     [SerializeField] TMP_Text totalScoreText;
     [SerializeField] TMP_Text waveScoreText;
+    public Button respawnButton;
 
 
     [Header("References")]
