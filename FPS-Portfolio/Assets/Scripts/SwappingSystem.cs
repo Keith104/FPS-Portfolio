@@ -8,8 +8,8 @@ public class SwappingSystem : MonoBehaviour
     [SerializeField] WeaponSelection melee;
 
     [Header("Throwables")]
-    [SerializeField] WeaponSelection nonLethal;
-    [SerializeField] WeaponSelection lethal;
+    [SerializeField] Throwable nonLethal;
+    [SerializeField] Throwable lethal;
 
     [Header("Misc.")]
     [SerializeField] PlayerController playerConScript;
@@ -77,7 +77,7 @@ public class SwappingSystem : MonoBehaviour
             melee.enabled = false;
             lethal.enabled = false;
 
-            nonLethal.updateGunUI();
+            nonLethal.updateThrowableUI();
         }
         else if (Input.GetButtonDown("LethalSwap"))
         {
@@ -90,7 +90,7 @@ public class SwappingSystem : MonoBehaviour
             melee.enabled = false;
             nonLethal.enabled = false;
 
-            lethal.updateGunUI();
+            lethal.updateThrowableUI();
         }
     }
 }

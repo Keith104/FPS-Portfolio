@@ -130,7 +130,7 @@ public class Throwable : MonoBehaviour
         return retVal;
     }
 
-    void updateThrowableUI()
+    public void updateThrowableUI()
     {
 
     }
