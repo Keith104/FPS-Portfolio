@@ -31,30 +31,65 @@ public class SwappingSystem : MonoBehaviour
         {
             Debug.Log("Swapped to primary");
             playerConScript.Gun = primary;
+            primary.enabled = true;
+
+            secondary.enabled = false;
+            melee.enabled = false;
+            nonLethal.enabled = false;
+            lethal.enabled = false;
+
             primary.updateGunUI();
         }
         else if (Input.GetButtonDown("SecondarySwap"))
         {
             Debug.Log("Swapped to secondary");
             playerConScript.Gun = secondary;
+            secondary.enabled = true;
+
+            primary.enabled = false;
+            melee.enabled = false;
+            nonLethal.enabled = false;
+            lethal.enabled = false;
+
             secondary.updateGunUI();
         }
         else if (Input.GetButtonDown("MeleeSwap"))
         {
             Debug.Log("Swapped to melee");
             playerConScript.Gun = melee;
+            melee.enabled = true;
+
+            primary.enabled = false;
+            secondary.enabled = false;
+            nonLethal.enabled = false;
+            lethal.enabled = false;
+
             melee.updateGunUI();
         }
         else if (Input.GetButtonDown("NonLethalSwap"))
         {
             Debug.Log("Swapped to nonLethal");
             playerConScript.Gun = nonLethal;
+            nonLethal.enabled = true;
+
+            primary.enabled = false;
+            secondary.enabled = false;
+            melee.enabled = false;
+            lethal.enabled = false;
+
             nonLethal.updateGunUI();
         }
         else if (Input.GetButtonDown("LethalSwap"))
         {
             Debug.Log("Swapped to lethal");
             playerConScript.Gun = lethal;
+            lethal.enabled = true;
+
+            primary.enabled = false;
+            secondary.enabled = false;
+            melee.enabled = false;
+            nonLethal.enabled = false;
+
             lethal.updateGunUI();
         }
     }
