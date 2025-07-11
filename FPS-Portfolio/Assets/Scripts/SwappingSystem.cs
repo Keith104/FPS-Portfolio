@@ -69,7 +69,7 @@ public class SwappingSystem : MonoBehaviour
         else if (Input.GetButtonDown("NonLethalSwap"))
         {
             Debug.Log("Swapped to nonLethal");
-            playerConScript.Gun = nonLethal;
+            //playerConScript.Gun = nonLethal;
             nonLethal.enabled = true;
 
             primary.enabled = false;
@@ -82,7 +82,7 @@ public class SwappingSystem : MonoBehaviour
         else if (Input.GetButtonDown("LethalSwap"))
         {
             Debug.Log("Swapped to lethal");
-            playerConScript.Gun = lethal;
+            //playerConScript.Gun = lethal;
             lethal.enabled = true;
 
             primary.enabled = false;

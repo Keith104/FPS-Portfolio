@@ -62,26 +62,30 @@ public class WeaponSelection : MonoBehaviour
                 }
             }
 
-            if (equipment.singleFireMode)
+            if (reloadActive == false)
             {
-                currentAmmo--;
-                fired = true;
-                fire();
-            }
-            else if (equipment.burstFireMode)
-            {
-                while (burstCount <= equipment.burstAmount)
+                if (equipment.singleFireMode)
                 {
-                    burstCount++;
+                    currentAmmo--;
+                    fired = true;
+                    fire();
+                }
+                else if (equipment.burstFireMode)
+                {
+                    while (burstCount <= equipment.burstAmount)
+                    {
+                        burstCount++;
+                        currentAmmo--;
+                        fire();
+                    }
+                    fired = true;
+                    burstCount = 0;
+                }
+                else if (equipment.fullAutoFireMode)
+                {
                     currentAmmo--;
                     fire();
                 }
-                fired = true;
-                burstCount = 0;
-            }
-            else if(equipment.fullAutoFireMode){
-                currentAmmo--;
-                fire();
             }
         }
         else if (fired == true)
