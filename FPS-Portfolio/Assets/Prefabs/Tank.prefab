@@ -88,7 +88,7 @@ MonoBehaviour:
   bullet: {fileID: 6595943304737969214, guid: caa5179f228ea174a9ed0111fc2ac5dd, type: 3}
   searchDist: 10
   searchPauseTime: 3
-  attackCooldown: 0.5
+  attackCooldown: 0.25
   FOV: 90
   faceTargetSpeed: 5
   amountToScore: 250

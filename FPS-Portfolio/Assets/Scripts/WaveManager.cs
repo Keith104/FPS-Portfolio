@@ -88,6 +88,8 @@ public class WaveManager : MonoBehaviour
             int amountToSpawn = Mathf.RoundToInt(Random.Range(minThisWave, maxThisWave));
             totalToSpawnLeft = amountToSpawn;
 
+            GameManager.instance.UpdateGameGoal(totalToSpawnLeft);
+
             int initialSpawn = Mathf.Min(maxEnemiesAllowed, totalToSpawnLeft);
             for (int i = 0; i < initialSpawn; i++)
             {
@@ -109,6 +111,5 @@ public class WaveManager : MonoBehaviour
 
         Transform spawnPoint = freeSpawns[Random.Range(0, freeSpawns.Count)];
         Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPoint.position, spawnPoint.rotation);
-        GameManager.instance.UpdateGameGoal(1);
     }
 }
