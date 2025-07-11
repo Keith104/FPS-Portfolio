@@ -85,7 +85,7 @@ MonoBehaviour:
   model: {fileID: 7060782499985564386}
   agent: {fileID: 6727201843688072988}
   shootPos: {fileID: 8330204188033881315}
-  bullet: {fileID: 6595943304737969214, guid: caa5179f228ea174a9ed0111fc2ac5dd, type: 3}
+  bullet: {fileID: 6595943304737969214, guid: 9be8bd768829a6b4e9ba746c7b59e389, type: 3}
   searchDist: 10
   searchPauseTime: 3
   attackCooldown: 0.5

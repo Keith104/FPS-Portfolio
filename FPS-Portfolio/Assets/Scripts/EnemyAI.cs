@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using System.Runtime.CompilerServices;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
@@ -15,6 +16,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int FOV;
     [SerializeField] int faceTargetSpeed;
     [SerializeField] int amountToScore;
+    [SerializeField] bool tutorial;
 
     GameObject player;
 
@@ -68,7 +70,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (health <= 0)
         {
-            GameManager.instance.UpdateGameGoal(-1);
+            if(!tutorial)
+            {
+                GameManager.instance.UpdateGameGoal(-1);
+            }
             GameManager.instance.UpdateTotalScoreText(amountToScore);
             GameManager.instance.UpdateWaveScoreText(amountToScore);
             Destroy(gameObject);
@@ -107,12 +112,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         playerDir = player.transform.position - transform.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
-        Debug.DrawRay(transform.position, playerDir);
-
         RaycastHit hit;
         if ((Physics.Raycast(transform.position, playerDir, out hit)))
         {
-            Debug.Log("RayCast hit");
             if (hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
             {
                 shootTimer += Time.deltaTime;
@@ -136,8 +138,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void FaceTarget()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, playerDir.y, playerDir.z));
+        Quaternion rot = Quaternion.LookRotation(playerDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, faceTargetSpeed * Time.deltaTime);
+        transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -156,9 +159,10 @@ public class EnemyAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0;
         }
     }
+    
     void Shoot()
     {
         shootTimer = 0;
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerDir));
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6972947022277095902}
   - component: {fileID: 7480263859840522818}
   m_Layer: 8
-  m_Name: Bullet
+  m_Name: TankBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.1
+  m_Radius: 0.075
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6972947022277095902
 Rigidbody:
@@ -167,7 +167,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.98641306, g: 1, b: 0.38679236, a: 1}
+      key0: {r: 1, g: 0.56289303, b: 0.8342866, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
