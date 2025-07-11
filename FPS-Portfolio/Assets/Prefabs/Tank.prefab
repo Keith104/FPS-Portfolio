@@ -91,6 +91,7 @@ MonoBehaviour:
   attackCooldown: 0.5
   FOV: 90
   faceTargetSpeed: 5
+  amountToScore: 250
 --- !u!195 &6727201843688072988
 NavMeshAgent:
   m_ObjectHideFlags: 0

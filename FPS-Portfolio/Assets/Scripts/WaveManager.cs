@@ -32,23 +32,21 @@ public class WaveManager : MonoBehaviour
         enemySpawns = GameObject.FindGameObjectsWithTag("EnemySpawn");
 
         waveTillMiniBoss = 5;
-        waveTillBoss = 2;
+        waveTillBoss = 10;
 
         StartWave();
     }
 
     public void StartWave()
     {
-        minThisWave = baseMinEnemies + (waveNum - 1) * enemiesPerWaveIncrease;
-        maxThisWave = baseMaxEnemies + (waveNum - 1) * enemiesPerWaveIncrease;
 
-        int amountToSpawn = Random.Range(minThisWave, maxThisWave);
 
         waveTillMiniBoss--;
         waveTillBoss--;
         waveNum++;
 
-
+        GameManager.instance.ResetWaveScore();
+        GameManager.instance.ResetWaveTimer();
 
         if (waveTillBoss <= 0)
         {
@@ -59,6 +57,7 @@ public class WaveManager : MonoBehaviour
 
             Debug.Log(waveNum);
             Debug.Log("BOSS");
+            return;
         }else if(waveTillMiniBoss <= -5)
         {
             waveTillMiniBoss = 5;
@@ -66,26 +65,34 @@ public class WaveManager : MonoBehaviour
             GameManager.instance.UpdateGameGoal(1);
 
             Debug.Log("MINI BOSS!");
+            return;
         }
-        else
-        {
-            List<Transform> freeSpawns = new List<Transform>();
-            foreach(var go in enemySpawns)
-            {
-                if(!Physics.CheckSphere(go.transform.position, spawnCheckRadius, enemyLayerMask))
-                {
-                    freeSpawns.Add(go.transform);
-                }
-            }
-            GameManager.instance.UpdateGameGoal(amountToSpawn);
-            int spawnCount = Mathf.Min(amountToSpawn, freeSpawns.Count);
-            for (int i = 0; i < amountToSpawn; i++)
-            {
-                int index = Random.Range(0, freeSpawns.Count);
-                Transform spawnPoint = freeSpawns[index];
 
-                Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPoint.position, spawnPoint.rotation);
+        minThisWave = baseMinEnemies + (waveNum - 1) * enemiesPerWaveIncrease;
+        maxThisWave = baseMaxEnemies + (waveNum - 1) * enemiesPerWaveIncrease;
+
+        int amountToSpawn = Random.Range(minThisWave, maxThisWave);
+
+        List<Transform> freeSpawns = new List<Transform>();
+        foreach (var go in enemySpawns)
+        {
+            if (!Physics.CheckSphere(go.transform.position, spawnCheckRadius, enemyLayerMask))
+            {
+                freeSpawns.Add(go.transform);
             }
+        }
+
+
+
+
+        GameManager.instance.UpdateGameGoal(amountToSpawn);
+        int spawnCount = Mathf.Min(amountToSpawn, freeSpawns.Count);
+        for (int i = 0; i < amountToSpawn; i++)
+        {
+            int index = Random.Range(0, freeSpawns.Count);
+            Transform spawnPoint = freeSpawns[index];
+
+            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPoint.position, spawnPoint.rotation);
         }
     }
 

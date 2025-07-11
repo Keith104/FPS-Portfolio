@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuSettings;
     [SerializeField] TMP_Text waveText;
     [SerializeField] TMP_Text enemyText;
+    [SerializeField] TMP_Text totalTimerText;
+    [SerializeField] TMP_Text waveTimerText;
+    [SerializeField] TMP_Text totalScoreText;
+    [SerializeField] TMP_Text waveScoreText;
+
 
     [Header("References")]
     [SerializeField] Animator animator;
@@ -26,13 +31,16 @@ public class GameManager : MonoBehaviour
 
     public int sens;
 
-    float timer;
+    // Win Condtion stat variables
+    float totalTimer;
+    float waveTimer;
+    int totalScore;
+    int waveScore;
 
     bool isPaused;
 
     float timeScaleOrig;
 
-    int score;
 
     int goalCount;
 
@@ -41,7 +49,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         timeScaleOrig = Time.timeScale;
-        timer = 0;
+        totalTimer = 0;
         if(inGame)
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -85,15 +93,21 @@ public class GameManager : MonoBehaviour
 
         if (inGame)
         {
-            timer += Time.deltaTime;
-            UpdateTimerText();
+            totalTimer += Time.deltaTime;
+            waveTimer += Time.deltaTime;
         }
 
     }
 
-    public void UpdateScoreText(int amount)
+    public void UpdateTotalScoreText(int amount)
     {
-        score += amount;
+        totalScore += amount;
+        totalScoreText.text = totalScore.ToString();
+    }
+    public void UpdateWaveScoreText(int amount)
+    {
+        waveScore += amount;
+        waveScoreText.text = waveScore.ToString();
     }
 
     public void UpdateGameGoal(int amount)
@@ -106,29 +120,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void UpdateTimerText()
+    void UpdateTotalTimerText()
     {
-        int totalSeconds = Mathf.FloorToInt(timer);
+        int totalSeconds = Mathf.FloorToInt(totalTimer);
         int minutes = totalSeconds / 60;
         int seconds = totalSeconds % 60;
 
-        string formatted;
-
-        if (totalSeconds < 60)
-        {
-            formatted = seconds.ToString("0");
-        }
-        else if (totalSeconds < 600)
-        {
-            formatted = $"{minutes}:{seconds:00}";
-        }
-        else
-        {
-            formatted = $"{minutes:00}:{seconds:00}";
-        }
-
-        //timerText.text = $"Timer: {formatted}";
+        totalTimerText.text = $"{minutes}:{seconds:00}";
     }
+
+    void UpdateWaveTimerText()
+    {
+        int waveSeconds = Mathf.FloorToInt(waveTimer);
+        int minutes = waveSeconds / 60;
+        int seconds = waveSeconds % 60;
+
+
+        waveTimerText.text = $"{minutes}:{seconds:00}";
+    }
+
+
 
     public void statePause()
     {
@@ -190,6 +201,9 @@ public class GameManager : MonoBehaviour
     public void Win()
     {
         statePause();
+        UpdateTotalTimerText();
+        UpdateWaveTimerText();
+
         menuActive = menuWin;
         menuActive.SetActive(true);
     }
@@ -205,5 +219,14 @@ public class GameManager : MonoBehaviour
     {
         waveText.text = "WAVE: " + WaveManager.instance.waveNum;
         enemyText.text = "Enemies: " + goalCount;
+    }
+
+    public void ResetWaveScore()
+    {
+        waveScore = 0;
+    }
+    public void ResetWaveTimer()
+    {
+        waveTimer = 0;
     }
 }

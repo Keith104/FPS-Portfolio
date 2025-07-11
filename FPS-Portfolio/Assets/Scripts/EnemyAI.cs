@@ -14,6 +14,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float attackCooldown;
     [SerializeField] int FOV;
     [SerializeField] int faceTargetSpeed;
+    [SerializeField] int amountToScore;
 
     GameObject player;
 
@@ -68,6 +69,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (health <= 0)
         {
             GameManager.instance.UpdateGameGoal(-1);
+            GameManager.instance.UpdateTotalScoreText(amountToScore);
+            GameManager.instance.UpdateWaveScoreText(amountToScore);
             Destroy(gameObject);
         }
     }
