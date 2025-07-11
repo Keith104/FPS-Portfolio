@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.DualShock;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,8 +25,12 @@ public class GameManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] Animator animator;
+
+    [Header("RunTime References")]
     [SerializeField] GameObject player;
     public PlayerController playerController;
+
+
 
     public int sens;
 

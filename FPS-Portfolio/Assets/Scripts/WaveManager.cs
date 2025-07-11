@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
     [Header("Wave Settings")]
     [SerializeField] int baseMinEnemies;
     [SerializeField] int baseMaxEnemies;
-    [SerializeField] int enemiesPerWaveIncrease;
+    [SerializeField] float enemiesPerWaveIncrease;
 
     [Header("Enemy Settings")]
     [SerializeField] GameObject[] enemySpawns;
@@ -22,8 +22,10 @@ public class WaveManager : MonoBehaviour
     int waveTillMiniBoss;
     int waveTillBoss;
 
-    int minThisWave;
-    int maxThisWave;
+    float minThisWave;
+    float maxThisWave;
+
+    Difficulty difficulty;
 
     private void Start()
     {
@@ -33,6 +35,12 @@ public class WaveManager : MonoBehaviour
 
         waveTillMiniBoss = 5;
         waveTillBoss = 10;
+
+        difficulty = DifficultyManager.instance.GetDifficulty();
+
+        baseMinEnemies = difficulty.baseMinSpawn;
+        baseMaxEnemies = difficulty.baseMaxSpawn;
+        enemiesPerWaveIncrease = difficulty.enemiesPerWaveIncrease;
 
         StartWave();
     }
@@ -71,7 +79,7 @@ public class WaveManager : MonoBehaviour
         minThisWave = baseMinEnemies + (waveNum - 1) * enemiesPerWaveIncrease;
         maxThisWave = baseMaxEnemies + (waveNum - 1) * enemiesPerWaveIncrease;
 
-        int amountToSpawn = Random.Range(minThisWave, maxThisWave);
+        int amountToSpawn = Mathf.RoundToInt(Random.Range(minThisWave, maxThisWave));
 
         List<Transform> freeSpawns = new List<Transform>();
         foreach (var go in enemySpawns)
