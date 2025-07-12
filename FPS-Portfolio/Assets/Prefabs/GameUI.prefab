@@ -248,8 +248,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: WEAPONS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4731c5e5e2f7fdd459999a76450e96ae, type: 2}
+  m_sharedMaterial: {fileID: -4084476217685317714, guid: 4731c5e5e2f7fdd459999a76450e96ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.227451, g: 0.2509804, b: 0.2784314, a: 0.88235295}
+  m_Color: {r: 0.227451, g: 0.2509804, b: 0.2784314, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22745098, g: 0.2509804, b: 0.2784314, a: 0.39215687}
+  m_Color: {r: 0.22745098, g: 0.2509804, b: 0.2784314, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1419,8 +1419,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ABILITIES
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4731c5e5e2f7fdd459999a76450e96ae, type: 2}
+  m_sharedMaterial: {fileID: -4084476217685317714, guid: 4731c5e5e2f7fdd459999a76450e96ae, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2246,7 +2246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.22745098, g: 0.2509804, b: 0.2784314, a: 0.39215687}
+  m_Color: {r: 0.22745098, g: 0.2509804, b: 0.2784314, a: 0.6862745}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2451,8 +2451,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -118.8}
-  m_SizeDelta: {x: 350, y: 50}
+  m_AnchoredPosition: {x: 0, y: -155}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &263884283102128794
 CanvasRenderer:
@@ -2606,7 +2606,7 @@ MonoBehaviour:
   menuPause: {fileID: 1662591864540606567}
   menuWin: {fileID: 1516079373511054498}
   menuLose: {fileID: 4297379263636359186}
-  creditsMenu: {fileID: 0}
+  menuCredits: {fileID: 0}
   menuSettings: {fileID: 1279432352190278486}
   waveText: {fileID: 3630325882796365879}
   enemyText: {fileID: 2592385204579453888}
