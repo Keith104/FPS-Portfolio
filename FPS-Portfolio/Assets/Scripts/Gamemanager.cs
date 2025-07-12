@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text waveTimerText;
     [SerializeField] TMP_Text totalScoreText;
     [SerializeField] TMP_Text waveScoreText;
+    public Button respawnButton;
 
 
     [Header("References")]
@@ -47,6 +49,9 @@ public class GameManager : MonoBehaviour
 
     int goalCount;
 
+    private int tempQuality;
+    private bool tempVsync;
+
     private void Awake()
     {
         instance = this;
@@ -60,6 +65,18 @@ public class GameManager : MonoBehaviour
         }
 
         sens = PlayerPrefs.GetInt("sens", sens);
+
+        tempQuality = Mathf.Clamp(
+        PlayerPrefs.GetInt("quality", QualitySettings.GetQualityLevel()),
+        0,
+        QualitySettings.names.Length - 1
+    );
+
+        tempVsync = PlayerPrefs.GetInt("vSync", 1) == 1;
+
+        QualitySettings.SetQualityLevel(tempQuality);
+        QualitySettings.vSyncCount = tempVsync ? 1 : 0;
+
     }
 
     private void Update()

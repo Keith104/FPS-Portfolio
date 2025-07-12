@@ -1,7 +1,7 @@
-using NUnit.Framework.Constraints;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using NUnit.Framework.Constraints;
 
 public class PlayerController : MonoBehaviour, IDamage
 {
@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float hpBarLerpSpeed;
     [SerializeField] AudioSource source;
     [SerializeField] Animator animate;
-    public WeaponSelection Gun; // Takes in a weapon Selection script, that then holds equipment for the type of weapon
+    public WeaponSelection Gun;
     public Throwable throwEqu;
 
     [Header("Movement Settings")]
@@ -31,14 +31,23 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] LayerMask ignoreLayer;
 
     [Header("Crouch Settings")]
-    [SerializeField] float headCheckDistance;
-    [SerializeField] LayerMask obstacleMask;
     [SerializeField] float crouchHeight;
     [SerializeField] float heightAdjustSpeed;
+    [SerializeField] float headCheckDistance;
+    [SerializeField] LayerMask obstacleMask;
 
     [Header("Respawn Settings")]
     [SerializeField] Transform PlayerTransform;
     [SerializeField] Transform RespawnPoint;
+    [SerializeField] int maxRespawns;
+
+    CapsuleCollider col;
+    float standingHeight;
+    Vector3 standingCenter;
+    Vector3 crouchCenter;
+    float ctrlStandingHeight;
+    Vector3 ctrlStandingCenter;
+    Vector3 ctrlCrouchCenter;
 
     float stepTimer;
     Vector3 originalPosition;
@@ -48,29 +57,24 @@ public class PlayerController : MonoBehaviour, IDamage
     float shootTimer;
     bool isCrouched;
     bool playerDead;
-
     int hpOrig;
-
     float hpBarTarget;
-
-    // Crouching stuff
-    float standingHeight;
-    Vector3 standingCenter;
-    Vector3 crouchCenter;
-    
 
     void Start()
     {
-        standingHeight = controller.height;
-        standingCenter = controller.center;
+        col = GetComponent<CapsuleCollider>();
+        standingHeight = col.height;
+        standingCenter = col.center;
         crouchCenter = new Vector3(standingCenter.x, crouchHeight / 2f, standingCenter.z);
 
+        ctrlStandingHeight = controller.height;
+        ctrlStandingCenter = controller.center;
+        ctrlCrouchCenter = new Vector3(ctrlStandingCenter.x, crouchHeight / 2f, ctrlStandingCenter.z);
 
         originalPosition = transform.localPosition;
-
         hpOrig = Mathf.Max(health, 1);
         hpBarTarget = 1f;
-
+        maxRespawns = DifficultyManager.instance.GetDifficulty().maxRespawns;
     }
 
     void Update()
@@ -79,15 +83,11 @@ public class PlayerController : MonoBehaviour, IDamage
         Sprint();
         Movement();
 
-        if(Input.GetKeyDown(KeyCode.K))
-        {
+        if (Input.GetKeyDown(KeyCode.K))
             TakeDamage(1);
-        }
 
-        //if(playerDead)
-        //{
-        //    RespawnPlayer();
-        //}
+        if (maxRespawns <= 0)
+            GameManager.instance.respawnButton.interactable = false;
 
         var bar = UIManager.instance.playerHPBar;
         float next = Mathf.Lerp(bar.fillAmount, hpBarTarget, hpBarLerpSpeed * Time.unscaledDeltaTime);
@@ -104,13 +104,12 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-
         controller.Move(moveDir * speed * Time.deltaTime);
 
-        if(controller.isGrounded && moveDir.magnitude > 0f)
+        if (controller.isGrounded && moveDir.magnitude > 0f)
         {
             stepTimer += Time.deltaTime;
-            if(stepTimer >= stepInterval)
+            if (stepTimer >= stepInterval)
             {
                 AudioManager.instance.AudioMovement(source);
                 stepTimer = 0f;
@@ -122,7 +121,6 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         Jump();
-
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
@@ -142,22 +140,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Shoot()
     {
-        if(!GameManager.instance.GetPause())
-        {
-            //AudioManager.instance.AudioGunShot(source);
-            //shootTimer = 0;
-            //RaycastHit hit;
-            //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
-            //{
-            //    IDamage dmg = hit.collider.GetComponent<IDamage>();
-            //    if (dmg != null)
-            //        dmg.TakeDamage(shootDamage);
-            //    Gun.shoot();
-            //}
-
-            //This calls weapon selection shoot
+        if (!GameManager.instance.GetPause())
             Gun.shoot();
-        }
     }
 
     void Sprint()
@@ -170,24 +154,25 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Crouch()
     {
-        Vector3 worldCenter = transform.position + controller.center;
-        Vector3 rayOrigin = worldCenter + Vector3.up * (controller.height * 0.5f);
-
-        bool canStand = !Physics.Raycast(rayOrigin, Vector3.up, headCheckDistance, obstacleMask);
-
-        if(Input.GetButton("Crouch"))
-        {
+        if (Input.GetButton("Crouch"))
             isCrouched = true;
-        }else if(canStand)
+        else if (isCrouched)
         {
-            isCrouched = false;
+            Vector3 worldCenter = transform.position + col.center;
+            Vector3 rayOrigin = worldCenter + Vector3.up * (col.height * 0.5f);
+            if (!Physics.Raycast(rayOrigin, Vector3.up, headCheckDistance, obstacleMask))
+                isCrouched = false;
         }
 
         float targetHeight = isCrouched ? crouchHeight : standingHeight;
-        controller.height = Mathf.MoveTowards(controller.height, targetHeight, heightAdjustSpeed * Time.deltaTime);
-
+        col.height = Mathf.MoveTowards(col.height, targetHeight, heightAdjustSpeed * Time.deltaTime);
         Vector3 targetCenter = isCrouched ? crouchCenter : standingCenter;
-        controller.center = Vector3.Lerp(controller.center, targetCenter, heightAdjustSpeed * Time.deltaTime);
+        col.center = Vector3.MoveTowards(col.center, targetCenter, heightAdjustSpeed * Time.deltaTime);
+
+        float ctrlTargetHeight = isCrouched ? crouchHeight : ctrlStandingHeight;
+        controller.height = Mathf.MoveTowards(controller.height, ctrlTargetHeight, heightAdjustSpeed * Time.deltaTime);
+        Vector3 ctrlTargetCenter = isCrouched ? ctrlCrouchCenter : ctrlStandingCenter;
+        controller.center = Vector3.MoveTowards(controller.center, ctrlTargetCenter, heightAdjustSpeed * Time.deltaTime);
     }
 
     public void TakeDamage(int amount)
@@ -200,23 +185,22 @@ public class PlayerController : MonoBehaviour, IDamage
         if (health <= 0 && !playerDead)
         {
             playerDead = true;
-            Debug.Log("Player Dead");
             GameManager.instance.Lose();
         }
     }
 
     public void RespawnPlayer()
     {
-        playerDead = false;
-
-        controller.enabled = false;
-
-        PlayerTransform.position = RespawnPoint.position;
-
-        controller.enabled = true;
-
-        health = hpOrig;
-        hpBarTarget = 1f;
+        if (maxRespawns > 0)
+        {
+            playerDead = false;
+            controller.enabled = false;
+            PlayerTransform.position = RespawnPoint.position;
+            controller.enabled = true;
+            health = hpOrig;
+            hpBarTarget = 1f;
+            maxRespawns--;
+        }
     }
 
     IEnumerator damageFlashScreen()
@@ -225,5 +209,4 @@ public class PlayerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
         UIManager.instance.playerDamagePanel.SetActive(false);
     }
-
 }

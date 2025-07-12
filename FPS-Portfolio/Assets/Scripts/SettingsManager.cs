@@ -71,6 +71,8 @@ public class SettingsManager : MonoBehaviour
         tempVsync = PlayerPrefs.GetInt("vSync", 1) == 1;
         tempVolume = Mathf.Clamp01(PlayerPrefs.GetFloat("volume", 1f));
 
+
+
         sensSlider.wholeNumbers = true;
         sensSlider.minValue = 0;
         sensSlider.maxValue = 600;
