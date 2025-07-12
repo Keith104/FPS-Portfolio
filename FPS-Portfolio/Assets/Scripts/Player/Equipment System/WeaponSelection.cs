@@ -70,7 +70,7 @@ public class WeaponSelection : MonoBehaviour
             }
             else if (equipment.burstFireMode)
             {
-                while (burstCount <= equipment.burstAmount)
+                while (burstCount <= equipment.burstAmount && currentAmmo > 0)
                 {
                     burstCount++;
                     currentAmmo--;
