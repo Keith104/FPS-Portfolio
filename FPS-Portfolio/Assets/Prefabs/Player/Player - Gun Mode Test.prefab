@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2086542291356788794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5798525918662120534}
+  - component: {fileID: 6419325488672604901}
+  m_Layer: 3
+  m_Name: LethalSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5798525918662120534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086542291356788794}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.312, y: 0.73399997, z: 0.495}
+  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5445413636439409723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6419325488672604901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086542291356788794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8da435d0e9b624cb61271b5a986d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
+  reloadTime: 0
+  currentAmmo: 0
 --- !u!1 &3170956876275185147
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,8 +282,8 @@ Transform:
   - {fileID: 4767478033500247263}
   - {fileID: 2483456555445256758}
   - {fileID: 4380600780445609465}
-  - {fileID: 5934256042587923280}
-  - {fileID: 7017978387250478270}
+  - {fileID: 5199019434255244079}
+  - {fileID: 5798525918662120534}
   m_Father: {fileID: 1470219703752002328}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5208851703136998629
@@ -254,8 +301,8 @@ MonoBehaviour:
   primary: {fileID: 2046577833400633701}
   secondary: {fileID: 598433864653907796}
   melee: {fileID: 7533152809366156361}
-  nonLethalSpawner: {fileID: 0}
-  lethalSpawner: {fileID: 0}
+  nonLethalSpawner: {fileID: 6419764183204262932}
+  lethalSpawner: {fileID: 6419325488672604901}
   nonLethalFab: {fileID: 0}
   lethalFab: {fileID: 0}
   playerConScript: {fileID: 7966539331941347410}
@@ -553,7 +600,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &4397484419665141563
+--- !u!1 &7656544135603500891
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -561,96 +608,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5934256042587923280}
-  - component: {fileID: 373546683531116643}
+  - component: {fileID: 5199019434255244079}
+  - component: {fileID: 6419764183204262932}
   m_Layer: 3
-  m_Name: NonLethal
+  m_Name: NonLethalSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5934256042587923280
+--- !u!4 &5199019434255244079
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4397484419665141563}
+  m_GameObject: {fileID: 7656544135603500891}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.312, y: 0.73399997, z: 0.495}
+  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5445413636439409723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &373546683531116643
+--- !u!114 &6419764183204262932
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4397484419665141563}
+  m_GameObject: {fileID: 7656544135603500891}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a8da435d0e9b624cb61271b5a986d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
-  source: {fileID: 4272563007493313241}
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 8
---- !u!1 &5011371238768242133
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7017978387250478270}
-  - component: {fileID: 1676330593577455539}
-  m_Layer: 3
-  m_Name: Lethal
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7017978387250478270
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5011371238768242133}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5445413636439409723}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1676330593577455539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5011371238768242133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
-  source: {fileID: 4272563007493313241}
-  ignoreLayer:
-    serializedVersion: 2
-    m_Bits: 8
+  reloadTime: 0
+  currentAmmo: 0
 --- !u!1 &8757270021574290041
 GameObject:
   m_ObjectHideFlags: 0

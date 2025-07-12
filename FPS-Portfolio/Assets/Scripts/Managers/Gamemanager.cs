@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("RunTime References")]
     [SerializeField] GameObject player;
     public PlayerController playerController;
+    public GameObject equipment;
 
 
 
@@ -62,6 +63,8 @@ public class GameManager : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
             playerController = player.GetComponent<PlayerController>();
+
+            equipment = player.transform.Find("Equipment").gameObject;
         }
 
         sens = PlayerPrefs.GetInt("sens", sens);
@@ -167,6 +170,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        if(inGame) 
+            equipment.SetActive(false);
     }
 
     public void stateUnPause()
@@ -177,6 +183,9 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+
+        if (inGame)
+            equipment.SetActive(true);
     }
 
     public void backToPauseMenu()
