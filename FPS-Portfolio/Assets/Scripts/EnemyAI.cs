@@ -1,31 +1,30 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-using System.Runtime.CompilerServices;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
-    [SerializeField] int health;
-    [SerializeField] Renderer model;
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform shootPos;
-    [SerializeField] GameObject bullet;
-    [SerializeField] float searchDist;
-    [SerializeField] int searchPauseTime;
-    [SerializeField] float attackCooldown;
-    [SerializeField] int FOV;
-    [SerializeField] int faceTargetSpeed;
-    [SerializeField] int amountToScore;
-    [SerializeField] bool tutorial;
+    [SerializeField] protected int health;
+    [SerializeField] protected Renderer model;
+    [SerializeField] protected NavMeshAgent agent;
+    [SerializeField] protected Transform shootPos;
+    [SerializeField] protected GameObject bullet;
+    [SerializeField] protected float searchDist;
+    [SerializeField] protected int searchPauseTime;
+    [SerializeField] protected float attackCooldown;
+    [SerializeField] protected int FOV;
+    [SerializeField] protected int faceTargetSpeed;
+    [SerializeField] protected int amountToScore;
+    [SerializeField] protected bool tutorial;
 
-    GameObject player;
+    protected GameObject player;
 
     Color colorOg;
 
     float searchTime;
     float angleToPlayer;
     float stoppingDistOg;
-    float shootTimer;
+    protected float shootTimer;
 
     bool playerInTrigger;
     bool isAttacking;
@@ -34,17 +33,17 @@ public class EnemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public virtual void Start()
     {
         startingPos = transform.position;
         colorOg = model.material.color;
         stoppingDistOg = agent.stoppingDistance;
-        player = GameObject.FindWithTag("Player");
+        player = GameManager.instance.Player;
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (agent.remainingDistance < 0.01f)
         {
@@ -70,7 +69,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (health <= 0)
         {
-            if(!tutorial)
+            if (!tutorial)
             {
                 GameManager.instance.UpdateGameGoal(-1);
             }
@@ -107,7 +106,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         agent.SetDestination(hit.position);
     }
 
-    bool CanSeePlayer()
+    public virtual bool CanSeePlayer()
     {
         playerDir = player.transform.position - transform.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
@@ -159,7 +158,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0;
         }
     }
-    
+
     void Shoot()
     {
         shootTimer = 0;

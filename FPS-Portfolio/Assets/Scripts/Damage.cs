@@ -13,28 +13,42 @@ public class Damage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Destroy(gameObject, destroyTime);
 
+        StartCoroutine(WaitToDie());
         rb.linearVelocity = transform.forward * speed;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
-            return;
+        TryDamage(other);
+    }
 
-        IDamage dmg = other.GetComponent<IDamage>();
+    private void OnTriggerExit(Collider other)
+    {
+        TryDamage(other);
+    }
 
-        if (dmg != null)
+    void TryDamage(Collider other)
+    {
+        if (other.CompareTag("Player"))
         {
-            dmg.TakeDamage(damageAmount);
+            IDamage dmg = other.GetComponent<IDamage>();
+
+            if (dmg != null)
+            {
+                dmg.TakeDamage(damageAmount);
+            }
+
+            Debug.Log("HIT Player");
         }
+
+        Destroy(gameObject);
+    }
+
+    IEnumerator WaitToDie()
+    {
+        yield return new WaitForSeconds(destroyTime);
+        GameManager.instance.Player.GetComponent<IDamage>().TakeDamage(damageAmount);
 
         Destroy(gameObject);
     }

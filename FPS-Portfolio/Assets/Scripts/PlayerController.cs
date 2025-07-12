@@ -182,6 +182,8 @@ public class PlayerController : MonoBehaviour, IDamage
         AudioManager.instance.AudioHurt(source);
         StartCoroutine(damageFlashScreen());
 
+        Debug.Log("Ouch");
+
         if (health <= 0 && !playerDead)
         {
             playerDead = true;

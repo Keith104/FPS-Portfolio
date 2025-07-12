@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("RunTime References")]
     [SerializeField] GameObject player;
     public PlayerController playerController;
-
+    public GameObject Player => player;
 
 
     public int sens;
