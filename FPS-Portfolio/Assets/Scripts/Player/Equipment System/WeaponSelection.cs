@@ -8,6 +8,9 @@ public class WeaponSelection : MonoBehaviour
     [Tooltip("These are the layers that you ignore when firing")]
     [SerializeField] LayerMask ignoreLayer;
 
+    [SerializeField] Transform shootPos;
+    [SerializeField] GameObject bullet;
+
     private float reloadTimer;
     private float fireRateTimer;
     private int currentAmmo;
@@ -15,6 +18,7 @@ public class WeaponSelection : MonoBehaviour
     private int burstCount; // only used when in Burst
     private bool fired; // used for everything but auto
     private bool reloadActive = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -133,12 +137,6 @@ public class WeaponSelection : MonoBehaviour
     void fire()
     {
         AudioManager.instance.AudioGunShot(source);
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, equipment.range, ~ignoreLayer))
-        {
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if (dmg != null)
-                dmg.TakeDamage(equipment.damageAmount);
-        }
+        Instantiate(bullet, shootPos.position, transform.rotation);
     }
 }
