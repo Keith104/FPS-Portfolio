@@ -6,6 +6,9 @@ using UnityEngine.UIElements;
 public class Throwable : MonoBehaviour
 {
     [SerializeField] Equipment equipment;
+    [SerializeField] Transform parent;
+    [SerializeField] GameObject throwFab;
+    [SerializeField] Vector3 throwPos;
 
     [SerializeField] Rigidbody throwRB;
     [SerializeField] LineRenderer throwLR;
@@ -13,33 +16,41 @@ public class Throwable : MonoBehaviour
     [SerializeField] LayerMask trajectoryLayerMask;
 
     private bool thrown;
-    private bool hasExploded = true;
+    private bool hasExploded = false;
+    private float detCountdown;
+    public ThrowableSpawner throwableSpawner;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //throwRB.isKinematic = true;
+        detCountdown = equipment.detonationCountdown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (thrown == false) 
+        if (thrown == false)
+        {
+            transform.position = transform.parent.position;
+            transform.localRotation = Quaternion.identity;
             Throw();
+        }
         else if (equipment.isSpining == true)
             Spin();
 
-        if (equipment.detonationCountdown <= 0 && equipment.isImpact == false)
+        if (detCountdown <= 0 && equipment.isImpact == false)
         {
             Explode();
         }
-        else if (equipment.detonationCountdown > 0 && equipment.isImpact == false && thrown == true)
+        else if (detCountdown > 0 && equipment.isImpact == false && thrown == true)
         {
-            equipment.detonationCountdown -= Time.deltaTime; 
+            detCountdown -= Time.deltaTime; 
         }
         else if (hasExploded == true)
         {
-            // sometimes Destroy doesn't work in Explode() so this is a backup to make sure it gets destroyed
+            // sometimes Destroy doesn't work in Explode() so this is a backup to make sure it gets 
             Destroy(gameObject);
         }
     }
@@ -54,6 +65,9 @@ public class Throwable : MonoBehaviour
             transform.SetParent(null); // sets object to root
             throwRB.AddForce(transform.forward * equipment.forceMult, ForceMode.Impulse);
             thrown = true;
+            throwableSpawner.reloadTime = true;
+            throwableSpawner.currentAmmo--;
+            throwableSpawner.updateThrowableUI();
         }
         Trajectory();
     }
@@ -130,8 +144,4 @@ public class Throwable : MonoBehaviour
         return retVal;
     }
 
-    public void updateThrowableUI()
-    {
-
-    }
 }

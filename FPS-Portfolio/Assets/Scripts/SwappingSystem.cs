@@ -7,12 +7,19 @@ public class SwappingSystem : MonoBehaviour
     [SerializeField] WeaponSelection secondary;
     [SerializeField] WeaponSelection melee;
 
-    [Header("Throwables")]
-    [SerializeField] Throwable nonLethal;
-    [SerializeField] Throwable lethal;
+    [Header("Throwable Spawner")]
+    public ThrowableSpawner nonLethalSpawner;
+    public ThrowableSpawner lethalSpawner;
+
+    [Header("Throwable Prefabs")]
+    [SerializeField] GameObject nonLethalFab;
+    [SerializeField] GameObject lethalFab;
 
     [Header("Misc.")]
     [SerializeField] PlayerController playerConScript;
+
+    private bool nonLethalSpawned = false;
+    private bool lethalSpawned = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -35,8 +42,10 @@ public class SwappingSystem : MonoBehaviour
 
             secondary.enabled = false;
             melee.enabled = false;
-            nonLethal.enabled = false;
-            lethal.enabled = false;
+            if(nonLethalSpawner.transform.childCount > 0)
+                nonLethalSpawner.SwapOut();
+            if (lethalSpawner.transform.childCount > 0)
+                lethalSpawner.SwapOut();
 
             primary.updateGunUI();
         }
@@ -48,8 +57,10 @@ public class SwappingSystem : MonoBehaviour
 
             primary.enabled = false;
             melee.enabled = false;
-            nonLethal.enabled = false;
-            lethal.enabled = false;
+            if (nonLethalSpawner.transform.childCount > 0)
+                nonLethalSpawner.SwapOut();
+            if (lethalSpawner.transform.childCount > 0)
+                lethalSpawner.SwapOut();
 
             secondary.updateGunUI();
         }
@@ -61,36 +72,38 @@ public class SwappingSystem : MonoBehaviour
 
             primary.enabled = false;
             secondary.enabled = false;
-            nonLethal.enabled = false;
-            lethal.enabled = false;
+            if (nonLethalSpawner.transform.childCount > 0)
+                nonLethalSpawner.SwapOut();
+            if (lethalSpawner.transform.childCount > 0)
+                lethalSpawner.SwapOut();
 
             melee.updateGunUI();
         }
-        else if (Input.GetButtonDown("NonLethalSwap"))
+        else if (Input.GetButtonDown("NonLethalSwap") && nonLethalSpawner.currentAmmo > 0)
         {
             Debug.Log("Swapped to nonLethal");
-            //playerConScript.Gun = nonLethal;
-            nonLethal.enabled = true;
+            playerConScript.Gun = null;
 
             primary.enabled = false;
             secondary.enabled = false;
             melee.enabled = false;
-            lethal.enabled = false;
 
-            nonLethal.updateThrowableUI();
+            nonLethalSpawner.SpawnThrowable(nonLethalFab);
+            nonLethalSpawner.updateThrowableUI();
+            nonLethalSpawned = true;
         }
-        else if (Input.GetButtonDown("LethalSwap"))
+        else if (Input.GetButtonDown("LethalSwap") && lethalSpawner.currentAmmo > 0)
         {
             Debug.Log("Swapped to lethal");
-            //playerConScript.Gun = lethal;
-            lethal.enabled = true;
+            playerConScript.Gun = null;
 
             primary.enabled = false;
             secondary.enabled = false;
             melee.enabled = false;
-            nonLethal.enabled = false;
 
-            lethal.updateThrowableUI();
+            lethalSpawner.SpawnThrowable(nonLethalFab);
+            lethalSpawner.updateThrowableUI();
+            lethalSpawned = true;
         }
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
   m_Name: ThrowableTest
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: ThrowableTest
   currentWeapon: 2
   singleFireMode: 0
   burstFireMode: 0
@@ -22,15 +22,15 @@ MonoBehaviour:
   burstAmount: 0
   spreadRange: 0
   pellets: 0
-  reloadSpeed: 0
+  reloadSpeed: 3
   fireRate: 0
-  maxAmmo: 0
-  currentMag: 0
+  maxAmmo: 3
+  currentMag: 1
   shootSound: {fileID: 0}
   weaponPrefab: {fileID: 0}
   isSpining: 0
   spinSpeed: 0
   isSticky: 0
-  isImpact: 1
+  isImpact: 0
   forceMult: 3
   detonationCountdown: 3
