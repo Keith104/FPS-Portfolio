@@ -141,7 +141,7 @@ public class WeaponSelection : MonoBehaviour
     void fire()
     {
         AudioManager.instance.AudioGunShot(source);
-        Instantiate(bullet, shootPos.position, transform.rotation);
+        Instantiate(bullet, shootPos.position, Camera.main.transform.rotation);
         FireRateDelay();
         updateGunUI();
     }
