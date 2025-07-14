@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
-  m_Name: Burst Rifle
+  m_Name: Auto Rifle
   m_EditorClassIdentifier: 
-  weaponName: Uzi
+  weaponName: AK-47
   currentWeapon: 0
   singleFireMode: 0
-  burstFireMode: 1
-  fullAutoFireMode: 0
+  burstFireMode: 0
+  fullAutoFireMode: 1
   range: 50
   damageAmount: 1
   burstAmount: 3

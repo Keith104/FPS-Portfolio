@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: bc676928d5ad3274aadfb2278a448a39, type: 2}
+  equipment: {fileID: 11400000, guid: 2614b5d2611d06d42a917ee2740e7d6e, type: 2}
   source: {fileID: 3989625601542023537}
   ignoreLayer:
     serializedVersion: 2
@@ -1092,7 +1092,7 @@ MonoBehaviour:
   hpBarLerpSpeed: 5
   source: {fileID: 3989625601542023537}
   animate: {fileID: 0}
-  Gun: {fileID: 0}
+  Gun: {fileID: 678152109}
   throwEqu: {fileID: 0}
   speed: 5
   sprintMod: 3

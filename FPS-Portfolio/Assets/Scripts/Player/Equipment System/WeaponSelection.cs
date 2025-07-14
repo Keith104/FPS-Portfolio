@@ -35,8 +35,8 @@ public class WeaponSelection : MonoBehaviour
     }
     public void shoot()
     {
-        if (Input.GetMouseButton(0) && fired == false && currentAmmo > 0 && reloadActive == false // for any other type
-            || burstCount > 0 && currentAmmo > 0 && fired == false && reloadActive == false)      // for burst type
+        if (Input.GetMouseButton(0) && fired == false && fireRateTimer == 0 && currentAmmo > 0 && reloadActive == false // for any other type
+            || burstCount > 0)      // for burst type
         {
             Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * equipment.range, Color.red);
             if(equipment.spreadRange != 0)
@@ -74,34 +74,37 @@ public class WeaponSelection : MonoBehaviour
             }
             else if (equipment.burstFireMode)
             {
-                while (burstCount <= equipment.burstAmount && currentAmmo > 0)
+                if (burstCount <= equipment.burstAmount && currentAmmo > 0 && fireRateTimer == 0)
                 {
                     burstCount++;
                     currentAmmo--;
                     fire();
                 }
-                fired = true;
-                burstCount = 0;
+                else if (fireRateTimer > 0)
+                {
+                    FireRateDelay();
+                }
+                else
+                    burstCount = 0;
             }
-            else if(equipment.fullAutoFireMode){
+            else if(equipment.fullAutoFireMode)
+            {
                 currentAmmo--;
                 fire();
             }
         }
-        else if (fired == true)
+        else if (Input.GetMouseButtonUp(0))
         {
-            fireRateTimer += Time.deltaTime;
-            if (fireRateTimer >= equipment.fireRate)
-            {
-                fireRateTimer = 0;
-                fired = false;
-            }
+            fired = false;
+        }
+        else if(fireRateTimer > 0)
+        {
+            FireRateDelay();
         }
         else if (currentAmmo <= 0 || reloadActive == true)
         {
             Reload();
         }
-        updateGunUI();
     }
 
     void ReloadPress()
@@ -126,6 +129,7 @@ public class WeaponSelection : MonoBehaviour
                 currentHeldAmmo = 0;
 
             reloadActive = false;
+            updateGunUI();
         }
     }
 
@@ -138,5 +142,16 @@ public class WeaponSelection : MonoBehaviour
     {
         AudioManager.instance.AudioGunShot(source);
         Instantiate(bullet, shootPos.position, transform.rotation);
+        FireRateDelay();
+        updateGunUI();
+    }
+
+    void FireRateDelay()
+    {
+        fireRateTimer += Time.deltaTime;
+        if (fireRateTimer >= equipment.fireRate)
+        {
+            fireRateTimer = 0;
+        }
     }
 }
