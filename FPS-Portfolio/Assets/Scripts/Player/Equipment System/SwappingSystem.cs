@@ -5,7 +5,7 @@ public class SwappingSystem : MonoBehaviour
     [Header("Weapons")]
     [SerializeField] WeaponSelection primary;
     [SerializeField] WeaponSelection secondary;
-    [SerializeField] WeaponSelection melee;
+    [SerializeField] MeleeLogic melee;
 
     [Header("Throwable Spawner")]
     public ThrowableSpawner nonLethalSpawner;
@@ -67,7 +67,7 @@ public class SwappingSystem : MonoBehaviour
         else if (Input.GetButtonDown("MeleeSwap"))
         {
             Debug.Log("Swapped to melee");
-            playerConScript.Gun = melee;
+            playerConScript.Gun = null;
             melee.enabled = true;
 
             primary.enabled = false;
@@ -77,7 +77,7 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
-            melee.updateGunUI();
+            melee.updateMeleeUI();
         }
         else if (Input.GetButtonDown("NonLethalSwap") && nonLethalSpawner.currentAmmo > 0)
         {

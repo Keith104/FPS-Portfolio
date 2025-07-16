@@ -3,8 +3,9 @@ using UnityEngine;
 public class MeleeLogic : MonoBehaviour
 {
     [SerializeField] Equipment equipment;
-    [SerializeField] float AttackRechargeTimer;
     [SerializeField] LayerMask attackIgnoreLayer;
+    [SerializeField] BoxCollider attackCollider;
+    private float AttackRechargeTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,8 +23,9 @@ public class MeleeLogic : MonoBehaviour
         if (Input.GetMouseButton(0) && AttackRechargeTimer == 0)
         {
             HitCheck();
+            AttackRecharge();
         }
-        else if(AttackRechargeTimer >= 0)
+        else if(AttackRechargeTimer > 0)
         {
             AttackRecharge();
         }
@@ -31,8 +33,7 @@ public class MeleeLogic : MonoBehaviour
 
     void HitCheck()
     {
-        Vector3 explosionCenter = transform.position;
-        Collider[] hitColliders = Physics.OverlapSphere(explosionCenter, equipment.range, attackIgnoreLayer);
+        Collider[] hitColliders = Physics.OverlapBox(attackCollider.center, attackCollider.size / 2, Quaternion.identity, attackIgnoreLayer);
 
         foreach (Collider collider in hitColliders)
         {
@@ -52,5 +53,9 @@ public class MeleeLogic : MonoBehaviour
         {
             AttackRechargeTimer = 0;
         }
+    }
+    public void updateMeleeUI()
+    {
+        UIManager.instance.SetGun(equipment.weaponName, 0, 0);
     }
 }
