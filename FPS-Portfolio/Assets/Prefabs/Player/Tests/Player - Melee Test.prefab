@@ -51,6 +51,7 @@ MonoBehaviour:
     m_Bits: 8
   shootPos: {fileID: 7902039166368757609}
   bullet: {fileID: 6595943304737969214, guid: caa5179f228ea174a9ed0111fc2ac5dd, type: 3}
+  currentHeldAmmo: 0
 --- !u!1 &1214713861719915562
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +103,7 @@ MonoBehaviour:
     m_Bits: 8
   shootPos: {fileID: 7902039166368757609}
   bullet: {fileID: 6595943304737969214, guid: caa5179f228ea174a9ed0111fc2ac5dd, type: 3}
+  currentHeldAmmo: 0
 --- !u!1 &1672779388520677175
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +304,7 @@ MonoBehaviour:
   equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
   reloadTime: 0
   currentAmmo: 0
+  currentHeldAmmo: 0
 --- !u!1 &4829728040902122976
 GameObject:
   m_ObjectHideFlags: 0
@@ -369,7 +372,7 @@ MonoBehaviour:
   source: {fileID: 5402209545512765384}
   animate: {fileID: 0}
   Gun: {fileID: 1730727709235673357}
-  throwEqu: {fileID: 0}
+  swappingSystem: {fileID: 6763715479723046440}
   speed: 5
   sprintMod: 3
   stepInterval: 2
@@ -715,6 +718,7 @@ MonoBehaviour:
   equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
   reloadTime: 0
   currentAmmo: 0
+  currentHeldAmmo: 0
 --- !u!1 &8319084773244405368
 GameObject:
   m_ObjectHideFlags: 0

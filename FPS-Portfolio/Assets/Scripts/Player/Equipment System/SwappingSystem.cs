@@ -3,8 +3,8 @@ using UnityEngine;
 public class SwappingSystem : MonoBehaviour
 {
     [Header("Weapons")]
-    [SerializeField] WeaponSelection primary;
-    [SerializeField] WeaponSelection secondary;
+    public WeaponSelection primary;
+    public WeaponSelection secondary;
     [SerializeField] MeleeLogic melee;
 
     [Header("Throwable Spawner")]
