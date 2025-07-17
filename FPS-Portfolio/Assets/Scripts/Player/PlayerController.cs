@@ -192,6 +192,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
                 health = hpOrig;
         }
 
+        Debug.Log("Ouch");
+
         if (health <= 0 && !playerDead)
         {
             playerDead = true;
