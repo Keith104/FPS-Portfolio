@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player;
     public PlayerController playerController;
     public GameObject equipment;
-
     public GameObject Player => player;
 
 

@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 354587470903658754}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.548, z: -0.424}
+  m_LocalPosition: {x: 0, y: 0.548, z: 0.436}
   m_LocalScale: {x: 0.54702, y: 0.59255356, z: 0.22526076}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 555c966a23ab20a41afffbb412a85c74, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   searchPauseTime: 3
   attackCooldown: 1
   FOV: 90
-  faceTargetSpeed: 5
+  faceTargetSpeed: 1767
   amountToScore: 50
   tutorial: 0
 --- !u!195 &-7038150734010124613
@@ -224,7 +224,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d5e0556fe0a4cb24587ac21b6ea368e8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -259,9 +259,9 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -282,7 +282,7 @@ SphereCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
