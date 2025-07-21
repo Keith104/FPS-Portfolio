@@ -14,11 +14,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float attackCooldown;
     [SerializeField] int FOV;
     [SerializeField] int faceTargetSpeed;
-<<<<<<< HEAD
     [SerializeField] int amountToScore;
-=======
     [SerializeField] Animator animate;
->>>>>>> origin/Dev-Erick
 
     GameObject player;
 
