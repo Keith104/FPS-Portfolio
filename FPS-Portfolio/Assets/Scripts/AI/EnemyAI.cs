@@ -16,6 +16,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] protected int faceTargetSpeed;
     [SerializeField] protected int amountToScore;
     [SerializeField] protected bool tutorial;
+    [SerializeField] protected bool stationary;
 
     protected GameObject player;
 
@@ -63,7 +64,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         health -= amount;
-        agent.SetDestination(player.transform.position);
+
+        if (!stationary)
+        {
+            agent.SetDestination(player.transform.position);
+        }
 
         StartCoroutine(FlashRed());
 
@@ -101,9 +106,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         Vector3 ranPos = Random.insideUnitSphere * searchDist;
         ranPos += startingPos;
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(ranPos, out hit, searchDist, 1);
-        agent.SetDestination(hit.position);
+        if(!stationary)
+        {
+            NavMeshHit hit;
+            NavMesh.SamplePosition(ranPos, out hit, searchDist, 1);
+            agent.SetDestination(hit.position);
+        }
     }
 
     public virtual bool CanSeePlayer()
@@ -122,7 +130,10 @@ public class EnemyAI : MonoBehaviour, IDamage
                     Shoot();
                 }
 
-                agent.SetDestination(player.transform.position);
+                if (!stationary)
+                {
+                    agent.SetDestination(player.transform.position);
+                }
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     FaceTarget();
