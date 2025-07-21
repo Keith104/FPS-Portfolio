@@ -14,7 +14,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float attackCooldown;
     [SerializeField] int FOV;
     [SerializeField] int faceTargetSpeed;
+<<<<<<< HEAD
     [SerializeField] int amountToScore;
+=======
+    [SerializeField] Animator animate;
+>>>>>>> origin/Dev-Erick
 
     GameObject player;
 
@@ -44,6 +48,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        animate.SetFloat("Speed", agent.velocity.normalized.magnitude);
         if (agent.remainingDistance < 0.01f)
         {
             searchTime += Time.deltaTime;
@@ -130,7 +135,7 @@ public class EnemyAI : MonoBehaviour, IDamage
                 return true;
             }
         }
-        agent.stoppingDistance = 0;
+
         return false;
     }
 
