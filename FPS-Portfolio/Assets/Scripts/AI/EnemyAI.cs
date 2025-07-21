@@ -17,6 +17,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] protected int amountToScore;
     [SerializeField] protected bool tutorial;
 
+    [SerializeField] int animSpeedTrans;
+    [SerializeField] Animator animate;
+
     protected GameObject player;
 
     Color colorOg;
@@ -45,6 +48,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     public virtual void Update()
     {
+        setAnimations();
         if (agent.remainingDistance < 0.01f)
         {
             searchTime += Time.deltaTime;
@@ -60,6 +64,15 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
+    void setAnimations()
+    {
+        float agentSpeedCur = agent.velocity.normalized.magnitude;
+        float animSpeedCur = animate.GetFloat("Speed");
+
+
+        animate.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animSpeedTrans));
+    }
+    
     public void TakeDamage(int amount)
     {
         health -= amount;
@@ -162,6 +175,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Shoot()
     {
         shootTimer = 0;
+
+        animate.SetTrigger("Shoot");
+
         Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerDir));
     }
 }
