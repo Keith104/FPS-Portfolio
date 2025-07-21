@@ -123,13 +123,14 @@ MonoBehaviour:
   model: {fileID: 7174604949601078690}
   agent: {fileID: 5107184946001736153}
   shootPos: {fileID: 6123926066498752071}
-  bullet: {fileID: 6595943304737969214, guid: f4eee830763f36d4a8872ed5390ee6b5, type: 3}
+  bullet: {fileID: 6595943304737969214, guid: 82098c104c754ec4dbae615021e03c54, type: 3}
   searchDist: 10
   searchPauseTime: 10
   attackCooldown: 10
   FOV: 90
   faceTargetSpeed: 5
-  animate: {fileID: 3630639050374540735}
+  amountToScore: 0
+  tutorial: 0
 --- !u!195 &5107184946001736153
 NavMeshAgent:
   m_ObjectHideFlags: 0
