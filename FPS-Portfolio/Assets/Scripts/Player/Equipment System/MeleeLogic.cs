@@ -41,7 +41,7 @@ public class MeleeLogic : MonoBehaviour
 
             if (dmg != null)
             {
-                dmg.TakeDamage(equipment.damageAmount);
+                dmg.TakeDamage(equipment.damageAmount, Damage.damagetype.stationary);
             }
         }
     }

@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwFab: {fileID: 7578920183299569025}
-  explosion: {fileID: 2834845088996039618, guid: bd9eb6df629a93d4ba973c7a634df390, type: 3}
+  explosion: {fileID: 2834845088996039618, guid: 9d9957889aaf5d248b079fd4e473f452, type: 3}
   throwPos: {x: 0.45, y: 0.756, z: 0.62}
   throwRB: {fileID: 3137541153918352640}
   throwLR: {fileID: 7485527792797323585}

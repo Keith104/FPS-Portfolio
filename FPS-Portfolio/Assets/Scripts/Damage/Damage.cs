@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Damage : MonoBehaviour
 {
-    enum damagetype { moving, stationary, DOT, explosion, stun, smoke }
+    public enum damagetype { moving, stationary, DOT, explosion, stun, smoke }
     [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
 
@@ -15,7 +15,7 @@ public class Damage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (type == damagetype.moving || type == damagetype.explosion)
+        if (type == damagetype.moving || type == damagetype.explosion || type == damagetype.stun)
         {
             Destroy(gameObject, destroyTime);
             if (type == damagetype.moving)
@@ -41,7 +41,7 @@ public class Damage : MonoBehaviour
 
             if (dmg != null && type != damagetype.DOT)
             {
-                dmg.TakeDamage(damageAmount);
+                dmg.TakeDamage(damageAmount, type);
             }
 
         if (type == damagetype.moving || type == damagetype.explosion)

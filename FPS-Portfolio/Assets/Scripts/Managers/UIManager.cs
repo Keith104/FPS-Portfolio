@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject playerDamagePanel;
     public GameObject playerHealPanel;
+    public GameObject playerStunPanel;
 
     public TextMeshProUGUI playerGunText;
     [SerializeField] WeaponSelection gun;

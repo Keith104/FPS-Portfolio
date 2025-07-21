@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9168ec6de7cb9aa49aefe2359e451500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 4
   rb: {fileID: -2037796373792010276}
   damageAmount: 0
   damageRate: 0
@@ -85,7 +85,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3a2eecbf844f7cd408d305d8c51962b9, type: 2}
+  - {fileID: 2100000, guid: 27f1a0baf4e16114ba0693f3a04504ae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
