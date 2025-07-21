@@ -106,6 +106,7 @@ MonoBehaviour:
   equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
   parent: {fileID: 0}
   throwFab: {fileID: 7578920183299569025}
+  explosion: {fileID: 2834845088996039618, guid: bd9eb6df629a93d4ba973c7a634df390, type: 3}
   throwPos: {x: 0.45, y: 0.756, z: 0.62}
   throwRB: {fileID: 3137541153918352640}
   throwLR: {fileID: 7485527792797323585}
@@ -113,6 +114,7 @@ MonoBehaviour:
   trajectoryLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  throwableSpawner: {fileID: 0}
 --- !u!65 &6476164810388587356
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -8,6 +9,7 @@ public class Throwable : MonoBehaviour
     [SerializeField] Equipment equipment;
     [SerializeField] Transform parent;
     [SerializeField] GameObject throwFab;
+    [SerializeField] GameObject explosion;
     [SerializeField] Vector3 throwPos;
 
     [SerializeField] Rigidbody throwRB;
@@ -16,7 +18,6 @@ public class Throwable : MonoBehaviour
     [SerializeField] LayerMask trajectoryLayerMask;
 
     private bool thrown;
-    private bool hasExploded = false;
     private float detCountdown;
     public ThrowableSpawner throwableSpawner;
 
@@ -24,8 +25,8 @@ public class Throwable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //throwRB.isKinematic = true;
         detCountdown = equipment.detonationCountdown;
+        throwableSpawner = parent.GetComponent<ThrowableSpawner>();
     }
 
     // Update is called once per frame
@@ -47,11 +48,6 @@ public class Throwable : MonoBehaviour
         else if (detCountdown > 0 && equipment.isImpact == false && thrown == true)
         {
             detCountdown -= Time.deltaTime; 
-        }
-        else if (hasExploded == true)
-        {
-            // sometimes Destroy doesn't work in Explode() so this is a backup to make sure it gets 
-            Destroy(gameObject);
         }
     }
 
@@ -79,20 +75,11 @@ public class Throwable : MonoBehaviour
 
     void Explode()
     {
-        hasExploded = true;
-        Vector3 explosionCenter = transform.position;
-        Collider[] hitColliders = Physics.OverlapSphere(explosionCenter, explosionRadius.radius);
-
-        foreach (Collider collider in hitColliders)
-        {
-            IDamage dmg = collider.GetComponent<IDamage>();
-
-            if (dmg != null)
-            {
-                dmg.TakeDamage(equipment.damageAmount);
-            }
-        }
-
+        GameObject exObj = Instantiate(explosion, transform.position, transform.rotation);
+        exObj.transform.localScale = new Vector3(explosionRadius.radius, explosionRadius.radius, explosionRadius.radius);
+        exObj.GetComponent<Damage>().damageAmount = equipment.damageAmount;
+        exObj.GetComponent<Damage>().destroyTime = (int)equipment.detonationCountdown;
+        exObj.GetComponent<Damage>().enabled = true;
         Destroy(gameObject);
     }
 
@@ -127,7 +114,7 @@ public class Throwable : MonoBehaviour
         }
 
         throwLR.positionCount = lineRendPonts.Count;
-        for (int i = 0; lineRendPonts.Count > 0; ++i)
+        for (int i = 0; i < lineRendPonts.Count; ++i)
         {
             throwLR.SetPosition(i, lineRendPonts[i]);
         }
