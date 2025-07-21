@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Damage : MonoBehaviour
 {
+    enum damagetype { moving, stationary, DOT, explosion, stun, smoke }
+    [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
 
     public int damageAmount;
@@ -13,7 +15,14 @@ public class Damage : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rb.linearVelocity = transform.forward * speed;
+        if (type == damagetype.moving || type == damagetype.explosion)
+        {
+            Destroy(gameObject, destroyTime);
+            if (type == damagetype.moving)
+            {
+                rb.linearVelocity = transform.forward * speed;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,11 +39,14 @@ public class Damage : MonoBehaviour
     {
         IDamage dmg = other.GetComponent<IDamage>();
 
-            if (dmg != null)
+            if (dmg != null && type != damagetype.DOT)
             {
                 dmg.TakeDamage(damageAmount);
             }
 
-        Destroy(gameObject);
+        if (type == damagetype.moving || type == damagetype.explosion)
+        {
+            Destroy(gameObject);
+        }
     }
 }
