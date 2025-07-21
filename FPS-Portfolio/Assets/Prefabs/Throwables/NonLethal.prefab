@@ -103,8 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e446b46a11723b84cac1b1d44f3f5cdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
-  parent: {fileID: 0}
   throwFab: {fileID: 7578920183299569025}
   explosion: {fileID: 2834845088996039618, guid: bd9eb6df629a93d4ba973c7a634df390, type: 3}
   throwPos: {x: 0.45, y: 0.756, z: 0.62}

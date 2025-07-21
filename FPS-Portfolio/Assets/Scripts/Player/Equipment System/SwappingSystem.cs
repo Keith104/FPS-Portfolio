@@ -88,8 +88,8 @@ public class SwappingSystem : MonoBehaviour
 
             melee.updateMeleeUI();
         }
-        else if (Input.GetButtonDown("NonLethalSwap") && nonLethalSpawner.currentAmmo > 0 
-            || isNonLethal == true && nonLethalSpawner.needsReload == true && nonLethalSpawner.reloadTime == false && nonLethalSpawner.currentAmmo > 0
+        else if (Input.GetButtonDown("NonLethalSwap")
+            || isNonLethal == true && nonLethalSpawner.needsReload == true && nonLethalSpawner.reloadTime == false
             )
         {
             Debug.Log("Swapped to nonLethal");
@@ -105,13 +105,17 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
-            nonLethalSpawner.SpawnThrowable(nonLethalFab);
+            if (nonLethalSpawner.currentAmmo > 0)
+            {
+                nonLethalSpawner.SpawnThrowable(nonLethalFab);
+                nonLethalSpawned = true;
+            }
+
             nonLethalSpawner.updateThrowableUI();
-            nonLethalSpawned = true;
             isNonLethal = true;
         }
         else if (Input.GetButtonDown("LethalSwap") && lethalSpawner.currentAmmo > 0
-            || isLethal == true && lethalSpawner.needsReload == true && lethalSpawner.reloadTime == false && lethalSpawner.currentAmmo > 0
+            || isLethal == true && lethalSpawner.needsReload == true && lethalSpawner.reloadTime == false
             )
         {
             Debug.Log("Swapped to lethal");
@@ -127,9 +131,13 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
-            lethalSpawner.SpawnThrowable(nonLethalFab);
+            if (lethalSpawner.currentAmmo > 0)
+            {
+                lethalSpawner.SpawnThrowable(nonLethalFab);
+                lethalSpawned = true;
+            }
+
             lethalSpawner.updateThrowableUI();
-            lethalSpawned = true;
             isLethal = true;
         }
     }

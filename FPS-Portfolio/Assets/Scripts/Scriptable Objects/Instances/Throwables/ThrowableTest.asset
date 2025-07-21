@@ -22,12 +22,13 @@ MonoBehaviour:
   burstAmount: 0
   spreadRange: 0
   pellets: 0
-  reloadSpeed: 3
+  reloadSpeed: 1
   fireRate: 0
   maxAmmo: 3
   currentMag: 1
   shootSound: {fileID: 0}
   weaponPrefab: {fileID: 0}
+  weaponImage: {fileID: 0}
   isSpining: 0
   spinSpeed: 0
   isSticky: 0

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ThrowableSpawner : MonoBehaviour
 {
-    [SerializeField] Equipment equipment;
+    public Equipment equipment;
 
     public bool reloadTime = false;
     public bool needsReload = false;
@@ -54,7 +54,6 @@ public class ThrowableSpawner : MonoBehaviour
                 currentHeldAmmo = 0;
 
             reloadTime = false;
-            updateThrowableUI();
             needsReload = true;
         }
     }
