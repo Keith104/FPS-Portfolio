@@ -746,6 +746,10 @@ PrefabInstance:
       propertyPath: shootPos
       value: 
       objectReference: {fileID: 793923975}
+    - target: {fileID: 5914669514803426366, guid: d596301be1f2f0346b5fe908092698df, type: 3}
+      propertyPath: faceTargetSpeed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
