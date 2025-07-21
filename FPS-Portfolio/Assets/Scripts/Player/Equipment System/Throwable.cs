@@ -77,8 +77,8 @@ public class Throwable : MonoBehaviour
     {
         GameObject exObj = Instantiate(explosion, transform.position, transform.rotation);
         exObj.transform.localScale = new Vector3(explosionRadius.radius, explosionRadius.radius, explosionRadius.radius);
-        exObj.GetComponent<Damage>().damageAmount = equipment.damageAmount;
-        exObj.GetComponent<Damage>().destroyTime = (int)equipment.detonationCountdown;
+        //exObj.GetComponent<Damage>().damageAmount = equipment.damageAmount;
+        //exObj.GetComponent<Damage>().destroyTime = (int)equipment.detonationCountdown;
         exObj.GetComponent<Damage>().enabled = true;
         Destroy(gameObject);
     }

@@ -29,6 +29,7 @@ public class Equipment : ScriptableObject
 
     public AudioClip shootSound;
     public GameObject weaponPrefab;
+    public Sprite weaponImage;
 
     [Header("Throwable Data")]
     public bool isSpining;

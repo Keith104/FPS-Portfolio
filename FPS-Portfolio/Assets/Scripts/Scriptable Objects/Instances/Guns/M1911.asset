@@ -27,7 +27,8 @@ MonoBehaviour:
   maxAmmo: 6969
   currentMag: 12
   shootSound: {fileID: 8300000, guid: f35601480f2672a4cb5a4fbbbe19e608, type: 3}
-  weaponPrefab: {fileID: 100004, guid: b812e42521a5a27499e76cc5ed56e3ac, type: 3}
+  weaponPrefab: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
+  weaponImage: {fileID: 21300000, guid: 6763a31c627b63c4b92a88b38280e34b, type: 3}
   isSpining: 0
   spinSpeed: 0
   isSticky: 0
