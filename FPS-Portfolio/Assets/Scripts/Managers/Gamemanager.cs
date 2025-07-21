@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject menuLose;
-    [SerializeField] GameObject creditsMenu;
+    [SerializeField] GameObject menuCredits;
     [SerializeField] GameObject menuSettings;
     [SerializeField] TMP_Text waveText;
     [SerializeField] TMP_Text enemyText;
@@ -50,8 +50,10 @@ public class GameManager : MonoBehaviour
 
     int goalCount;
 
-    private int tempQuality;
-    private bool tempVsync;
+    int tempQuality;
+    bool tempVsync;
+
+    bool isFadingOut;
 
     private void Awake()
     {
@@ -65,6 +67,11 @@ public class GameManager : MonoBehaviour
             playerController = player.GetComponent<PlayerController>();
 
             equipment = player.transform.Find("Equipment").gameObject;
+        }
+
+        if(menuCredits != null)
+        {
+            animator = menuCredits.GetComponent<Animator>();
         }
 
         sens = PlayerPrefs.GetInt("sens", sens);
@@ -119,6 +126,22 @@ public class GameManager : MonoBehaviour
             totalTimer += Time.deltaTime;
             waveTimer += Time.deltaTime;
         }
+
+        if(Input.GetButtonDown("Cancel") && !inGame && menuActive == menuCredits)
+        {
+            animator.Play("FadoutCredits");
+            isFadingOut = true;
+        }
+        if(isFadingOut)
+        {
+            var s = animator.GetCurrentAnimatorStateInfo(0);
+            if (s.IsName("FadoutCredits") && s.normalizedTime >= 1f)
+            {
+                endCredits();
+                isFadingOut = false;
+            }
+        }
+
 
     }
 
@@ -204,9 +227,9 @@ public class GameManager : MonoBehaviour
 
     public void startCredits()
     {
-        menuActive = creditsMenu;
-        creditsMenu.SetActive(true);
-        creditsMenu.GetComponent<Animator>().Play("Credits");
+        menuActive = menuCredits;
+        menuCredits.SetActive(true);
+        animator.Play("Credits");
     }
 
     void endCredits()

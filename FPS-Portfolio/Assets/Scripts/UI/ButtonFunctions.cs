@@ -30,12 +30,6 @@ public class ButtonFunctions : MonoBehaviour
 #endif
     }
 
-    public void ToMainMenu()
-    {
-        Time.timeScale = 1;
-        SceneManager.LoadScene("MainMenu");
-    }
-
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -45,7 +39,7 @@ public class ButtonFunctions : MonoBehaviour
     public void LoadLevel(int lvl)
     {
         // When player has ability that needs different time scale set here.
-
+        Time.timeScale = 1f;
         SceneManager.LoadScene(lvl);
     }
 

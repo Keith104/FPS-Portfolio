@@ -14256,8 +14256,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7296455425845558596, guid: 859117a31cc40cb418282096c9a9bebf, type: 3}
+<<<<<<< HEAD
       propertyPath: maxRespawns
       value: 2
+=======
+      propertyPath: health
+      value: 15
+>>>>>>> origin/Dev-Erick
       objectReference: {fileID: 0}
     - target: {fileID: 7296455425845558596, guid: 859117a31cc40cb418282096c9a9bebf, type: 3}
       propertyPath: RespawnPoint

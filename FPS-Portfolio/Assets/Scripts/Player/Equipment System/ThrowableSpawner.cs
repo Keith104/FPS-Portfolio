@@ -6,6 +6,7 @@ public class ThrowableSpawner : MonoBehaviour
     [SerializeField] Equipment equipment;
 
     public bool reloadTime = false;
+    public bool needsReload = false;
     private float reloadTimer;
 
     public int currentAmmo;
@@ -54,6 +55,7 @@ public class ThrowableSpawner : MonoBehaviour
 
             reloadTime = false;
             updateThrowableUI();
+            needsReload = true;
         }
     }
 
