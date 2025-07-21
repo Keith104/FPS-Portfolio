@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 7060782499985564386}
   - component: {fileID: 8203130252579874377}
   - component: {fileID: 3003915410381390528}
-  - component: {fileID: -6741745488992300670}
   m_Layer: 6
   m_Name: Tank
   m_TagString: Enemy
@@ -62,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4215054295470024060}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -86,17 +85,14 @@ MonoBehaviour:
   model: {fileID: 7060782499985564386}
   agent: {fileID: 6727201843688072988}
   shootPos: {fileID: 8330204188033881315}
-  bullet: {fileID: 6595943304737969214, guid: caa5179f228ea174a9ed0111fc2ac5dd, type: 3}
+  bullet: {fileID: 6595943304737969214, guid: 9be8bd768829a6b4e9ba746c7b59e389, type: 3}
   searchDist: 10
   searchPauseTime: 3
   attackCooldown: 0.25
   FOV: 90
   faceTargetSpeed: 5
-<<<<<<< HEAD:FPS-Portfolio/Assets/Prefabs/Tank.prefab
   amountToScore: 250
-=======
-  animate: {fileID: -6741745488992300670}
->>>>>>> origin/Dev-Erick:FPS-Portfolio/Assets/Prefabs/Enemies/Tank Enemy/Tank.prefab
+  tutorial: 0
 --- !u!195 &6727201843688072988
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -187,7 +183,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -208,7 +204,7 @@ SphereCollider:
     m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -216,25 +212,3 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &-6741745488992300670
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4215054295470024060}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: fadead254b8bb1b4e9406290a47642e6, type: 3}
-  m_Controller: {fileID: 9100000, guid: f72f91e2bcc56104e90b3d0fed743aa5, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

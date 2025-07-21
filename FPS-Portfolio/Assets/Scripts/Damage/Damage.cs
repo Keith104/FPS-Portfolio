@@ -3,51 +3,38 @@ using System.Collections;
 
 public class Damage : MonoBehaviour
 {
-    enum damagetype { moving, stationary, DOT, explosion, stun, smoke }
-
-    [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
 
-    public int damageAmount;
+    [SerializeField] int damageAmount;
     [SerializeField] float damageRate;
     [SerializeField] int speed;
-    public int destroyTime;
+    [SerializeField] int destroyTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (type == damagetype.moving || type == damagetype.explosion)
-        {
-            Destroy(gameObject, destroyTime);
-
-            if (type == damagetype.moving)
-            {
-                rb.linearVelocity = transform.forward * speed;
-            }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        rb.linearVelocity = transform.forward * speed;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.isTrigger)
-            return;
+        TryDamage(other);
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        TryDamage(other);
+    }
+
+    void TryDamage(Collider other)
+    {
         IDamage dmg = other.GetComponent<IDamage>();
 
-        if(dmg != null && type != damagetype.DOT)
-        {
-            dmg.TakeDamage(damageAmount);
-        }
+            if (dmg != null)
+            {
+                dmg.TakeDamage(damageAmount);
+            }
 
-        if(type == damagetype.moving || type == damagetype.explosion)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 }

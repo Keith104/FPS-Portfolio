@@ -10,6 +10,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] int baseMaxEnemies;
     [SerializeField] float enemiesPerWaveIncrease;
     [SerializeField] int maxEnemiesAllowed;
+    [SerializeField] Difficulty difficulty;
 
     [Header("Enemy Settings")]
     [SerializeField] GameObject[] enemySpawns;
@@ -22,7 +23,6 @@ public class WaveManager : MonoBehaviour
 
     int waveTillMiniBoss;
     int waveTillBoss;
-    Difficulty difficulty;
     int totalToSpawnLeft;
 
     private void Start()
