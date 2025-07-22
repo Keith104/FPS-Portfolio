@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
-  m_Name: Auto Rifle
+  m_Name: Uzi
   m_EditorClassIdentifier: 
-  weaponName: AK-47
+  weaponName: Uzi
   currentWeapon: 0
   singleFireMode: 0
-  burstFireMode: 0
-  fullAutoFireMode: 1
+  burstFireMode: 1
+  fullAutoFireMode: 0
   range: 50
   damageAmount: 1
   burstAmount: 3
@@ -28,6 +28,7 @@ MonoBehaviour:
   currentMag: 24
   shootSound: {fileID: 8300000, guid: f35601480f2672a4cb5a4fbbbe19e608, type: 3}
   weaponPrefab: {fileID: 1095254202041702, guid: 6273e2936e9d6a24e9f64c7c70d6bd19, type: 3}
+  weaponImage: {fileID: 21300000, guid: 90c74c437d932104ca33239c8931fb3f, type: 3}
   isSpining: 0
   spinSpeed: 0
   isSticky: 0

@@ -1190,11 +1190,10 @@ MonoBehaviour:
   enemiesPerWaveIncrease: 2
   maxEnemiesAllowed: 0
   difficulty: {fileID: 11400000, guid: e688bc9470a90d14daf6b9a8bece95c9, type: 2}
-  enemySpawns: []
-  enemyPrefabs:
-  - {fileID: 1461328802114364638, guid: b81982aa76d6ce840835771eca8931a1, type: 3}
-  - {fileID: 4215054295470024060, guid: 11448f3fa6dcf084bb609494a6263f12, type: 3}
-  - {fileID: 1714978057165969180, guid: 4e8b4ccb7f3ff294e828593a6ecc0d6b, type: 3}
+  regEnemySpawns: []
+  regEnemyPrefabs: []
+  nonMoveEnemySpawns: []
+  nonMoveEnemyPrefabs: []
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -1370,8 +1369,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -210.7, y: -9.2}
-  m_SizeDelta: {x: 2318.0432, y: 1041.0385}
+  m_AnchoredPosition: {x: -155, y: 81.17209}
+  m_SizeDelta: {x: 2318.0432, y: 1349.4708}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5227245100458180661
 CanvasRenderer:
