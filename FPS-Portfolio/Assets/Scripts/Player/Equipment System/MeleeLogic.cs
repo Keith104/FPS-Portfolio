@@ -56,6 +56,6 @@ public class MeleeLogic : MonoBehaviour
     }
     public void updateMeleeUI()
     {
-        UIManager.instance.SetGun(equipment.weaponImage, 0, 0);
+        UIManager.instance.SetGun(equipment.weaponImage, "", 0, 0);
     }
 }

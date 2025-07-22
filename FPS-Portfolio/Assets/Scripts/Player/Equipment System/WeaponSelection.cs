@@ -136,7 +136,12 @@ public class WeaponSelection : MonoBehaviour
 
     public void updateGunUI()
     {
-        UIManager.instance.SetGun(equipment.weaponImage, currentAmmo, currentHeldAmmo);
+        if(equipment.singleFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Single", currentAmmo, currentHeldAmmo);
+        else if(equipment.burstFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Burst", currentAmmo, currentHeldAmmo);
+        else if (equipment.fullAutoFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Auto", currentAmmo, currentHeldAmmo);
     }
 
     void fire()
