@@ -143,8 +143,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public virtual bool CanSeePlayer()
     {
-        //if(isStunned == false)
-        //    return false;
+        if(isStunned == true)
+            return false;
 
         playerDir = player.transform.position - transform.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
