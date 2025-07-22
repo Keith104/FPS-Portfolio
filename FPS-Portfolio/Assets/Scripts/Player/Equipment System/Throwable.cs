@@ -6,8 +6,6 @@ using UnityEngine.UIElements;
 
 public class Throwable : MonoBehaviour
 {
-    [SerializeField] Equipment equipment;
-    [SerializeField] Transform parent;
     [SerializeField] GameObject throwFab;
     [SerializeField] GameObject explosion;
     [SerializeField] Vector3 throwPos;
@@ -19,14 +17,17 @@ public class Throwable : MonoBehaviour
 
     private bool thrown;
     private float detCountdown;
+    private Equipment equipment;
+    
     public ThrowableSpawner throwableSpawner;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        equipment = GetComponentInParent<ThrowableSpawner>().equipment;
         detCountdown = equipment.detonationCountdown;
-        throwableSpawner = parent.GetComponent<ThrowableSpawner>();
+        throwableSpawner = transform.parent.GetComponent<ThrowableSpawner>();
     }
 
     // Update is called once per frame
@@ -63,7 +64,6 @@ public class Throwable : MonoBehaviour
             thrown = true;
             throwableSpawner.reloadTime = true;
             throwableSpawner.currentAmmo--;
-            throwableSpawner.updateThrowableUI();
         }
         Trajectory();
     }

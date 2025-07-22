@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
-  m_Name: ThrowableTest
+  m_Name: ThrowableStun
   m_EditorClassIdentifier: 
   weaponName: ThrowableTest
   currentWeapon: 2
@@ -18,16 +18,17 @@ MonoBehaviour:
   burstFireMode: 0
   fullAutoFireMode: 0
   range: 0
-  damageAmount: 4
+  damageAmount: 0
   burstAmount: 0
   spreadRange: 0
   pellets: 0
-  reloadSpeed: 3
+  reloadSpeed: 1
   fireRate: 0
   maxAmmo: 3
   currentMag: 1
   shootSound: {fileID: 0}
   weaponPrefab: {fileID: 0}
+  weaponImage: {fileID: 0}
   isSpining: 0
   spinSpeed: 0
   isSticky: 0

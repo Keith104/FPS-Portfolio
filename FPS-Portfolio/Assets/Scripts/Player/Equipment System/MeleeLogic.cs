@@ -9,7 +9,7 @@ public class MeleeLogic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        updateMeleeUI();
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class MeleeLogic : MonoBehaviour
 
             if (dmg != null)
             {
-                dmg.TakeDamage(equipment.damageAmount);
+                dmg.TakeDamage(equipment.damageAmount, Damage.damagetype.stationary);
             }
         }
     }
@@ -56,6 +56,6 @@ public class MeleeLogic : MonoBehaviour
     }
     public void updateMeleeUI()
     {
-        UIManager.instance.SetGun(equipment.weaponName, 0, 0);
+        UIManager.instance.SetGun(equipment.weaponImage, 0, 0);
     }
 }

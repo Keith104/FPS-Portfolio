@@ -16,6 +16,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] protected int faceTargetSpeed;
     [SerializeField] protected int amountToScore;
     [SerializeField] protected bool tutorial;
+    [SerializeField] protected bool stationary;
+
+    [SerializeField] int animSpeedTrans;
+    [SerializeField] Animator animate;
 
     protected GameObject player;
 
@@ -45,6 +49,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     public virtual void Update()
     {
+        setAnimations();
         if (agent.remainingDistance < 0.01f)
         {
             searchTime += Time.deltaTime;
@@ -60,10 +65,23 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public void TakeDamage(int amount)
+    void setAnimations()
+    {
+        float agentSpeedCur = agent.velocity.normalized.magnitude;
+        float animSpeedCur = animate.GetFloat("Speed");
+
+
+        animate.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animSpeedTrans));
+    }
+    
+    public void TakeDamage(int amount, Damage.damagetype type)
     {
         health -= amount;
-        agent.SetDestination(player.transform.position);
+
+        if (!stationary)
+        {
+            agent.SetDestination(player.transform.position);
+        }
 
         StartCoroutine(FlashRed());
 
@@ -101,9 +119,12 @@ public class EnemyAI : MonoBehaviour, IDamage
         Vector3 ranPos = Random.insideUnitSphere * searchDist;
         ranPos += startingPos;
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(ranPos, out hit, searchDist, 1);
-        agent.SetDestination(hit.position);
+        if(!stationary)
+        {
+            NavMeshHit hit;
+            NavMesh.SamplePosition(ranPos, out hit, searchDist, 1);
+            agent.SetDestination(hit.position);
+        }
     }
 
     public virtual bool CanSeePlayer()
@@ -122,7 +143,10 @@ public class EnemyAI : MonoBehaviour, IDamage
                     Shoot();
                 }
 
-                agent.SetDestination(player.transform.position);
+                if (!stationary)
+                {
+                    agent.SetDestination(player.transform.position);
+                }
 
                 if (agent.remainingDistance <= agent.stoppingDistance)
                     FaceTarget();
@@ -162,6 +186,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Shoot()
     {
         shootTimer = 0;
+
+        animate.SetTrigger("Shoot");
+
         Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerDir));
     }
 }

@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:FPS-Portfolio/Assets/Prefabs/Enemies/Enemy.controller.meta
+guid: 1b11c4eddf210e448813604c136af873
+========
+guid: 89fd09a8b6e8124468d6db6b29f23f28
+>>>>>>>> Dev-Alex:FPS-Portfolio/Assets/Scripts/Scriptable Objects/Instances/Throwables/ThrowableStun.asset.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

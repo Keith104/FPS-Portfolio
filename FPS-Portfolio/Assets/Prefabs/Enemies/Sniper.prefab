@@ -64,6 +64,7 @@ MonoBehaviour:
   faceTargetSpeed: 5
   amountToScore: 100
   tutorial: 0
+  stationary: 1
   lineRenderer: {fileID: 8687338856305971662}
 --- !u!195 &6909768465579493763
 NavMeshAgent:

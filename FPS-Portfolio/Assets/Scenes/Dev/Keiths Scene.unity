@@ -380,15 +380,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &372956225 stripped
+--- !u!114 &852703933 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1642199633003674244, guid: d3cbe3d0a42cfec4b8531ad850580c85, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6280628257714622888, guid: d3cbe3d0a42cfec4b8531ad850580c85, type: 3}
   m_PrefabInstance: {fileID: 1669472515}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c2f578704c05c64280ddc9355e2e936, type: 3}
+  m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1034919059
@@ -474,10 +474,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8738507089690822688, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
-      propertyPath: difficulty
-      value: 
-      objectReference: {fileID: 11400000, guid: e688bc9470a90d14daf6b9a8bece95c9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -627,7 +623,11 @@ PrefabInstance:
     - target: {fileID: 6242871352934675014, guid: d3cbe3d0a42cfec4b8531ad850580c85, type: 3}
       propertyPath: swappingSystem
       value: 
-      objectReference: {fileID: 372956225}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280628257714622888, guid: d3cbe3d0a42cfec4b8531ad850580c85, type: 3}
+      propertyPath: equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f0a830f1c1dc9540985589ab3580aba, type: 2}
     - target: {fileID: 7392404004565335580, guid: d3cbe3d0a42cfec4b8531ad850580c85, type: 3}
       propertyPath: m_Name
       value: Player - M416 Variant ShootPos Test
@@ -748,6 +748,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2778862205340728872, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 852703933}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: enemySpawns.Array.size
       value: 5

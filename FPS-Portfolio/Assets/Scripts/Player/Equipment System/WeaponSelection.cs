@@ -136,7 +136,7 @@ public class WeaponSelection : MonoBehaviour
 
     public void updateGunUI()
     {
-        UIManager.instance.SetGun(equipment.weaponName, currentAmmo, currentHeldAmmo);
+        UIManager.instance.SetGun(equipment.weaponImage, currentAmmo, currentHeldAmmo);
     }
 
     void fire()
