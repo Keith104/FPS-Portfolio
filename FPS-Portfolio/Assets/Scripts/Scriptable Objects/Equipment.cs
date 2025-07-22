@@ -30,6 +30,7 @@ public class Equipment : ScriptableObject
     public AudioClip shootSound;
     public GameObject weaponPrefab;
     public Sprite weaponImage;
+    public ParticleSystem afterEffect;
 
     [Header("Throwable Data")]
     public bool isSpining;
