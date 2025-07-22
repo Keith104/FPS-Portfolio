@@ -50,7 +50,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   shootPos: {fileID: 7902039166368757609}
-  bullet: {fileID: 6595943304737969214, guid: caa5179f228ea174a9ed0111fc2ac5dd, type: 3}
+  bullet: {fileID: 6595943304737969214, guid: 3dadeec6bbe529243b610033dcbdbf89, type: 3}
   currentHeldAmmo: 0
 --- !u!1 &1214713861719915562
 GameObject:
@@ -96,13 +96,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: b8720ae44db8ad941a684a7c0f732910, type: 2}
+  equipment: {fileID: 11400000, guid: f8443e3507e12d54fbde27226eeb9a5c, type: 2}
   source: {fileID: 5402209545512765384}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
   shootPos: {fileID: 7902039166368757609}
-  bullet: {fileID: 6595943304737969214, guid: caa5179f228ea174a9ed0111fc2ac5dd, type: 3}
+  bullet: {fileID: 6595943304737969214, guid: 3dadeec6bbe529243b610033dcbdbf89, type: 3}
   currentHeldAmmo: 0
 --- !u!1 &1672779388520677175
 GameObject:
@@ -301,8 +301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8da435d0e9b624cb61271b5a986d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
+  equipment: {fileID: 11400000, guid: ca4c6485a91eef04090d2c18e562fc87, type: 2}
   reloadTime: 0
+  needsReload: 0
   currentAmmo: 0
   currentHeldAmmo: 0
 --- !u!1 &4829728040902122976
@@ -715,8 +716,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8da435d0e9b624cb61271b5a986d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: 98169c71773730b49a27f5ccf3e93969, type: 2}
+  equipment: {fileID: 11400000, guid: ca4c6485a91eef04090d2c18e562fc87, type: 2}
   reloadTime: 0
+  needsReload: 0
   currentAmmo: 0
   currentHeldAmmo: 0
 --- !u!1 &8319084773244405368

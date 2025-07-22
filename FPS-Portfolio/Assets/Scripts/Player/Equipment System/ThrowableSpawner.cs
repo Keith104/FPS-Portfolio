@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ThrowableSpawner : MonoBehaviour
 {
-    [SerializeField] Equipment equipment;
+    public Equipment equipment;
 
     public bool reloadTime = false;
     public bool needsReload = false;
@@ -14,6 +14,8 @@ public class ThrowableSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        updateThrowableUI();
+
         currentAmmo = equipment.currentMag;
         currentHeldAmmo = equipment.maxAmmo;
     }
@@ -54,7 +56,6 @@ public class ThrowableSpawner : MonoBehaviour
                 currentHeldAmmo = 0;
 
             reloadTime = false;
-            updateThrowableUI();
             needsReload = true;
         }
     }
@@ -66,6 +67,6 @@ public class ThrowableSpawner : MonoBehaviour
 
     public void updateThrowableUI()
     {
-        UIManager.instance.SetGun(equipment.weaponName, currentAmmo, currentHeldAmmo);
+        UIManager.instance.SetGun(equipment.weaponImage, currentAmmo, currentHeldAmmo);
     }
 }

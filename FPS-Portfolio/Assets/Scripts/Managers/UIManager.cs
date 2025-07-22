@@ -9,8 +9,10 @@ public class UIManager : MonoBehaviour
     public Image playerHPBar;
     public GameObject playerDamagePanel;
     public GameObject playerHealPanel;
+    public GameObject playerStunPanel;
 
     public TextMeshProUGUI playerGunText;
+    public Image playerGunSprite;
     [SerializeField] WeaponSelection gun;
     // should be formated like the following:
     // Gun Name
@@ -35,8 +37,10 @@ public class UIManager : MonoBehaviour
     {
 
     }
-    public void SetGun(string name, int ammoLeft, int totalAmmo)
+    public void SetGun(Sprite sprite, int ammoLeft, int totalAmmo)
     {
-        playerGunText.text = name + "\n" + ammoLeft + "/" + totalAmmo;
+        playerGunSprite.sprite = sprite;
+        Debug.Log($"Current Sprite: {playerGunSprite.sprite} needed sprite {sprite}");
+        playerGunText.text = ammoLeft + "/" + totalAmmo;
     }
 }
