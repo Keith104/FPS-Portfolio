@@ -44,7 +44,7 @@ public class Damage : MonoBehaviour
                 dmg.TakeDamage(damageAmount, type);
             }
 
-        if (type == damagetype.moving || type == damagetype.explosion)
+        if (type == damagetype.moving || type == damagetype.explosion || type == damagetype.stun)
         {
             Destroy(gameObject);
         }
