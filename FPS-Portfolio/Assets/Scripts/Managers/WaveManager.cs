@@ -1,21 +1,19 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager instance;
 
     [Header("Wave Settings")]
-    [SerializeField] int baseMinEnemies;
-    [SerializeField] int baseMaxEnemies;
+    [SerializeField] int baseMinEnemies, baseMaxEnemies, maxEnemiesAllowed;
     [SerializeField] float enemiesPerWaveIncrease;
-    [SerializeField] int maxEnemiesAllowed;
     [SerializeField] Difficulty difficulty;
 
     [Header("Enemy Settings")]
-    [SerializeField] GameObject[] regEnemySpawns;
+    [SerializeField] Transform[] regEnemySpawns;
     [SerializeField] GameObject[] regEnemyPrefabs;
-    [SerializeField] GameObject[] nonMoveEnemySpawns;
+    [SerializeField] Transform[] nonMoveEnemySpawns;
     [SerializeField] GameObject[] nonMoveEnemyPrefabs;
     [SerializeField] LayerMask enemyLayerMask;
     [SerializeField] float spawnCheckRadius;
@@ -23,39 +21,48 @@ public class WaveManager : MonoBehaviour
     [Header("Current Wave")]
     public int waveNum;
 
-    int waveTillMiniBoss;
-    int waveTillBoss;
+    int waveTillMiniBoss = 5;
+    int waveTillBoss = 10;
     int totalToSpawnLeft;
+    List<Transform> freeSpawns = new List<Transform>();
 
-    private void Start()
+    void Awake()
     {
-        instance = this;
-        regEnemySpawns = GameObject.FindGameObjectsWithTag("EnemySpawn");
-        waveTillMiniBoss = 5;
-        waveTillBoss = 10;
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
+    }
+
+    void Start()
+    {
         difficulty = DifficultyManager.instance.GetDifficulty();
         baseMinEnemies = difficulty.baseMinSpawn;
         baseMaxEnemies = difficulty.baseMaxSpawn;
         enemiesPerWaveIncrease = difficulty.enemiesPerWaveIncrease;
         maxEnemiesAllowed = difficulty.maxEnemiesAllowed;
+
+        var spawnObjects = GameObject.FindGameObjectsWithTag("EnemySpawn");
+        regEnemySpawns = new Transform[spawnObjects.Length];
+        for (int i = 0; i < spawnObjects.Length; i++)
+            regEnemySpawns[i] = spawnObjects[i].transform;
+
         StartWave();
     }
 
-    private void Update()
+    void Update()
     {
         if (totalToSpawnLeft <= 0) return;
-        int current = GameManager.instance.GetGameGoalCount();
-        int spawnCount = Mathf.Min(maxEnemiesAllowed - current, totalToSpawnLeft);
+
+        int currentCount = GameManager.instance.GetGameGoalCount();
+        int availableSlots = maxEnemiesAllowed - currentCount;
+        if (availableSlots <= 0) return;
+
+        int spawnCount = Mathf.Min(availableSlots, totalToSpawnLeft);
         for (int i = 0; i < spawnCount; i++)
-        {
-            SpawnRegEnemy();
-            totalToSpawnLeft--;
-        }
+            SpawnNextEnemy();
     }
 
     public void StartWave()
     {
-        totalToSpawnLeft = 0;
         waveTillMiniBoss--;
         waveTillBoss--;
         waveNum++;
@@ -67,51 +74,43 @@ public class WaveManager : MonoBehaviour
             waveTillBoss = 10;
             waveTillMiniBoss = 5;
             totalToSpawnLeft = 1;
-            GameManager.instance.UpdateGameGoal(1);
         }
         else if (waveTillMiniBoss <= 0)
         {
             waveTillMiniBoss = 5;
             totalToSpawnLeft = 1;
-            GameManager.instance.UpdateGameGoal(1);
         }
         else
         {
-            float minThisWave = baseMinEnemies + (waveNum - 1) * enemiesPerWaveIncrease;
-            float maxThisWave = baseMaxEnemies + (waveNum - 1) * enemiesPerWaveIncrease;
-            int amountToSpawn = Mathf.RoundToInt(Random.Range(minThisWave, maxThisWave));
-            totalToSpawnLeft = amountToSpawn;
-            GameManager.instance.UpdateGameGoal(amountToSpawn);
-            int initialSpawn = Mathf.Min(maxEnemiesAllowed, totalToSpawnLeft);
-            for (int i = 0; i < initialSpawn; i++)
-            {
-                SpawnRegEnemy();
-                totalToSpawnLeft--;
-                SpawnNonMoveEnemy();
-                totalToSpawnLeft--;
-            }
+            float increase = (waveNum - 1) * enemiesPerWaveIncrease;
+            int amount = Mathf.RoundToInt(
+                Random.Range(baseMinEnemies + increase, baseMaxEnemies + increase)
+            );
+            totalToSpawnLeft = amount;
         }
+
+        int initialSpawn = Mathf.Min(maxEnemiesAllowed, totalToSpawnLeft);
+        for (int i = 0; i < initialSpawn; i++)
+            SpawnNextEnemy();
+
+        GameManager.instance.UpdateGameGoal(totalToSpawnLeft);
     }
 
-    void SpawnRegEnemy()
+    void SpawnNextEnemy()
     {
-        List<Transform> freeSpawns = new List<Transform>();
-        foreach (var go in regEnemySpawns)
-            if (!Physics.CheckSphere(go.transform.position, spawnCheckRadius, enemyLayerMask))
-                freeSpawns.Add(go.transform);
-        if (freeSpawns.Count == 0) return;
-        Transform spawnPoint = freeSpawns[Random.Range(0, freeSpawns.Count)];
-        Instantiate(regEnemyPrefabs[Random.Range(0, regEnemyPrefabs.Length)], spawnPoint.position, spawnPoint.rotation);
-    }
+        bool spawnRegular = Random.value < 0.5f;
+        var spawns = spawnRegular ? regEnemySpawns : nonMoveEnemySpawns;
+        var prefabs = spawnRegular ? regEnemyPrefabs : nonMoveEnemyPrefabs;
 
-    void SpawnNonMoveEnemy()
-    {
-        List<Transform> freeSpawns = new List<Transform>();
-        foreach (var go in nonMoveEnemySpawns)
-            if (!Physics.CheckSphere(go.transform.position, spawnCheckRadius, enemyLayerMask))
-                freeSpawns.Add(go.transform);
+        freeSpawns.Clear();
+        foreach (var t in spawns)
+            if (!Physics.CheckSphere(t.position, spawnCheckRadius, enemyLayerMask))
+                freeSpawns.Add(t);
+
         if (freeSpawns.Count == 0) return;
-        Transform spawnPoint = freeSpawns[Random.Range(0, freeSpawns.Count)];
-        Instantiate(nonMoveEnemyPrefabs[Random.Range(0, regEnemyPrefabs.Length)], spawnPoint.position, spawnPoint.rotation);
+
+        var spawnPoint = freeSpawns[Random.Range(0, freeSpawns.Count)];
+        Instantiate(prefabs[Random.Range(0, prefabs.Length)], spawnPoint.position, spawnPoint.rotation);
+        totalToSpawnLeft--;
     }
 }
