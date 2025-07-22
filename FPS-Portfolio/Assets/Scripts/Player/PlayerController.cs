@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using NUnit.Framework.Constraints;
 
-public class PlayerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage, IPickup
 {
     [Header("Player Stuff")]
     [SerializeField] CharacterController controller;
@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] AudioSource source;
     [SerializeField] Animator animate;
     public WeaponSelection Gun;
-    public Throwable throwEqu;
+    [SerializeField] SwappingSystem swappingSystem;
 
     [Header("Movement Settings")]
     [SerializeField] int speed;
@@ -179,8 +179,18 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         health = Mathf.Max(health - amount, 0);
         hpBarTarget = Mathf.Clamp01((float)health / hpOrig);
-        AudioManager.instance.AudioHurt(source);
-        StartCoroutine(damageFlashScreen());
+
+        if (amount > 0)
+        {
+            AudioManager.instance.AudioHurt(source);
+            StartCoroutine(damageFlashScreen());
+        }
+        else if(amount < 0)
+        {
+            StartCoroutine(healFlashScreen());
+            if(health > hpOrig)
+                health = hpOrig;
+        }
 
         Debug.Log("Ouch");
 
@@ -188,6 +198,32 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             playerDead = true;
             GameManager.instance.Lose();
+        }
+    }
+
+    public void GetPickupItem(PickupItems item)
+    {
+        TakeDamage(-item.healthInc);
+        swappingSystem.primary.currentHeldAmmo += item.primaryAmmoInc;
+        swappingSystem.secondary.currentHeldAmmo += item.secondaryAmmoInc;
+        swappingSystem.nonLethalSpawner.currentHeldAmmo += item.nonLethalAmmoInc;
+        swappingSystem.lethalSpawner.currentHeldAmmo += item.lethalAmmoInc;
+
+        if(swappingSystem.primary.enabled == true)
+        {
+            swappingSystem.primary.updateGunUI();
+        }
+        else if (swappingSystem.secondary.enabled == true)
+        {
+            swappingSystem.secondary.updateGunUI();
+        }
+        else if (swappingSystem.nonLethalSpawner.transform.childCount > 0)
+        { 
+            swappingSystem.nonLethalSpawner.updateThrowableUI();
+        }
+        else if (swappingSystem.lethalSpawner.transform.childCount > 0)
+        { 
+            swappingSystem.lethalSpawner.updateThrowableUI();
         }
     }
 
@@ -210,5 +246,12 @@ public class PlayerController : MonoBehaviour, IDamage
         UIManager.instance.playerDamagePanel.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         UIManager.instance.playerDamagePanel.SetActive(false);
+    }
+
+    IEnumerator healFlashScreen()
+    {
+        UIManager.instance.playerHealPanel.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        UIManager.instance.playerHealPanel.SetActive(false);
     }
 }

@@ -3,9 +3,9 @@ using UnityEngine;
 public class SwappingSystem : MonoBehaviour
 {
     [Header("Weapons")]
-    [SerializeField] WeaponSelection primary;
-    [SerializeField] WeaponSelection secondary;
-    [SerializeField] WeaponSelection melee;
+    public WeaponSelection primary;
+    public WeaponSelection secondary;
+    [SerializeField] MeleeLogic melee;
 
     [Header("Throwable Spawner")]
     public ThrowableSpawner nonLethalSpawner;
@@ -20,6 +20,9 @@ public class SwappingSystem : MonoBehaviour
 
     private bool nonLethalSpawned = false;
     private bool lethalSpawned = false;
+
+    private bool isNonLethal = false;
+    private bool isLethal = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -42,7 +45,9 @@ public class SwappingSystem : MonoBehaviour
 
             secondary.enabled = false;
             melee.enabled = false;
-            if(nonLethalSpawner.transform.childCount > 0)
+            isNonLethal = false;
+            isLethal = false;
+            if (nonLethalSpawner.transform.childCount > 0)
                 nonLethalSpawner.SwapOut();
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
@@ -57,6 +62,8 @@ public class SwappingSystem : MonoBehaviour
 
             primary.enabled = false;
             melee.enabled = false;
+            isNonLethal = false;
+            isLethal = false;
             if (nonLethalSpawner.transform.childCount > 0)
                 nonLethalSpawner.SwapOut();
             if (lethalSpawner.transform.childCount > 0)
@@ -67,19 +74,23 @@ public class SwappingSystem : MonoBehaviour
         else if (Input.GetButtonDown("MeleeSwap"))
         {
             Debug.Log("Swapped to melee");
-            playerConScript.Gun = melee;
+            playerConScript.Gun = null;
             melee.enabled = true;
 
             primary.enabled = false;
             secondary.enabled = false;
+            isNonLethal = false;
+            isLethal = false;
             if (nonLethalSpawner.transform.childCount > 0)
                 nonLethalSpawner.SwapOut();
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
-            melee.updateGunUI();
+            melee.updateMeleeUI();
         }
-        else if (Input.GetButtonDown("NonLethalSwap") && nonLethalSpawner.currentAmmo > 0)
+        else if (Input.GetButtonDown("NonLethalSwap") && nonLethalSpawner.currentAmmo > 0 
+            || isNonLethal == true && nonLethalSpawner.needsReload == true && nonLethalSpawner.reloadTime == false && nonLethalSpawner.currentAmmo > 0
+            )
         {
             Debug.Log("Swapped to nonLethal");
             playerConScript.Gun = null;
@@ -87,12 +98,21 @@ public class SwappingSystem : MonoBehaviour
             primary.enabled = false;
             secondary.enabled = false;
             melee.enabled = false;
+            isLethal = false;
+            nonLethalSpawner.needsReload = false;
+            if (nonLethalSpawner.transform.childCount > 0)
+                nonLethalSpawner.SwapOut();
+            if (lethalSpawner.transform.childCount > 0)
+                lethalSpawner.SwapOut();
 
             nonLethalSpawner.SpawnThrowable(nonLethalFab);
             nonLethalSpawner.updateThrowableUI();
             nonLethalSpawned = true;
+            isNonLethal = true;
         }
-        else if (Input.GetButtonDown("LethalSwap") && lethalSpawner.currentAmmo > 0)
+        else if (Input.GetButtonDown("LethalSwap") && lethalSpawner.currentAmmo > 0
+            || isLethal == true && lethalSpawner.needsReload == true && lethalSpawner.reloadTime == false && lethalSpawner.currentAmmo > 0
+            )
         {
             Debug.Log("Swapped to lethal");
             playerConScript.Gun = null;
@@ -100,10 +120,17 @@ public class SwappingSystem : MonoBehaviour
             primary.enabled = false;
             secondary.enabled = false;
             melee.enabled = false;
+            isNonLethal = false;
+            lethalSpawner.needsReload = false;
+            if (nonLethalSpawner.transform.childCount > 0)
+                nonLethalSpawner.SwapOut();
+            if (lethalSpawner.transform.childCount > 0)
+                lethalSpawner.SwapOut();
 
             lethalSpawner.SpawnThrowable(nonLethalFab);
             lethalSpawner.updateThrowableUI();
             lethalSpawned = true;
+            isLethal = true;
         }
     }
 }

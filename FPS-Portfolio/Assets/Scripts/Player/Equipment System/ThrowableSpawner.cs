@@ -6,10 +6,11 @@ public class ThrowableSpawner : MonoBehaviour
     [SerializeField] Equipment equipment;
 
     public bool reloadTime = false;
+    public bool needsReload = false;
     private float reloadTimer;
 
     public int currentAmmo;
-    private int currentHeldAmmo;
+    public int currentHeldAmmo;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -54,6 +55,7 @@ public class ThrowableSpawner : MonoBehaviour
 
             reloadTime = false;
             updateThrowableUI();
+            needsReload = true;
         }
     }
 

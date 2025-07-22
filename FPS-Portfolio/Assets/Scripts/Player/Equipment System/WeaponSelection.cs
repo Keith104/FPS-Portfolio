@@ -14,7 +14,8 @@ public class WeaponSelection : MonoBehaviour
     private float reloadTimer;
     private float fireRateTimer;
     private int currentAmmo;
-    private int currentHeldAmmo;
+    [Tooltip("Don't touch")]
+    public int currentHeldAmmo;
     private int burstCount; // only used when in Burst
     private bool fired; // used for everything but auto
     private bool reloadActive = false;
