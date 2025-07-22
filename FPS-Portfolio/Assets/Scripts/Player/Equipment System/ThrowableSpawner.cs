@@ -14,6 +14,8 @@ public class ThrowableSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        updateThrowableUI();
+
         currentAmmo = equipment.currentMag;
         currentHeldAmmo = equipment.maxAmmo;
     }
@@ -65,6 +67,6 @@ public class ThrowableSpawner : MonoBehaviour
 
     public void updateThrowableUI()
     {
-        UIManager.instance.SetGun(equipment.weaponName, currentAmmo, currentHeldAmmo);
+        UIManager.instance.SetGun(equipment.weaponImage, currentAmmo, currentHeldAmmo);
     }
 }
