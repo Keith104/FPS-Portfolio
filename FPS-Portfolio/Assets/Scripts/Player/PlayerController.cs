@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         Movement();
 
         if (Input.GetKeyDown(KeyCode.K))
-            TakeDamage(1);
+            TakeDamage(1, Damage.damagetype.stationary);
 
         if (maxRespawns <= 0)
             GameManager.instance.respawnButton.interactable = false;
@@ -175,12 +175,19 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         controller.center = Vector3.MoveTowards(controller.center, ctrlTargetCenter, heightAdjustSpeed * Time.deltaTime);
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, Damage.damagetype damagetype)
     {
-        health = Mathf.Max(health - amount, 0);
-        hpBarTarget = Mathf.Clamp01((float)health / hpOrig);
+        if (damagetype != Damage.damagetype.stun)
+        {
+            health = Mathf.Max(health - amount, 0);
+            hpBarTarget = Mathf.Clamp01((float)health / hpOrig);
+        }
 
-        if (amount > 0)
+        if(damagetype == Damage.damagetype.stun)
+        {
+            StartCoroutine(stunFlashScreen(amount));
+        }
+        else if (amount > 0)
         {
             AudioManager.instance.AudioHurt(source);
             StartCoroutine(damageFlashScreen());
@@ -192,7 +199,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
                 health = hpOrig;
         }
 
-        Debug.Log("Ouch");
+            Debug.Log("Ouch");
 
         if (health <= 0 && !playerDead)
         {
@@ -203,7 +210,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 
     public void GetPickupItem(PickupItems item)
     {
-        TakeDamage(-item.healthInc);
+        TakeDamage(-item.healthInc, Damage.damagetype.stationary);
         swappingSystem.primary.currentHeldAmmo += item.primaryAmmoInc;
         swappingSystem.secondary.currentHeldAmmo += item.secondaryAmmoInc;
         swappingSystem.nonLethalSpawner.currentHeldAmmo += item.nonLethalAmmoInc;
@@ -253,5 +260,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         UIManager.instance.playerHealPanel.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         UIManager.instance.playerHealPanel.SetActive(false);
+    }
+    IEnumerator stunFlashScreen(float stunTime)
+    {
+        UIManager.instance.playerStunPanel.SetActive(true);
+        yield return new WaitForSeconds(stunTime);
+        UIManager.instance.playerStunPanel.SetActive(false);
     }
 }
