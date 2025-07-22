@@ -13,8 +13,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField] Difficulty difficulty;
 
     [Header("Enemy Settings")]
-    [SerializeField] GameObject[] enemySpawns;
-    [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] GameObject[] regEnemySpawns;
+    [SerializeField] GameObject[] regEnemyPrefabs;
+    [SerializeField] GameObject[] nonMoveEnemySpawns;
+    [SerializeField] GameObject[] nonMoveEnemyPrefabs;
     [SerializeField] LayerMask enemyLayerMask;
     [SerializeField] float spawnCheckRadius;
 
@@ -28,7 +30,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         instance = this;
-        enemySpawns = GameObject.FindGameObjectsWithTag("EnemySpawn");
+        regEnemySpawns = GameObject.FindGameObjectsWithTag("EnemySpawn");
         waveTillMiniBoss = 5;
         waveTillBoss = 10;
         difficulty = DifficultyManager.instance.GetDifficulty();
@@ -46,7 +48,7 @@ public class WaveManager : MonoBehaviour
         int spawnCount = Mathf.Min(maxEnemiesAllowed - current, totalToSpawnLeft);
         for (int i = 0; i < spawnCount; i++)
         {
-            SpawnEnemy();
+            SpawnRegEnemy();
             totalToSpawnLeft--;
         }
     }
@@ -83,20 +85,33 @@ public class WaveManager : MonoBehaviour
             int initialSpawn = Mathf.Min(maxEnemiesAllowed, totalToSpawnLeft);
             for (int i = 0; i < initialSpawn; i++)
             {
-                SpawnEnemy();
+                SpawnRegEnemy();
+                totalToSpawnLeft--;
+                SpawnNonMoveEnemy();
                 totalToSpawnLeft--;
             }
         }
     }
 
-    void SpawnEnemy()
+    void SpawnRegEnemy()
     {
         List<Transform> freeSpawns = new List<Transform>();
-        foreach (var go in enemySpawns)
+        foreach (var go in regEnemySpawns)
             if (!Physics.CheckSphere(go.transform.position, spawnCheckRadius, enemyLayerMask))
                 freeSpawns.Add(go.transform);
         if (freeSpawns.Count == 0) return;
         Transform spawnPoint = freeSpawns[Random.Range(0, freeSpawns.Count)];
-        Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPoint.position, spawnPoint.rotation);
+        Instantiate(regEnemyPrefabs[Random.Range(0, regEnemyPrefabs.Length)], spawnPoint.position, spawnPoint.rotation);
+    }
+
+    void SpawnNonMoveEnemy()
+    {
+        List<Transform> freeSpawns = new List<Transform>();
+        foreach (var go in nonMoveEnemySpawns)
+            if (!Physics.CheckSphere(go.transform.position, spawnCheckRadius, enemyLayerMask))
+                freeSpawns.Add(go.transform);
+        if (freeSpawns.Count == 0) return;
+        Transform spawnPoint = freeSpawns[Random.Range(0, freeSpawns.Count)];
+        Instantiate(nonMoveEnemyPrefabs[Random.Range(0, regEnemyPrefabs.Length)], spawnPoint.position, spawnPoint.rotation);
     }
 }
