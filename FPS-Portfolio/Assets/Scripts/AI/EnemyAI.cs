@@ -24,6 +24,19 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     protected GameObject player;
 
+
+
+    [SerializeField] AudioSource audio;
+    [SerializeField] AudioClip[] audioHurt;
+    [SerializeField] float audioHurtVol;
+    [SerializeField] AudioClip[] audioStep;
+    [SerializeField] float audioStepVol;
+    [SerializeField] AudioClip[] audioShoot;
+    [SerializeField] float audioShootVol;
+
+    bool isSprinting;
+    bool isPlayingStep;
+
     Color colorOg;
 
     float searchTime;
@@ -92,13 +105,11 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         StartCoroutine(FlashRed());
 
+        audio.PlayOneShot(audioHurt[Random.Range(0, audioHurt.Length)], audioHurtVol);
+
         if (health <= 0)
         {
-            if (!tutorial)
-            {
-                GameManager.instance.UpdateGameGoal(-1);
-            }
-
+            
             int randNum = Random.Range(0, 10);
 
             if (randNum == 10)
@@ -108,14 +119,26 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             GameManager.instance.UpdateTotalScoreText(amountToScore);
             GameManager.instance.UpdateWaveScoreText(amountToScore);
-            Destroy(gameObject);
+            StartCoroutine(DestroyAfterDelay());
         }
+    }
+
+    IEnumerator DestroyAfterDelay()
+    {
+        agent.isStopped = true;
+        animate.SetTrigger("Dead");
+        yield return new WaitForSeconds(2.5f);
+        if (!tutorial)
+        {
+            GameManager.instance.UpdateGameGoal(-1);
+        }
+        Destroy(gameObject);
     }
 
     IEnumerator FlashRed()
     {
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         model.material.color = colorOg;
     }
 
@@ -146,7 +169,25 @@ public class EnemyAI : MonoBehaviour, IDamage
             NavMeshHit hit;
             NavMesh.SamplePosition(ranPos, out hit, searchDist, 1);
             agent.SetDestination(hit.position);
+            if (!isPlayingStep)
+            {
+                StartCoroutine(playStep());
+            }
         }
+    }
+
+    IEnumerator playStep()
+    {
+        isPlayingStep = true;
+        audio.PlayOneShot(audioStep[Random.Range(0, audioStep.Length)], audioStepVol);
+
+        if (isSprinting)
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        else
+            yield return new WaitForSeconds(0.5f);
+        isPlayingStep = false;
     }
 
     public virtual bool CanSeePlayer()
@@ -213,6 +254,8 @@ public class EnemyAI : MonoBehaviour, IDamage
         shootTimer = 0;
 
         animate.SetTrigger("Shoot");
+
+        audio.PlayOneShot(audioShoot[Random.Range(0, audioShoot.Length)], audioShootVol);
 
         Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerDir));
     }

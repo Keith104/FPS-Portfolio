@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4519716788627816}
   - component: {fileID: 33705837635148522}
   - component: {fileID: 23860282398207496}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AK74
   m_TagString: Untagged
   m_Icon: {fileID: 0}
