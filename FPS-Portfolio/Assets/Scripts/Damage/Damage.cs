@@ -10,19 +10,24 @@ public class Damage : MonoBehaviour
     [SerializeField] string targetTag;
     [SerializeField] LayerMask enemyLayer;
 
-    public int damageAmount;
+    public float damageAmount;
     [SerializeField] float damageRate;
     [SerializeField] int regSpeed;
     [SerializeField] int homeSpeed;
     public int destroyTime;
 
+    PickupSystem pickupSystem;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (type == damagetype.moving || type == damagetype.explosion || type == damagetype.stun || type == damagetype.homing)
+
+        pickupSystem = GameManager.instance.Player.GetComponent<PickupSystem>();
+
+        if (type == damagetype.moving || type == damagetype.explosion || type == damagetype.stun || type == damagetype.homing || type == damagetype.DOT)
         {
             Destroy(gameObject, destroyTime);
-            if (type == damagetype.moving)
+            if (type == damagetype.moving || type == damagetype.DOT)
             {
                 rb.linearVelocity = transform.forward * regSpeed;
             }
@@ -93,6 +98,14 @@ public class Damage : MonoBehaviour
 
         if (type == damagetype.moving || type == damagetype.explosion || type == damagetype.stun || type == damagetype.homing)
         {
+            Destroy(gameObject);
+        }
+        else if(type == damagetype.DOT && dmg != null)
+        {
+            DOTDamage damage = other.gameObject.AddComponent<DOTDamage>();
+            damage.damageAmount = pickupSystem.damageAmount;
+            damage.damageRate = pickupSystem.damageRate;
+            damage.dotTimer = pickupSystem.dotTimer;
             Destroy(gameObject);
         }
     }
