@@ -13,11 +13,13 @@ public class WeaponSelection : MonoBehaviour
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bullet;
 
+    [Tooltip("Don't touch")]
+    public int currentAmmo;
+    public int currentHeldAmmo;
+
     private float reloadTimer;
     private float fireRateTimer;
-    private int currentAmmo;
-    [Tooltip("Don't touch")]
-    public int currentHeldAmmo;
+
     private int burstCount; // only used when in Burst
     private bool fired; // used for everything but auto
     private bool reloadActive = false;
@@ -25,9 +27,7 @@ public class WeaponSelection : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        currentAmmo = equipment.currentMag;
-        currentHeldAmmo = equipment.maxAmmo;
-        updateGunUI();
+
     }
 
     // Update is called once per frame

@@ -14,10 +14,7 @@ public class ThrowableSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        updateThrowableUI();
 
-        currentAmmo = equipment.currentMag;
-        currentHeldAmmo = equipment.maxAmmo;
     }
 
     // Update is called once per frame

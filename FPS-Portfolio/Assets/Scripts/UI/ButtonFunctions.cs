@@ -13,12 +13,14 @@ public class ButtonFunctions : MonoBehaviour
     {
         GameManager.instance.stateUnPause();
         WaveManager.instance.StartWave();
+        GameManager.instance.playerController.swappingSystem.SetLoadout();
     }
 
     public void Respawn()
     {
         GameManager.instance.playerController.RespawnPlayer();
         GameManager.instance.stateUnPause();
+        GameManager.instance.playerController.swappingSystem.SetLoadout();
     }
 
     public void Quit()

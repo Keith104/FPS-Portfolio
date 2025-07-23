@@ -27,9 +27,8 @@ public class SwappingSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetLoadout();
-
         // setting to primary
+        SetLoadout();
         playerConScript.Gun = primary;
         primary.enabled = true;
         primary.ChangeGun();
@@ -39,7 +38,6 @@ public class SwappingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetLoadout();
         Swap();
     }
 
@@ -162,10 +160,22 @@ public class SwappingSystem : MonoBehaviour
 
     public void SetLoadout()
     {
-        primary.equipment = LoadoutManager.instance.loadoutPrimary;
-        secondary.equipment = LoadoutManager.instance.loadoutPrimary;
-        melee.equipment = LoadoutManager.instance.loadoutPrimary;
-        nonLethalSpawner.equipment = LoadoutManager.instance.loadoutPrimary;
-        lethalSpawner.equipment = LoadoutManager.instance.loadoutPrimary;
+        primary.equipment = LoadoutManager.instance.LoadoutData.loadoutPrimary;
+        primary.currentAmmo = LoadoutManager.instance.LoadoutData.loadoutPrimary.currentMag;
+        primary.currentHeldAmmo = LoadoutManager.instance.LoadoutData.loadoutPrimary.maxAmmo;
+
+        secondary.equipment = LoadoutManager.instance.LoadoutData.loadoutSecondary;
+        secondary.currentAmmo = LoadoutManager.instance.LoadoutData.loadoutSecondary.currentMag;
+        secondary.currentHeldAmmo = LoadoutManager.instance.LoadoutData.loadoutSecondary.maxAmmo;
+
+        melee.equipment = LoadoutManager.instance.LoadoutData.loadoutMelee;
+
+        nonLethalSpawner.equipment = LoadoutManager.instance.LoadoutData.loadoutNonLethal;
+        nonLethalSpawner.currentAmmo = LoadoutManager.instance.LoadoutData.loadoutNonLethal.currentMag;
+        nonLethalSpawner.currentHeldAmmo = LoadoutManager.instance.LoadoutData.loadoutNonLethal.maxAmmo;
+
+        lethalSpawner.equipment = LoadoutManager.instance.LoadoutData.loadoutLethal;
+        lethalSpawner.currentAmmo = LoadoutManager.instance.LoadoutData.loadoutLethal.currentMag;
+        lethalSpawner.currentHeldAmmo = LoadoutManager.instance.LoadoutData.loadoutLethal.maxAmmo;
     }
 }
