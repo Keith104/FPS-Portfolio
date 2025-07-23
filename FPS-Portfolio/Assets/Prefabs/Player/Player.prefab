@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 3387423163936898870}
   - component: {fileID: 8799080996626923495}
   - component: {fileID: 4230275767229196234}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,6 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94fcbff828853e49b59ef800f12bd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasGrenadeBullet: 0
 --- !u!143 &8001360252822506829
 CharacterController:
   m_ObjectHideFlags: 0
