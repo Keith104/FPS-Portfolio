@@ -175,4 +175,9 @@ public class WeaponSelection : MonoBehaviour
             );
     }
 
+    public void SetBullet(GameObject nBullet)
+    {
+        bullet = nBullet;
+    }
+
 }

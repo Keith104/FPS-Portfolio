@@ -29,7 +29,7 @@ MonoBehaviour:
   currentMag: 1
   shootSound: {fileID: 0}
   weaponPrefab: {fileID: 1698056052845220, guid: 5a2bf64643e1fb0439ea39c0fc9b00ff, type: 3}
-  weaponImage: {fileID: 21300000, guid: 8fb2ab7269103b040bfe518e3e9701ab, type: 3}
+  weaponImage: {fileID: 21300000, guid: 45bb5e70723d6424fb15e5f5128e317a, type: 3}
   isSpining: 0
   spinSpeed: 0
   isSticky: 0

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
-  m_Name: MeleeTest
+  m_Name: Bat
   m_EditorClassIdentifier: 
-  weaponName: Melee Test
+  weaponName: Bat
   currentWeapon: 1
+  shootPosLocation: {x: 0, y: 0, z: 0}
   singleFireMode: 0
   burstFireMode: 0
   fullAutoFireMode: 0
@@ -28,6 +29,7 @@ MonoBehaviour:
   currentMag: 0
   shootSound: {fileID: 0}
   weaponPrefab: {fileID: 0}
+  weaponImage: {fileID: 21300000, guid: 45dfbaf44ec7f6640ab2b95afe1ae212, type: 3}
   isSpining: 0
   spinSpeed: 0
   isSticky: 0
