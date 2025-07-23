@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: M1911
   currentWeapon: 0
+  shootPosLocation: {x: 0, y: 0.025, z: -0.16}
   singleFireMode: 1
   burstFireMode: 0
   fullAutoFireMode: 0

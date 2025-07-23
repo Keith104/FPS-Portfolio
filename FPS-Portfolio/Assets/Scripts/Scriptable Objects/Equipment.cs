@@ -12,6 +12,7 @@ public class Equipment : ScriptableObject
     
     public string weaponName;
     public WeaponType currentWeapon;
+    public Vector3 shootPosLocation;
     public bool singleFireMode;
     public bool burstFireMode;
     public bool fullAutoFireMode;

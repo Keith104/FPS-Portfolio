@@ -51,11 +51,9 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         if (totalToSpawnLeft <= 0) return;
-
         int currentCount = GameManager.instance.GetGameGoalCount();
         int availableSlots = maxEnemiesAllowed - currentCount;
         if (availableSlots <= 0) return;
-
         int spawnCount = Mathf.Min(availableSlots, totalToSpawnLeft);
         for (int i = 0; i < spawnCount; i++)
             SpawnNextEnemy();
@@ -92,8 +90,6 @@ public class WaveManager : MonoBehaviour
         int initialSpawn = Mathf.Min(maxEnemiesAllowed, totalToSpawnLeft);
         for (int i = 0; i < initialSpawn; i++)
             SpawnNextEnemy();
-
-        GameManager.instance.UpdateGameGoal(totalToSpawnLeft);
     }
 
     void SpawnNextEnemy()
@@ -110,7 +106,12 @@ public class WaveManager : MonoBehaviour
         if (freeSpawns.Count == 0) return;
 
         var spawnPoint = freeSpawns[Random.Range(0, freeSpawns.Count)];
-        Instantiate(prefabs[Random.Range(0, prefabs.Length)], spawnPoint.position, spawnPoint.rotation);
+        Instantiate(
+            prefabs[Random.Range(0, prefabs.Length)],
+            spawnPoint.position,
+            spawnPoint.rotation
+        );
+        GameManager.instance.UpdateGameGoal(totalToSpawnLeft);
         totalToSpawnLeft--;
     }
 }

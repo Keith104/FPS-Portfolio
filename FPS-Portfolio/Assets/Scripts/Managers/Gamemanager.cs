@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator animator;
 
     [Header("RunTime References")]
-    [SerializeField] GameObject player;
+    public GameObject player;
     public PlayerController playerController;
     public GameObject equipment;
     public GameObject Player => player;

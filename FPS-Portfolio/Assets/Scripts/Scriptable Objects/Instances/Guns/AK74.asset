@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: AK-74
   currentWeapon: 0
+  shootPosLocation: {x: 0, y: 0, z: -0.5}
   singleFireMode: 0
   burstFireMode: 0
   fullAutoFireMode: 1

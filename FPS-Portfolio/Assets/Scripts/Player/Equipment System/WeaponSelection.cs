@@ -3,11 +3,13 @@ using static Equipment;
 
 public class WeaponSelection : MonoBehaviour
 {
+    [SerializeField] SwappingSystem swappingSystem;
     [SerializeField] Equipment equipment;
     [SerializeField] AudioSource source;
     [Tooltip("These are the layers that you ignore when firing")]
     [SerializeField] LayerMask ignoreLayer;
 
+    [SerializeField] GameObject weapon;
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bullet;
 
@@ -136,13 +138,22 @@ public class WeaponSelection : MonoBehaviour
 
     public void updateGunUI()
     {
-        UIManager.instance.SetGun(equipment.weaponImage, currentAmmo, currentHeldAmmo);
+        if(equipment.singleFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Single", currentAmmo, currentHeldAmmo);
+        else if(equipment.burstFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Burst", currentAmmo, currentHeldAmmo);
+        else if (equipment.fullAutoFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Auto", currentAmmo, currentHeldAmmo);
     }
 
     void fire()
     {
         AudioManager.instance.AudioGunShot(source);
-        Instantiate(bullet, shootPos.position, Camera.main.transform.rotation);
+        GameObject nbullet = Instantiate(bullet,  shootPos.position, Camera.main.transform.rotation);
+        if(GameManager.instance.player.GetComponent<PickupSystem>().hasGrenadeBullet)
+        {
+            nbullet.transform.SetParent(shootPos.transform);
+        }
         FireRateDelay();
         updateGunUI();
     }
@@ -155,4 +166,22 @@ public class WeaponSelection : MonoBehaviour
             fireRateTimer = 0;
         }
     }
+    public void ChangeGun()
+    {
+        swappingSystem.DestroyCurrentGun();
+        shootPos.localPosition = equipment.shootPosLocation;
+        Instantiate
+            (
+            weapon, 
+            swappingSystem.gunModel.transform.position, 
+            swappingSystem.gunModel.transform.rotation, 
+            swappingSystem.gunModel.transform
+            );
+    }
+
+    public void SetBullet(GameObject nBullet)
+    {
+        bullet = nBullet;
+    }
+
 }

@@ -37,10 +37,10 @@ public class UIManager : MonoBehaviour
     {
 
     }
-    public void SetGun(Sprite sprite, int ammoLeft, int totalAmmo)
+    public void SetGun(Sprite sprite, string fireMode, int ammoLeft, int totalAmmo)
     {
         playerGunSprite.sprite = sprite;
         Debug.Log($"Current Sprite: {playerGunSprite.sprite} needed sprite {sprite}");
-        playerGunText.text = ammoLeft + "/" + totalAmmo;
+        playerGunText.text = fireMode + "\t" + ammoLeft + "/" + totalAmmo;
     }
 }
