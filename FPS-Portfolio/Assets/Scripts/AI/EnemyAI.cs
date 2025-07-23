@@ -109,11 +109,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (health <= 0)
         {
-            if (!tutorial)
-            {
-                GameManager.instance.UpdateGameGoal(-1);
-            }
-
+            
             int randNum = Random.Range(0, 10);
 
             if (randNum == 10)
@@ -131,7 +127,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         agent.isStopped = true;
         animate.SetTrigger("Dead");
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
+        if (!tutorial)
+        {
+            GameManager.instance.UpdateGameGoal(-1);
+        }
         Destroy(gameObject);
     }
 
