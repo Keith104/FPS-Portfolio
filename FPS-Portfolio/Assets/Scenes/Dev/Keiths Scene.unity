@@ -271,6 +271,63 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &179319575
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1852314703275394051, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_Name
+      value: GrenadeBulletPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -19.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
 --- !u!1 &246401223
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,6 +437,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &783958695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5403371236253308638, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+  m_PrefabInstance: {fileID: 1515656045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &783958697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783958695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8da435d0e9b624cb61271b5a986d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 11400000, guid: b39ed9068cb8e0a4eb4136b79adafbda, type: 2}
+  reloadTime: 0
+  needsReload: 0
+  currentAmmo: 0
+  currentHeldAmmo: 0
 --- !u!1 &1034919059
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,10 +661,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6744099545117921132, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: b39ed9068cb8e0a4eb4136b79adafbda, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5403371236253308638, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 783958697}
   m_SourcePrefab: {fileID: 100100000, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
 --- !u!1 &1544783515
 GameObject:
@@ -781,6 +867,46 @@ PrefabInstance:
       propertyPath: 'enemyPrefabs.Array.data[5]'
       value: 
       objectReference: {fileID: 4215054295470024060, guid: a4d6e8518a82ea24fa6651a0508ccc70, type: 3}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'regEnemySpawns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 168049438}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'regEnemySpawns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1259236844}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'regEnemySpawns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1898610471}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'regEnemySpawns.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1227383305}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'regEnemySpawns.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1034919060}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'nonMoveEnemySpawns.Array.data[0]'
+      value: 
+      objectReference: {fileID: 168049438}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'nonMoveEnemySpawns.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1259236844}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'nonMoveEnemySpawns.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1898610471}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'nonMoveEnemySpawns.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1227383305}
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'nonMoveEnemySpawns.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1034919060}
     - target: {fileID: 6940104469809314998, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: m_Name
       value: GameUI
@@ -886,3 +1012,4 @@ SceneRoots:
   - {fileID: 1865398911}
   - {fileID: 1071663901}
   - {fileID: 1515656045}
+  - {fileID: 179319575}
