@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Damage : MonoBehaviour
 {
-    public enum damagetype { moving, stationary, DOT, explosion, stun, smoke }
+    public enum damagetype { moving, stationary, DOT, explosion, stun, smoke, homing}
     [SerializeField] damagetype type;
     [SerializeField] Rigidbody rb;
 
@@ -22,6 +22,14 @@ public class Damage : MonoBehaviour
             {
                 rb.linearVelocity = transform.forward * speed;
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (type == damagetype.homing)
+        {
+            //rb.linearVelocity = (GameManager.instance.player.transform.position - transform.position).normalized * speed * Time.deltaTime;
         }
     }
 

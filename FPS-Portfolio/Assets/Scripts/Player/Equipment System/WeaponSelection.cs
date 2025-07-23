@@ -149,7 +149,11 @@ public class WeaponSelection : MonoBehaviour
     void fire()
     {
         AudioManager.instance.AudioGunShot(source);
-        Instantiate(bullet, shootPos.position, Camera.main.transform.rotation);
+        GameObject nbullet = Instantiate(bullet,  shootPos.position, Camera.main.transform.rotation);
+        if(GameManager.instance.player.GetComponent<PickupSystem>().hasGrenadeBullet)
+        {
+            nbullet.transform.SetParent(shootPos.transform);
+        }
         FireRateDelay();
         updateGunUI();
     }
