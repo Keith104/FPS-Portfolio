@@ -9,7 +9,6 @@ public class WeaponSelection : MonoBehaviour
     [Tooltip("These are the layers that you ignore when firing")]
     [SerializeField] LayerMask ignoreLayer;
 
-    [SerializeField] GameObject weapon;
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bullet;
 
@@ -172,7 +171,7 @@ public class WeaponSelection : MonoBehaviour
         shootPos.localPosition = equipment.shootPosLocation;
         Instantiate
             (
-            weapon, 
+            equipment.weaponPrefab, 
             swappingSystem.gunModel.transform.position, 
             swappingSystem.gunModel.transform.rotation, 
             swappingSystem.gunModel.transform

@@ -4,7 +4,6 @@ public class MeleeLogic : MonoBehaviour
 {
     [SerializeField] SwappingSystem swappingSystem;
     public Equipment equipment;
-    [SerializeField] GameObject weapon;
     [SerializeField] LayerMask attackIgnoreLayer;
     [SerializeField] BoxCollider attackCollider;
     private float AttackRechargeTimer;
@@ -65,7 +64,7 @@ public class MeleeLogic : MonoBehaviour
         swappingSystem.DestroyCurrentGun();
         Instantiate
             (
-            weapon,
+            equipment.weaponPrefab,
             swappingSystem.gunModel.transform.position,
             swappingSystem.gunModel.transform.rotation,
             swappingSystem.gunModel.transform
