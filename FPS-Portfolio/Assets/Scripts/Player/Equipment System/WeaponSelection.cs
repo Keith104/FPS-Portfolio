@@ -4,7 +4,7 @@ using static Equipment;
 public class WeaponSelection : MonoBehaviour
 {
     [SerializeField] SwappingSystem swappingSystem;
-    [SerializeField] Equipment equipment;
+    public Equipment equipment;
     [SerializeField] AudioSource source;
     [Tooltip("These are the layers that you ignore when firing")]
     [SerializeField] LayerMask ignoreLayer;

@@ -2,6 +2,14 @@ using UnityEngine;
 
 public class SwappingSystem : MonoBehaviour
 {
+
+    [Header("Equipment List")]
+    public Equipment[] primaryEquipment;
+    public Equipment[] secondaryEquipment;
+    public Equipment[] meleeEquipment;
+    public Equipment[] nonLethalEquipment;
+    public Equipment[] lethalEquipment;
+
     [Header("Weapons")]
     public WeaponSelection primary;
     public WeaponSelection secondary;
@@ -27,6 +35,9 @@ public class SwappingSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        SetLoadout();
+
+        // setting to primary
         playerConScript.Gun = primary;
         primary.enabled = true;
         primary.ChangeGun();
@@ -154,5 +165,10 @@ public class SwappingSystem : MonoBehaviour
     {
         if (gunModel.transform.childCount > 1)
             Destroy(gunModel.transform.GetChild(1).gameObject);
+    }
+
+    void SetLoadout()
+    {
+        primary.equipment = primaryEquipment[LoadoutManager.instance.primaryDropdown.value];
     }
 }
