@@ -49,6 +49,9 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  shootPos: {fileID: 0}
+  bullet: {fileID: 0}
+  currentHeldAmmo: 0
 --- !u!1 &1086162167583293258
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +101,9 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  shootPos: {fileID: 0}
+  bullet: {fileID: 0}
+  currentHeldAmmo: 0
 --- !u!1 &1285367405762129571
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +120,8 @@ GameObject:
   - component: {fileID: 9217356845865749448}
   - component: {fileID: 1312792134952347254}
   - component: {fileID: 6473604063781411379}
+  - component: {fileID: 7851042496684358057}
+  - component: {fileID: 5439391012261945451}
   m_Layer: 3
   m_Name: Player - No Gun Model
   m_TagString: Player
@@ -163,7 +171,8 @@ MonoBehaviour:
   hpBarLerpSpeed: 5
   source: {fileID: 6473604063781411379}
   animate: {fileID: 0}
-  Gun: {fileID: 4948833232967456633}
+  Gun: {fileID: 5439391012261945451}
+  swappingSystem: {fileID: 0}
   speed: 5
   sprintMod: 3
   stepInterval: 2
@@ -176,10 +185,15 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  scaleSpeed: 10
-  maxHeight: 0.5
+  crouchHeight: 0
+  heightAdjustSpeed: 0
+  headCheckDistance: 0
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
   PlayerTransform: {fileID: 5451766402942236603}
   RespawnPoint: {fileID: 0}
+  maxRespawns: 0
 --- !u!114 &4865474513736462136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +400,46 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7851042496684358057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285367405762129571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 11400000, guid: b8720ae44db8ad941a684a7c0f732910, type: 2}
+  source: {fileID: 6473604063781411379}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  shootPos: {fileID: 0}
+  bullet: {fileID: 0}
+  currentHeldAmmo: 0
+--- !u!114 &5439391012261945451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285367405762129571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b294dbee469041c49b4680d9942c8e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 11400000, guid: b8720ae44db8ad941a684a7c0f732910, type: 2}
+  source: {fileID: 6473604063781411379}
+  ignoreLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  shootPos: {fileID: 0}
+  bullet: {fileID: 0}
+  currentHeldAmmo: 0
 --- !u!1 &3614772046339290194
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +489,9 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  shootPos: {fileID: 0}
+  bullet: {fileID: 0}
+  currentHeldAmmo: 0
 --- !u!1 &6960491019794558529
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +541,9 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  shootPos: {fileID: 0}
+  bullet: {fileID: 0}
+  currentHeldAmmo: 0
 --- !u!1 &7569148135856479042
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,9 +748,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primary: {fileID: 4948833232967456633}
   secondary: {fileID: 8861933385178185620}
-  melee: {fileID: 9142290728353672964}
-  nonLethal: {fileID: 3050179351936876322}
-  lethal: {fileID: 5600445414874557502}
+  melee: {fileID: 0}
+  nonLethalSpawner: {fileID: 0}
+  lethalSpawner: {fileID: 0}
+  nonLethalFab: {fileID: 0}
+  lethalFab: {fileID: 0}
   playerConScript: {fileID: 7784430193642803728}
 --- !u!1 &8367388209851585800
 GameObject:
@@ -741,3 +803,6 @@ MonoBehaviour:
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
+  shootPos: {fileID: 0}
+  bullet: {fileID: 0}
+  currentHeldAmmo: 0

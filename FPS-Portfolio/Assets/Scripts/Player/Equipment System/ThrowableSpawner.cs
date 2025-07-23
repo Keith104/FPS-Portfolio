@@ -67,6 +67,6 @@ public class ThrowableSpawner : MonoBehaviour
 
     public void updateThrowableUI()
     {
-        UIManager.instance.SetGun(equipment.weaponImage, currentAmmo, currentHeldAmmo);
+        UIManager.instance.SetGun(equipment.weaponImage, "", currentAmmo, currentHeldAmmo);
     }
 }

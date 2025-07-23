@@ -29,7 +29,7 @@ public class SniperAi : EnemyAI, IDamage
     public override bool CanSeePlayer()
     {
         see = base.CanSeePlayer();
-        lineRenderer.SetPosition(0, transform.position);
+        lineRenderer.SetPosition(0, shootPos.transform.position);
         lineRenderer.SetPosition(1, player.transform.position);
 
         lineRenderer.material.color = Color.Lerp(Color.white, Color.red, shootTimer / attackCooldown);

@@ -17,6 +17,7 @@ public class SwappingSystem : MonoBehaviour
 
     [Header("Misc.")]
     [SerializeField] PlayerController playerConScript;
+    public GameObject gunModel;
 
     private bool nonLethalSpawned = false;
     private bool lethalSpawned = false;
@@ -26,7 +27,10 @@ public class SwappingSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerConScript.Gun = primary;
+        primary.enabled = true;
+        primary.ChangeGun();
+        primary.updateGunUI();
     }
 
     // Update is called once per frame
@@ -52,6 +56,7 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
+            primary.ChangeGun();
             primary.updateGunUI();
         }
         else if (Input.GetButtonDown("SecondarySwap"))
@@ -69,6 +74,7 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
+            secondary.ChangeGun();
             secondary.updateGunUI();
         }
         else if (Input.GetButtonDown("MeleeSwap"))
@@ -86,6 +92,7 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
+            melee.ChangeMelee();
             melee.updateMeleeUI();
         }
         else if (Input.GetButtonDown("NonLethalSwap")
@@ -93,6 +100,7 @@ public class SwappingSystem : MonoBehaviour
             )
         {
             Debug.Log("Swapped to nonLethal");
+            DestroyCurrentGun();
             playerConScript.Gun = null;
 
             primary.enabled = false;
@@ -119,6 +127,7 @@ public class SwappingSystem : MonoBehaviour
             )
         {
             Debug.Log("Swapped to lethal");
+            DestroyCurrentGun();
             playerConScript.Gun = null;
 
             primary.enabled = false;
@@ -133,12 +142,17 @@ public class SwappingSystem : MonoBehaviour
 
             if (lethalSpawner.currentAmmo > 0)
             {
-                lethalSpawner.SpawnThrowable(nonLethalFab);
+                lethalSpawner.SpawnThrowable(lethalFab);
                 lethalSpawned = true;
             }
 
             lethalSpawner.updateThrowableUI();
             isLethal = true;
         }
+    }
+    public void DestroyCurrentGun()
+    {
+        if (gunModel.transform.childCount > 1)
+            Destroy(gunModel.transform.GetChild(1).gameObject);
     }
 }

@@ -163,7 +163,7 @@ MonoBehaviour:
   model: {fileID: 5578269190097343600}
   agent: {fileID: -7038150734010124613}
   shootPos: {fileID: 6516843106945019933}
-  bullet: {fileID: 6595943304737969214, guid: caa5179f228ea174a9ed0111fc2ac5dd, type: 3}
+  bullet: {fileID: 6595943304737969214, guid: b59b6a1b8ccfd184397f453d451ab3d8, type: 3}
   searchDist: 50
   searchPauseTime: 3
   attackCooldown: 1
@@ -171,6 +171,9 @@ MonoBehaviour:
   faceTargetSpeed: 1767
   amountToScore: 50
   tutorial: 0
+  stationary: 0
+  animSpeedTrans: 0
+  animate: {fileID: 0}
 --- !u!195 &-7038150734010124613
 NavMeshAgent:
   m_ObjectHideFlags: 0

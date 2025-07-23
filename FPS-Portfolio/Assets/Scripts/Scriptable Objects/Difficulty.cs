@@ -14,5 +14,6 @@ public class Difficulty : ScriptableObject
 
     [Header("Player Settings")]
     public int maxRespawns;
+    public bool realisticMode;
 
 }

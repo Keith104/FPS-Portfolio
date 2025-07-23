@@ -32,6 +32,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool playerInTrigger;
     bool isAttacking;
+    private bool isStunned;
 
     Vector3 startingPos;
     Vector3 playerDir;
@@ -59,7 +60,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             SearchCheck();
         }
-        else
+        else if(isStunned == false)
         {
             SearchCheck();
         }
@@ -74,9 +75,17 @@ public class EnemyAI : MonoBehaviour, IDamage
         animate.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animSpeedTrans));
     }
     
-    public void TakeDamage(int amount, Damage.damagetype type)
+    public void TakeDamage(int amount, Damage.damagetype damagetype)
     {
-        health -= amount;
+        Debug.Log("I'm not crazy");
+        Debug.Log(damagetype);
+        if (damagetype != Damage.damagetype.stun)
+            health -= amount;
+        else if (damagetype == Damage.damagetype.stun)
+        {
+            isStunned = true;
+            StartCoroutine(stunTime(amount));
+        }
 
         if (!stationary)
         {
@@ -102,6 +111,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOg;
+    }
+    IEnumerator stunTime(float stunTime)
+    {
+        yield return new WaitForSeconds(stunTime);
+        isStunned = false;
     }
 
     void SearchCheck()
@@ -129,6 +143,9 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public virtual bool CanSeePlayer()
     {
+        if(isStunned == true)
+            return false;
+
         playerDir = player.transform.position - transform.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4597850836278260485}
   - component: {fileID: 6826996415301941338}
   - component: {fileID: -2037796373792010276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Stun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 27f1a0baf4e16114ba0693f3a04504ae, type: 2}
+  - {fileID: 2100000, guid: ad8bb39955fdee2459a54deae40a58fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

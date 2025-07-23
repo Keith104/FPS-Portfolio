@@ -56,7 +56,7 @@ MonoBehaviour:
   model: {fileID: 245035837074180341}
   agent: {fileID: 6909768465579493763}
   shootPos: {fileID: 8842585039701598311}
-  bullet: {fileID: 6595943304737969214, guid: f4eee830763f36d4a8872ed5390ee6b5, type: 3}
+  bullet: {fileID: 6595943304737969214, guid: b59b6a1b8ccfd184397f453d451ab3d8, type: 3}
   searchDist: 1
   searchPauseTime: 10
   attackCooldown: 5
@@ -65,6 +65,8 @@ MonoBehaviour:
   amountToScore: 100
   tutorial: 0
   stationary: 1
+  animSpeedTrans: 0
+  animate: {fileID: 0}
   lineRenderer: {fileID: 8687338856305971662}
 --- !u!195 &6909768465579493763
 NavMeshAgent:

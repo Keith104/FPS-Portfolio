@@ -3,11 +3,13 @@ using static Equipment;
 
 public class WeaponSelection : MonoBehaviour
 {
+    [SerializeField] SwappingSystem swappingSystem;
     [SerializeField] Equipment equipment;
     [SerializeField] AudioSource source;
     [Tooltip("These are the layers that you ignore when firing")]
     [SerializeField] LayerMask ignoreLayer;
 
+    [SerializeField] GameObject weapon;
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bullet;
 
@@ -136,7 +138,12 @@ public class WeaponSelection : MonoBehaviour
 
     public void updateGunUI()
     {
-        UIManager.instance.SetGun(equipment.weaponImage, currentAmmo, currentHeldAmmo);
+        if(equipment.singleFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Single", currentAmmo, currentHeldAmmo);
+        else if(equipment.burstFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Burst", currentAmmo, currentHeldAmmo);
+        else if (equipment.fullAutoFireMode)
+            UIManager.instance.SetGun(equipment.weaponImage, "Auto", currentAmmo, currentHeldAmmo);
     }
 
     void fire()
@@ -155,4 +162,17 @@ public class WeaponSelection : MonoBehaviour
             fireRateTimer = 0;
         }
     }
+    public void ChangeGun()
+    {
+        swappingSystem.DestroyCurrentGun();
+        shootPos.localPosition = equipment.shootPosLocation;
+        Instantiate
+            (
+            weapon, 
+            swappingSystem.gunModel.transform.position, 
+            swappingSystem.gunModel.transform.rotation, 
+            swappingSystem.gunModel.transform
+            );
+    }
+
 }
