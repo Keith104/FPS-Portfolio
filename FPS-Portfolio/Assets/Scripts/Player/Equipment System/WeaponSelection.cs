@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static Equipment;
 
 public class WeaponSelection : MonoBehaviour
@@ -148,10 +149,27 @@ public class WeaponSelection : MonoBehaviour
 
     void fire()
     {
-        AudioManager.instance.AudioGunShot(source);
-        Instantiate(bullet, shootPos.position, Camera.main.transform.rotation);
-        FireRateDelay();
-        updateGunUI();
+        Ray reticle = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+
+        if (Physics.Raycast(reticle, out hit, 100))
+        {
+            Vector3 dir = (hit.point - shootPos.position).normalized;
+            Quaternion rot = Quaternion.LookRotation(dir);
+
+            AudioManager.instance.AudioGunShot(source);
+            Instantiate(bullet, shootPos.position, rot);
+            FireRateDelay();
+            updateGunUI();
+        }
+        else
+        {
+           AudioManager.instance.AudioGunShot(source);
+           Instantiate(bullet, shootPos.position, Camera.main.transform.rotation);
+           FireRateDelay();
+           updateGunUI();
+        }
+
     }
 
     void FireRateDelay()

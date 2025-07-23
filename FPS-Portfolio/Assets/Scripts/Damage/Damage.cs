@@ -9,7 +9,7 @@ public class Damage : MonoBehaviour
 
     public int damageAmount;
     [SerializeField] float damageRate;
-    [SerializeField] int speed;
+    public int speed;
     public int destroyTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
