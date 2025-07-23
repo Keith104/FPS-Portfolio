@@ -39,10 +39,10 @@ public class Damage : MonoBehaviour
     {
         IDamage dmg = other.GetComponent<IDamage>();
 
-            if (dmg != null && type != damagetype.DOT)
-            {
-                dmg.TakeDamage(damageAmount, type);
-            }
+        if (dmg != null && type != damagetype.DOT)
+        {
+            dmg.TakeDamage(damageAmount, type);
+        }
 
         if (type == damagetype.moving || type == damagetype.explosion || type == damagetype.stun)
         {

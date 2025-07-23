@@ -66,6 +66,9 @@ MonoBehaviour:
   stationary: 0
   animSpeedTrans: 8
   animate: {fileID: 3668017332229305853}
+  drops:
+  - {fileID: 8614272058881122083, guid: 7f9fb8b12650af24ebb4ef26d19ea484, type: 3}
+  - {fileID: 1852314703275394051, guid: 572121470623dfe4889bffa803cee22c, type: 3}
 --- !u!195 &-7038150734010124613
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class BossAI : EnemyAI, IDamage
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [SerializeField] GameObject bomb;
+
     public override void Start()
     {
         base.Start();
     }
 
-    // Update is called once per frame
     public override void Update()
     {
         base.Update();
+    }
+
+    public override void Shoot()
+    {
+        base.Shoot();
+        Instantiate(bomb, shootPos.position, Quaternion.LookRotation(playerDir));
     }
 }
