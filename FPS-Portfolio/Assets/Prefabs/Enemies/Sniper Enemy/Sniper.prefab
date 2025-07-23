@@ -68,6 +68,7 @@ MonoBehaviour:
   stationary: 1
   animSpeedTrans: 8
   animate: {fileID: 6525047175447382394}
+  drops: []
   audio: {fileID: 2325326462835639339}
   audioHurt:
   - {fileID: 8300000, guid: 02322e35f832ffb47b426124c2b04fb0, type: 3}
@@ -290,7 +291,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
