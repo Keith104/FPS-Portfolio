@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
 {
     [Header("Player Stuff")]
     [SerializeField] CharacterController controller;
-    [SerializeField] int health;
+    [SerializeField] float health;
     [SerializeField] float hpBarLerpSpeed;
     [SerializeField] AudioSource source;
     [SerializeField] Animator animate;
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     float shootTimer;
     bool isCrouched;
     bool playerDead;
-    int hpOrig;
+    float hpOrig;
     float hpBarTarget;
 
     void Start()
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         controller.center = Vector3.MoveTowards(controller.center, ctrlTargetCenter, heightAdjustSpeed * Time.deltaTime);
     }
 
-    public void TakeDamage(int amount, Damage.damagetype damagetype)
+    public void TakeDamage(float amount, Damage.damagetype damagetype)
     {
         if (damagetype != Damage.damagetype.stun)
         {

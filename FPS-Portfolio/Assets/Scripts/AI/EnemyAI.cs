@@ -73,7 +73,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         animate.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animSpeedTrans));
     }
     
-    public void TakeDamage(int amount, Damage.damagetype damagetype)
+    public void TakeDamage(float amount, Damage.damagetype damagetype)
     {
         Debug.Log("I'm not crazy");
         Debug.Log(damagetype);
