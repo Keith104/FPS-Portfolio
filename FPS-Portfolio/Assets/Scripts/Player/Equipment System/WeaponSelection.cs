@@ -8,6 +8,8 @@ public class WeaponSelection : MonoBehaviour
     [Tooltip("These are the layers that you ignore when firing")]
     [SerializeField] LayerMask ignoreLayer;
 
+    [SerializeField] GameObject gunModel;
+    [SerializeField] GameObject weapon;
     [SerializeField] Transform shootPos;
     [SerializeField] GameObject bullet;
 
@@ -160,4 +162,17 @@ public class WeaponSelection : MonoBehaviour
             fireRateTimer = 0;
         }
     }
+    public void ChangeGun()
+    {
+        DestroyCurrentGun();
+        shootPos.localPosition = equipment.shootPosLocation;
+        Instantiate(weapon, gunModel.transform.position, gunModel.transform.rotation, gunModel.transform);
+    }
+
+    void DestroyCurrentGun()
+    {
+        if(gunModel.transform.childCount > 1)
+            Destroy(gunModel.transform.GetChild(1).gameObject);
+    }
+
 }

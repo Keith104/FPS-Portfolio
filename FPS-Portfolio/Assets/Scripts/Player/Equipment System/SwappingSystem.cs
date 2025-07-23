@@ -26,7 +26,10 @@ public class SwappingSystem : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerConScript.Gun = primary;
+        primary.enabled = true;
+        primary.ChangeGun();
+        primary.updateGunUI();
     }
 
     // Update is called once per frame
@@ -52,6 +55,7 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
+            primary.ChangeGun();
             primary.updateGunUI();
         }
         else if (Input.GetButtonDown("SecondarySwap"))
@@ -69,6 +73,7 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
+            secondary.ChangeGun();
             secondary.updateGunUI();
         }
         else if (Input.GetButtonDown("MeleeSwap"))
