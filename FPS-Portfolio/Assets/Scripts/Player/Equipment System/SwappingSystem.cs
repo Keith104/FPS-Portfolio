@@ -2,14 +2,6 @@ using UnityEngine;
 
 public class SwappingSystem : MonoBehaviour
 {
-
-    [Header("Equipment List")]
-    public Equipment[] primaryEquipment;
-    public Equipment[] secondaryEquipment;
-    public Equipment[] meleeEquipment;
-    public Equipment[] nonLethalEquipment;
-    public Equipment[] lethalEquipment;
-
     [Header("Weapons")]
     public WeaponSelection primary;
     public WeaponSelection secondary;
@@ -47,6 +39,7 @@ public class SwappingSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetLoadout();
         Swap();
     }
 
@@ -167,8 +160,12 @@ public class SwappingSystem : MonoBehaviour
             Destroy(gunModel.transform.GetChild(1).gameObject);
     }
 
-    void SetLoadout()
+    public void SetLoadout()
     {
-        primary.equipment = primaryEquipment[LoadoutManager.instance.primaryDropdown.value];
+        primary.equipment = LoadoutManager.instance.loadoutPrimary;
+        secondary.equipment = LoadoutManager.instance.loadoutPrimary;
+        melee.equipment = LoadoutManager.instance.loadoutPrimary;
+        nonLethalSpawner.equipment = LoadoutManager.instance.loadoutPrimary;
+        lethalSpawner.equipment = LoadoutManager.instance.loadoutPrimary;
     }
 }

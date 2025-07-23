@@ -3,7 +3,7 @@ using UnityEngine;
 public class MeleeLogic : MonoBehaviour
 {
     [SerializeField] SwappingSystem swappingSystem;
-    [SerializeField] Equipment equipment;
+    public Equipment equipment;
     [SerializeField] GameObject weapon;
     [SerializeField] LayerMask attackIgnoreLayer;
     [SerializeField] BoxCollider attackCollider;
