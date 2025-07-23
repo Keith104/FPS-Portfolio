@@ -80,7 +80,6 @@ public class SwappingSystem : MonoBehaviour
         else if (Input.GetButtonDown("MeleeSwap"))
         {
             Debug.Log("Swapped to melee");
-            DestroyCurrentGun();
             playerConScript.Gun = null;
             melee.enabled = true;
 
@@ -93,6 +92,7 @@ public class SwappingSystem : MonoBehaviour
             if (lethalSpawner.transform.childCount > 0)
                 lethalSpawner.SwapOut();
 
+            melee.ChangeMelee();
             melee.updateMeleeUI();
         }
         else if (Input.GetButtonDown("NonLethalSwap")
