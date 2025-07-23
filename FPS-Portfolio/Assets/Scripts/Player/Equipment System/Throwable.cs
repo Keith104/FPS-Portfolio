@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class Throwable : MonoBehaviour
 {
+    [SerializeField] float chargeInc;
+
     [SerializeField] GameObject throwFab;
     [SerializeField] GameObject explosion;
     [SerializeField] Vector3 throwPos;
@@ -17,6 +19,7 @@ public class Throwable : MonoBehaviour
 
     private bool thrown;
     private float detCountdown;
+    private float currentThrowForce;
     private Equipment equipment;
     
     public ThrowableSpawner throwableSpawner;
@@ -28,11 +31,13 @@ public class Throwable : MonoBehaviour
         equipment = GetComponentInParent<ThrowableSpawner>().equipment;
         detCountdown = equipment.detonationCountdown;
         throwableSpawner = transform.parent.GetComponent<ThrowableSpawner>();
+        currentThrowForce = equipment.forceMult;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ChargeForce();
         if (thrown == false)
         {
             transform.position = transform.parent.position;
@@ -52,15 +57,21 @@ public class Throwable : MonoBehaviour
         }
     }
 
-    void Throw()
+    void ChargeForce()
     {
         if (Input.GetMouseButton(0))
+            currentThrowForce += chargeInc;
+    }
+
+    void Throw()
+    {
+        if (Input.GetMouseButtonUp(0))
         {
             // adds instantaneous force in the forward direction of camera
             throwLR.enabled = false;
             throwRB.isKinematic = false;
             transform.SetParent(null); // sets object to root
-            throwRB.AddForce(transform.forward * equipment.forceMult, ForceMode.Impulse);
+            throwRB.AddForce(transform.forward * currentThrowForce, ForceMode.Impulse);
             thrown = true;
             throwableSpawner.reloadTime = true;
             throwableSpawner.currentAmmo--;
@@ -100,7 +111,7 @@ public class Throwable : MonoBehaviour
         List<Vector3> lineRendPonts = new List<Vector3>();
         int totSteps = (int)(10 / 0.01f); // duration div by the amount of time between each check
         Vector3 startPos = transform.position;
-        Vector3 forceVelocity = equipment.forceMult * transform.forward;
+        Vector3 forceVelocity = currentThrowForce * transform.forward;
         
         float time = 0;
         for (int i = 0; i < totSteps; ++i)
