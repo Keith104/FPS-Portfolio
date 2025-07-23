@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
-    [SerializeField] protected int health;
+    [SerializeField] protected float health;
     [SerializeField] protected Renderer model;
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected Transform shootPos;
@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [SerializeField] int animSpeedTrans;
     [SerializeField] Animator animate;
+    [SerializeField] protected GameObject[] drops;
 
     protected GameObject player;
 
@@ -48,9 +49,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     private bool isStunned;
 
     Vector3 startingPos;
-    Vector3 playerDir;
+    protected Vector3 playerDir;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public virtual void Start()
     {
         startingPos = transform.position;
@@ -60,7 +60,6 @@ public class EnemyAI : MonoBehaviour, IDamage
         agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     public virtual void Update()
     {
         setAnimations();
@@ -84,11 +83,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         float agentSpeedCur = agent.velocity.normalized.magnitude;
         float animSpeedCur = animate.GetFloat("Speed");
 
-
         animate.SetFloat("Speed", Mathf.Lerp(animSpeedCur, agentSpeedCur, Time.deltaTime * animSpeedTrans));
     }
     
-    public void TakeDamage(int amount, Damage.damagetype damagetype)
+    public void TakeDamage(float amount, Damage.damagetype damagetype)
     {
         Debug.Log("I'm not crazy");
         Debug.Log(damagetype);
@@ -115,6 +113,14 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 GameManager.instance.UpdateGameGoal(-1);
             }
+
+            int randNum = Random.Range(0, 10);
+
+            if (randNum == 10)
+            {
+                Drops();
+            }
+
             GameManager.instance.UpdateTotalScoreText(amountToScore);
             GameManager.instance.UpdateWaveScoreText(amountToScore);
             StartCoroutine(DestroyAfterDelay());
@@ -135,6 +141,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.3f);
         model.material.color = colorOg;
     }
+
     IEnumerator stunTime(float stunTime)
     {
         yield return new WaitForSeconds(stunTime);
@@ -148,6 +155,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             Search();
         }
     }
+
     void Search()
     {
         searchTime = 0;
@@ -241,7 +249,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         }
     }
 
-    void Shoot()
+    public virtual void Shoot()
     {
         shootTimer = 0;
 
@@ -250,5 +258,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         audio.PlayOneShot(audioShoot[Random.Range(0, audioShoot.Length)], audioShootVol);
 
         Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerDir));
+    }
+
+    void Drops()
+    {
+        Instantiate(drops[Random.Range(0, drops.Length)], transform.position, transform.rotation);
     }
 }

@@ -5,6 +5,10 @@ public class PickupSystem : MonoBehaviour, IPickup
 
     public bool hasGrenadeBullet;
 
+    public float dotTimer;
+    public float damageRate;
+    public float damageAmount;
+
     public void GetPickupItem(PickupItems item)
     {
         if (item.abilitiesType == PickupItems.abilities.none)
@@ -45,6 +49,18 @@ public class PickupSystem : MonoBehaviour, IPickup
                 case PickupItems.abilities.homingBullets:
                     currWeapon.SetBullet(item.bulletModel);
                     Debug.Log("Setting Bullet");
+                    break;
+                case PickupItems.abilities.fireDamage:
+                    currWeapon.SetBullet(item.bulletModel);
+                    damageAmount = 0.4f;
+                    damageRate = 1;
+                    dotTimer = 2;
+                    break;
+                case PickupItems.abilities.poisonDamage:
+                    currWeapon.SetBullet(item.bulletModel);
+                    damageAmount = 0.2f;
+                    damageRate = 0.4f;
+                    dotTimer = 3;
                     break;
             }
         }
