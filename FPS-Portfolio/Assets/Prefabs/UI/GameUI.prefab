@@ -1190,10 +1190,23 @@ MonoBehaviour:
   maxEnemiesAllowed: 0
   enemiesPerWaveIncrease: 2
   difficulty: {fileID: 11400000, guid: e688bc9470a90d14daf6b9a8bece95c9, type: 2}
-  regEnemySpawns: []
-  regEnemyPrefabs: []
-  nonMoveEnemySpawns: []
-  nonMoveEnemyPrefabs: []
+  regEnemySpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  regEnemyPrefabs:
+  - {fileID: 1714978057165969180, guid: 8065590a81234ba4cb4b1cb02c7cab67, type: 3}
+  - {fileID: 4215054295470024060, guid: a3af2eae6b5590d4f86a3fdc5c808fab, type: 3}
+  nonMoveEnemySpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nonMoveEnemyPrefabs:
+  - {fileID: 1461328802114364638, guid: a23268643d5726449b35a99e6750fbe3, type: 3}
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 64

@@ -3,16 +3,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using NUnit.Framework.Constraints;
 
-public class PlayerController : MonoBehaviour, IDamage, IPickup
+public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("Player Stuff")]
     [SerializeField] CharacterController controller;
-    [SerializeField] int health;
+    [SerializeField] float health;
     [SerializeField] float hpBarLerpSpeed;
     [SerializeField] AudioSource source;
     [SerializeField] Animator animate;
     public WeaponSelection Gun;
-    [SerializeField] SwappingSystem swappingSystem;
+    public SwappingSystem swappingSystem;
 
     [Header("Movement Settings")]
     [SerializeField] int speed;
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
     float shootTimer;
     bool isCrouched;
     bool playerDead;
-    int hpOrig;
+    float hpOrig;
     float hpBarTarget;
 
     void Start()
@@ -175,7 +175,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         controller.center = Vector3.MoveTowards(controller.center, ctrlTargetCenter, heightAdjustSpeed * Time.deltaTime);
     }
 
-    public void TakeDamage(int amount, Damage.damagetype damagetype)
+    public void TakeDamage(float amount, Damage.damagetype damagetype)
     {
         if (damagetype != Damage.damagetype.stun)
         {
@@ -208,31 +208,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPickup
         }
     }
 
-    public void GetPickupItem(PickupItems item)
-    {
-        TakeDamage(-item.healthInc, Damage.damagetype.stationary);
-        swappingSystem.primary.currentHeldAmmo += item.primaryAmmoInc;
-        swappingSystem.secondary.currentHeldAmmo += item.secondaryAmmoInc;
-        swappingSystem.nonLethalSpawner.currentHeldAmmo += item.nonLethalAmmoInc;
-        swappingSystem.lethalSpawner.currentHeldAmmo += item.lethalAmmoInc;
-
-        if(swappingSystem.primary.enabled == true)
-        {
-            swappingSystem.primary.updateGunUI();
-        }
-        else if (swappingSystem.secondary.enabled == true)
-        {
-            swappingSystem.secondary.updateGunUI();
-        }
-        else if (swappingSystem.nonLethalSpawner.transform.childCount > 0)
-        { 
-            swappingSystem.nonLethalSpawner.updateThrowableUI();
-        }
-        else if (swappingSystem.lethalSpawner.transform.childCount > 0)
-        { 
-            swappingSystem.lethalSpawner.updateThrowableUI();
-        }
-    }
 
     public void RespawnPlayer()
     {

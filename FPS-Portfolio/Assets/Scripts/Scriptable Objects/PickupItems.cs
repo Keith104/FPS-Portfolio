@@ -29,4 +29,5 @@ public class PickupItems : ScriptableObject
 
     [Header("Model")]
     public GameObject model;
+    public GameObject bulletModel;
 }

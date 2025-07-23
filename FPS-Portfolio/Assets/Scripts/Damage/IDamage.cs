@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IDamage
 {
-    abstract public void TakeDamage(int amount, Damage.damagetype damagetype);
+    abstract public void TakeDamage(float amount, Damage.damagetype damagetype);
 }

@@ -380,6 +380,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &783958695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5403371236253308638, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+  m_PrefabInstance: {fileID: 1515656045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &783958697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783958695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a8da435d0e9b624cb61271b5a986d94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipment: {fileID: 11400000, guid: b39ed9068cb8e0a4eb4136b79adafbda, type: 2}
+  reloadTime: 0
+  needsReload: 0
+  currentAmmo: 0
+  currentHeldAmmo: 0
 --- !u!1 &1034919059
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,6 +490,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+--- !u!1001 &1199231046
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1852314703275394051, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_Name
+      value: PoisonBulletPickup 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.92935
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.7122555
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609927206116002448, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
 --- !u!1 &1227383304
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,10 +661,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6744099545117921132, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: equipment
+      value: 
+      objectReference: {fileID: 11400000, guid: b39ed9068cb8e0a4eb4136b79adafbda, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5403371236253308638, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 783958697}
   m_SourcePrefab: {fileID: 100100000, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
 --- !u!1 &1544783515
 GameObject:
@@ -721,66 +807,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1516079373511054498, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2778862205340728872, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: gun
+    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: 'regEnemySpawns.Array.data[0]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 168049438}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: enemySpawns.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: enemyPrefabs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemySpawns.Array.data[0]'
+      propertyPath: 'regEnemySpawns.Array.data[1]'
       value: 
-      objectReference: {fileID: 168049437}
+      objectReference: {fileID: 1259236844}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemySpawns.Array.data[1]'
+      propertyPath: 'regEnemySpawns.Array.data[2]'
       value: 
-      objectReference: {fileID: 1259236843}
+      objectReference: {fileID: 1898610471}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemySpawns.Array.data[2]'
+      propertyPath: 'regEnemySpawns.Array.data[3]'
       value: 
-      objectReference: {fileID: 1898610470}
+      objectReference: {fileID: 1227383305}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemySpawns.Array.data[3]'
+      propertyPath: 'regEnemySpawns.Array.data[4]'
       value: 
-      objectReference: {fileID: 1227383304}
+      objectReference: {fileID: 1034919060}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemySpawns.Array.data[4]'
+      propertyPath: 'nonMoveEnemySpawns.Array.data[0]'
       value: 
-      objectReference: {fileID: 1034919059}
+      objectReference: {fileID: 168049438}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[0]'
+      propertyPath: 'nonMoveEnemySpawns.Array.data[1]'
       value: 
-      objectReference: {fileID: 1714978057165969180, guid: b8445f7b9cb4a874ab689d80070e2f0b, type: 3}
+      objectReference: {fileID: 1259236844}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[1]'
+      propertyPath: 'nonMoveEnemySpawns.Array.data[2]'
       value: 
-      objectReference: {fileID: 1461328802114364638, guid: af1564046fefe584795ac87160a57723, type: 3}
+      objectReference: {fileID: 1898610471}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[2]'
+      propertyPath: 'nonMoveEnemySpawns.Array.data[3]'
       value: 
-      objectReference: {fileID: 4215054295470024060, guid: a4d6e8518a82ea24fa6651a0508ccc70, type: 3}
+      objectReference: {fileID: 1227383305}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[3]'
+      propertyPath: 'nonMoveEnemySpawns.Array.data[4]'
       value: 
-      objectReference: {fileID: 4215054295470024060, guid: a4d6e8518a82ea24fa6651a0508ccc70, type: 3}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[4]'
-      value: 
-      objectReference: {fileID: 4215054295470024060, guid: a4d6e8518a82ea24fa6651a0508ccc70, type: 3}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'enemyPrefabs.Array.data[5]'
-      value: 
-      objectReference: {fileID: 4215054295470024060, guid: a4d6e8518a82ea24fa6651a0508ccc70, type: 3}
+      objectReference: {fileID: 1034919060}
     - target: {fileID: 6940104469809314998, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: m_Name
       value: GameUI
@@ -886,3 +952,4 @@ SceneRoots:
   - {fileID: 1865398911}
   - {fileID: 1071663901}
   - {fileID: 1515656045}
+  - {fileID: 1199231046}

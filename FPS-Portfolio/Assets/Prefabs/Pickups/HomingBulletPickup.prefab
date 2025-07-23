@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3254828433419571848}
   - component: {fileID: 5544609002963565124}
   m_Layer: 0
-  m_Name: PrimaryAmmoPickup
+  m_Name: HomingBulletPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1852314703275394051}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.49, y: 0.7, z: 4.87}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e289666f95f45e43825735a7ad509de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 4dfe8f31ee143ab4aa58083626ce3183, type: 2}
+  item: {fileID: 11400000, guid: 8b5e2297eb49f4e499d30b95fccf32ca, type: 2}
 --- !u!33 &3700730612972650006
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ea216210cfe27044d87a9583a77d131e, type: 2}
+  - {fileID: 2100000, guid: 99f6aed4c41805542979c6073b4153bf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
