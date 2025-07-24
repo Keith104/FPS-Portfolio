@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 3834674}
   m_Layer: 0
   m_Name: RegEnemySpawn (6)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 26665720}
   m_Layer: 0
   m_Name: RegEnemySpawn (9)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 127774671}
   m_Layer: 0
   m_Name: RegEnemySpawn (4)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,6 +212,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1871812313}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &129553279
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1368785410284887993, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_Name
+      value: DifficultyManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 915.4646
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 575.31573
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.01601347
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5507812459683441449, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 39571a1663d84844783307e69ac8f2d3, type: 3}
 --- !u!1001 &131398170
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -263,18 +320,38 @@ PrefabInstance:
     - target: {fileID: 1452296688716623005, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
       propertyPath: equipment
       value: 
-      objectReference: {fileID: 11400000, guid: 4f0a830f1c1dc9540985589ab3580aba, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 1899369593589513832, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
       propertyPath: equipment
       value: 
-      objectReference: {fileID: 11400000, guid: f8443e3507e12d54fbde27226eeb9a5c, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4649622160630893502, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
       propertyPath: equipment
       value: 
-      objectReference: {fileID: 11400000, guid: 4553c16a9626a3649a53756d763e2aea, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5712681884881234073, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479454388846422125, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: RespawnPoint
+      value: 
+      objectReference: {fileID: 1247260400}
+    - target: {fileID: 6479454388846422125, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: crouchHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479454388846422125, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: headCheckDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479454388846422125, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: heightAdjustSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479454388846422125, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: obstacleMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -389,7 +466,7 @@ GameObject:
   - component: {fileID: 333017245}
   m_Layer: 0
   m_Name: SniperEnemySpawn
-  m_TagString: Untagged
+  m_TagString: NonMoveEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -559,7 +636,7 @@ GameObject:
   - component: {fileID: 541315196}
   m_Layer: 0
   m_Name: RegEnemySpawn (14)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -652,7 +729,7 @@ GameObject:
   - component: {fileID: 685389639}
   m_Layer: 0
   m_Name: RegEnemySpawn (12)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -714,7 +791,7 @@ GameObject:
   - component: {fileID: 766313375}
   m_Layer: 0
   m_Name: RegEnemySpawn (7)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -776,7 +853,7 @@ GameObject:
   - component: {fileID: 830203380}
   m_Layer: 0
   m_Name: RegEnemySpawn (3)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -869,7 +946,7 @@ GameObject:
   - component: {fileID: 1043440392}
   m_Layer: 0
   m_Name: SniperEnemySpawn (3)
-  m_TagString: Untagged
+  m_TagString: NonMoveEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1002,7 +1079,7 @@ GameObject:
   - component: {fileID: 1307718266}
   m_Layer: 0
   m_Name: SniperEnemySpawn (1)
-  m_TagString: Untagged
+  m_TagString: NonMoveEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1033,7 +1110,7 @@ GameObject:
   - component: {fileID: 1310800186}
   m_Layer: 0
   m_Name: RegEnemySpawn (8)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1064,7 +1141,7 @@ GameObject:
   - component: {fileID: 1481542448}
   m_Layer: 0
   m_Name: RegEnemySpawn (1)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1155,14 +1232,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: regEnemySpawns.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: regEnemyPrefabs.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: 'regEnemySpawns.Array.data[0]'
       value: 
       objectReference: {fileID: 2114242685}
@@ -1203,18 +1272,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 766313375}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: nonMoveEnemySpawns.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'regEnemyPrefabs.Array.data[0]'
-      value: 
-      objectReference: {fileID: 3300704738007250449, guid: 173c869eadace3840900003ec4002ef5, type: 3}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'regEnemyPrefabs.Array.data[1]'
-      value: 
-      objectReference: {fileID: 4215054295470024060, guid: a3af2eae6b5590d4f86a3fdc5c808fab, type: 3}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: 'regEnemySpawns.Array.data[10]'
       value: 
       objectReference: {fileID: 3834674}
@@ -1235,10 +1292,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 830203380}
     - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: nonMoveEnemyPrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: 'nonMoveEnemySpawns.Array.data[0]'
       value: 
       objectReference: {fileID: 333017245}
@@ -1254,10 +1307,6 @@ PrefabInstance:
       propertyPath: 'nonMoveEnemySpawns.Array.data[3]'
       value: 
       objectReference: {fileID: 1043440392}
-    - target: {fileID: 6091911614194241942, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
-      propertyPath: 'nonMoveEnemyPrefabs.Array.data[0]'
-      value: 
-      objectReference: {fileID: 1461328802114364638, guid: a23268643d5726449b35a99e6750fbe3, type: 3}
     - target: {fileID: 6940104469809314998, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: m_Name
       value: GameUI
@@ -1358,7 +1407,7 @@ GameObject:
   - component: {fileID: 1783006838}
   m_Layer: 0
   m_Name: RegEnemySpawn (10)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1420,7 +1469,7 @@ GameObject:
   - component: {fileID: 1853925232}
   m_Layer: 0
   m_Name: RegEnemySpawn (5)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1476,10 +1525,6 @@ Transform:
   - {fileID: 685389639}
   - {fileID: 1961337434}
   - {fileID: 541315196}
-  - {fileID: 333017245}
-  - {fileID: 1307718266}
-  - {fileID: 2076567213}
-  - {fileID: 1043440392}
   - {fileID: 1783006838}
   - {fileID: 26665720}
   - {fileID: 766313375}
@@ -1488,6 +1533,10 @@ Transform:
   - {fileID: 1481542448}
   - {fileID: 2028648963}
   - {fileID: 830203380}
+  - {fileID: 333017245}
+  - {fileID: 1307718266}
+  - {fileID: 2076567213}
+  - {fileID: 1043440392}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1893728081
@@ -1501,7 +1550,7 @@ GameObject:
   - component: {fileID: 1893728082}
   m_Layer: 0
   m_Name: RegEnemySpawn (11)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1593,7 +1642,7 @@ GameObject:
   - component: {fileID: 1961337434}
   m_Layer: 0
   m_Name: RegEnemySpawn (13)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1689,7 +1738,7 @@ GameObject:
   - component: {fileID: 2028648963}
   m_Layer: 0
   m_Name: RegEnemySpawn (2)
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1720,7 +1769,7 @@ GameObject:
   - component: {fileID: 2076567213}
   m_Layer: 0
   m_Name: SniperEnemySpawn (2)
-  m_TagString: Untagged
+  m_TagString: NonMoveEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1782,7 +1831,7 @@ GameObject:
   - component: {fileID: 2114242685}
   m_Layer: 0
   m_Name: RegEnemySpawn
-  m_TagString: Untagged
+  m_TagString: RegEnemySpawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38387,3 +38436,4 @@ SceneRoots:
   - {fileID: 361000854}
   - {fileID: 131398170}
   - {fileID: 1871812313}
+  - {fileID: 129553279}
