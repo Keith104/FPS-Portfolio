@@ -124,6 +124,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             GameManager.instance.UpdateTotalScoreText(amountToScore);
             GameManager.instance.UpdateWaveScoreText(amountToScore);
+            
             StartCoroutine(DestroyAfterDelay());
         }
     }
@@ -135,6 +136,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(2.5f);
         if (!tutorial)
         {
+            WaveManager.instance.EnemyDestroyed();
             GameManager.instance.UpdateGameGoal(-1);
         }
         Destroy(gameObject);

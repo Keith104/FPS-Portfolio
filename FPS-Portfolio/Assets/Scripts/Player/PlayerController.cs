@@ -158,17 +158,18 @@ public class PlayerController : MonoBehaviour, IDamage
             isCrouched = true;
         else if (isCrouched)
         {
+            Debug.Log("CROUCH BITCH");
             Vector3 worldCenter = transform.position + col.center;
             Vector3 rayOrigin = worldCenter + Vector3.up * (col.height * 0.5f);
             if (!Physics.Raycast(rayOrigin, Vector3.up, headCheckDistance, obstacleMask))
                 isCrouched = false;
         }
-
+        Debug.Log("WHY NOT CROUCH");
         float targetHeight = isCrouched ? crouchHeight : standingHeight;
         col.height = Mathf.MoveTowards(col.height, targetHeight, heightAdjustSpeed * Time.deltaTime);
         Vector3 targetCenter = isCrouched ? crouchCenter : standingCenter;
         col.center = Vector3.MoveTowards(col.center, targetCenter, heightAdjustSpeed * Time.deltaTime);
-
+        Debug.Log("KILL ME");
         float ctrlTargetHeight = isCrouched ? crouchHeight : ctrlStandingHeight;
         controller.height = Mathf.MoveTowards(controller.height, ctrlTargetHeight, heightAdjustSpeed * Time.deltaTime);
         Vector3 ctrlTargetCenter = isCrouched ? ctrlCrouchCenter : ctrlStandingCenter;

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9ba3baddf0e1e40b8c3e937afb1294, type: 3}
   m_Name: LoadoutData
   m_EditorClassIdentifier: 
-  loadoutPrimary: {fileID: 0}
-  loadoutSecondary: {fileID: 0}
-  loadoutMelee: {fileID: 0}
-  loadoutNonLethal: {fileID: 0}
-  loadoutLethal: {fileID: 0}
+  loadoutPrimary: {fileID: 11400000, guid: 4f0a830f1c1dc9540985589ab3580aba, type: 2}
+  loadoutSecondary: {fileID: 11400000, guid: f8443e3507e12d54fbde27226eeb9a5c, type: 2}
+  loadoutMelee: {fileID: 11400000, guid: 4553c16a9626a3649a53756d763e2aea, type: 2}
+  loadoutNonLethal: {fileID: 11400000, guid: 1b11c4eddf210e448813604c136af873, type: 2}
+  loadoutLethal: {fileID: 11400000, guid: b39ed9068cb8e0a4eb4136b79adafbda, type: 2}
