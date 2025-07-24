@@ -268,9 +268,12 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             audio.PlayOneShot(audioShoot[Random.Range(0, audioShoot.Length)], audioShootVol);
 
-            if(isSmoked == false)
-                Instantiate(bullet, shootPos.position, transform.localRotation);
-            else if(isSmoked == true)
+            if (isSmoked == false)
+            {
+                GameObject instance = Instantiate(bullet, shootPos.position, transform.rotation);
+                instance.transform.LookAt(GameManager.instance.player.transform);
+            }
+            else if (isSmoked == true)
                 Instantiate(bullet, shootPos.position, Random.rotation);
         }
     }
