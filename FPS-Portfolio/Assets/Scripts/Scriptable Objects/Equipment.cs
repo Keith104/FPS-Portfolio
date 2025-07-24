@@ -35,6 +35,7 @@ public class Equipment : ScriptableObject
     public Sprite weaponImage;
 
     [Header("Throwable Data")]
+    public GameObject throwablePrefab;
     public bool isSpining;
     public int spinSpeed;
     public bool isSticky;

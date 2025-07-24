@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void TakeDamage(float amount, Damage.damagetype damagetype)
     {
-        if (damagetype != Damage.damagetype.stun)
+        if (damagetype != Damage.damagetype.stun && damagetype != Damage.damagetype.smoke)
         {
             health = Mathf.Max(health - amount, 0);
             hpBarTarget = Mathf.Clamp01((float)health / hpOrig);

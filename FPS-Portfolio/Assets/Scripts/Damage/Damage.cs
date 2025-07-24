@@ -24,7 +24,13 @@ public class Damage : MonoBehaviour
 
         pickupSystem = GameManager.instance.Player.GetComponent<PickupSystem>();
 
-        if (type == damagetype.moving || type == damagetype.explosion || type == damagetype.stun || type == damagetype.homing || type == damagetype.DOT)
+        if (type == damagetype.moving || 
+            type == damagetype.explosion || 
+            type == damagetype.stun || 
+            type == damagetype.smoke || 
+            type == damagetype.homing || 
+            type == damagetype.DOT
+            )
         {
             Destroy(gameObject, destroyTime);
             if (type == damagetype.moving || type == damagetype.DOT)
@@ -97,7 +103,10 @@ public class Damage : MonoBehaviour
             dmg.TakeDamage(damageAmount, type);
         }
 
-        if (type == damagetype.moving || type == damagetype.explosion || type == damagetype.stun || type == damagetype.homing)
+        if (type == damagetype.moving || 
+            type == damagetype.explosion || 
+            type == damagetype.stun || 
+            type == damagetype.homing)
         {
             Destroy(gameObject);
         }

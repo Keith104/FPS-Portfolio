@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
   m_Name: ThrowableBulletFrag
   m_EditorClassIdentifier: 
-  weaponName: ThrowableTest
+  weaponName: Bullet Frag
   currentWeapon: 2
   shootPosLocation: {x: 0, y: 0, z: 0}
   singleFireMode: 0

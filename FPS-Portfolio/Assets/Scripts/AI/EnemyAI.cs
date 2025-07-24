@@ -47,6 +47,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool playerInTrigger;
     bool isAttacking;
     private bool isStunned;
+    private bool isSmoked;
 
     Vector3 startingPos;
     protected Vector3 playerDir;
@@ -88,13 +89,18 @@ public class EnemyAI : MonoBehaviour, IDamage
     
     public void TakeDamage(float amount, Damage.damagetype damagetype)
     {
-        if (damagetype != Damage.damagetype.stun)
+        if (damagetype != Damage.damagetype.stun && damagetype != Damage.damagetype.smoke)
             health -= amount;
         else if (damagetype == Damage.damagetype.stun)
         {
             isStunned = true;
             gameObject.GetComponent<NavMeshAgent>().enabled = false;
-            StartCoroutine(stunTime(amount));
+            StartCoroutine(StunTime(amount));
+        }
+        else if (damagetype == Damage.damagetype.smoke)
+        {
+            isSmoked = true;
+            StartCoroutine(SmokeTime(amount));
         }
 
         if (!stationary)
@@ -141,11 +147,17 @@ public class EnemyAI : MonoBehaviour, IDamage
         model.material.color = colorOg;
     }
 
-    IEnumerator stunTime(float stunTime)
+    IEnumerator StunTime(float stunTime)
     {
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
         gameObject.GetComponent<NavMeshAgent>().enabled = true;
+    }
+
+    IEnumerator SmokeTime(float smokeTime)
+    {
+        yield return new WaitForSeconds(smokeTime);
+        isSmoked = false;
     }
 
     void SearchCheck()
@@ -256,7 +268,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
             audio.PlayOneShot(audioShoot[Random.Range(0, audioShoot.Length)], audioShootVol);
 
-            Instantiate(bullet, shootPos.position, transform.localRotation);
+            if(isSmoked == false)
+                Instantiate(bullet, shootPos.position, transform.localRotation);
+            else if(isSmoked == true)
+                Instantiate(bullet, shootPos.position, Random.rotation);
         }
     }
 

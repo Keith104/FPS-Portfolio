@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
-  m_Name: ThrowableFrag
+  m_Name: ThrowableSmoke
   m_EditorClassIdentifier: 
-  weaponName: Frag
+  weaponName: Smoke
   currentWeapon: 2
   shootPosLocation: {x: 0, y: 0, z: 0}
   singleFireMode: 0
@@ -28,9 +28,9 @@ MonoBehaviour:
   maxAmmo: 3
   currentMag: 1
   shootSound: {fileID: 0}
-  weaponPrefab: {fileID: 1698056052845220, guid: 5a2bf64643e1fb0439ea39c0fc9b00ff, type: 3}
-  weaponImage: {fileID: 21300000, guid: 45bb5e70723d6424fb15e5f5128e317a, type: 3}
-  throwablePrefab: {fileID: 7578920183299569025, guid: 28eb7a280c415a546b006135bec85d3d, type: 3}
+  weaponPrefab: {fileID: 1062895056798360, guid: 8b4cba336c093ff41ae9321f9f8433d6, type: 3}
+  weaponImage: {fileID: 0}
+  throwablePrefab: {fileID: 7578920183299569025, guid: 0d5ea5a676ff53542b3203350327c138, type: 3}
   isSpining: 1
   spinSpeed: 500
   isSticky: 0

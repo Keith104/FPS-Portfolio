@@ -171,10 +171,12 @@ public class SwappingSystem : MonoBehaviour
         melee.equipment = LoadoutManager.instance.LoadoutData.loadoutMelee;
 
         nonLethalSpawner.equipment = LoadoutManager.instance.LoadoutData.loadoutNonLethal;
+        nonLethalFab = LoadoutManager.instance.LoadoutData.loadoutNonLethal.throwablePrefab;
         nonLethalSpawner.currentAmmo = LoadoutManager.instance.LoadoutData.loadoutNonLethal.currentMag;
         nonLethalSpawner.currentHeldAmmo = LoadoutManager.instance.LoadoutData.loadoutNonLethal.maxAmmo;
 
         lethalSpawner.equipment = LoadoutManager.instance.LoadoutData.loadoutLethal;
+        lethalFab = LoadoutManager.instance.LoadoutData.loadoutLethal.throwablePrefab;
         lethalSpawner.currentAmmo = LoadoutManager.instance.LoadoutData.loadoutLethal.currentMag;
         lethalSpawner.currentHeldAmmo = LoadoutManager.instance.LoadoutData.loadoutLethal.maxAmmo;
     }

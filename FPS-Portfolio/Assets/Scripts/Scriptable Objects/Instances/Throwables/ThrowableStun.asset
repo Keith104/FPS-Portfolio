@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d48bb4c910378b4c83b1094de841833, type: 3}
   m_Name: ThrowableStun
   m_EditorClassIdentifier: 
-  weaponName: ThrowableTest
+  weaponName: Stun
   currentWeapon: 2
   shootPosLocation: {x: 0, y: 0, z: 0}
   singleFireMode: 0
@@ -30,6 +30,7 @@ MonoBehaviour:
   shootSound: {fileID: 0}
   weaponPrefab: {fileID: 1516097666562846, guid: c0f110e4459b675489b7db1e686d5bc3, type: 3}
   weaponImage: {fileID: 21300000, guid: 8fb2ab7269103b040bfe518e3e9701ab, type: 3}
+  throwablePrefab: {fileID: 7578920183299569025, guid: 1ca79db519a7f8c469f9bb423a048d5b, type: 3}
   isSpining: 1
   spinSpeed: 500
   isSticky: 0
