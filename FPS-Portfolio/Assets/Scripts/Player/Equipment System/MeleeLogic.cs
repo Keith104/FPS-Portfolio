@@ -7,8 +7,10 @@ public class MeleeLogic : MonoBehaviour
     public Equipment equipment;
     [SerializeField] LayerMask attackIgnoreLayer;
     [SerializeField] BoxCollider attackCollider;
+    private GameObject meleeObj;
     private float attackRechargeTimer;
     private float attackLengthTimer;
+    private Color colorOg;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +27,7 @@ public class MeleeLogic : MonoBehaviour
     {
         if (Input.GetMouseButton(0) && attackRechargeTimer == 0)
         {
+            meleeObj.GetComponent<Renderer>().material.color = Color.red;
             attackCollider.enabled = true;
             AttackRecharge();
         }
@@ -43,13 +46,16 @@ public class MeleeLogic : MonoBehaviour
         {
             attackLengthTimer = 0;
             attackCollider.enabled = false;
+            meleeObj.GetComponent<Renderer>().material.color = Color.gray;
         }
 
-        if (attackRechargeTimer >= equipment.fireRate)
+        if (attackRechargeTimer >= equipment.attackRecharge)
         {
             attackRechargeTimer = 0;
+            meleeObj.GetComponent<Renderer>().material.color = colorOg;
         }
     }
+
     public void updateMeleeUI()
     {
         damage.damageAmount = equipment.damageAmount;
@@ -58,12 +64,16 @@ public class MeleeLogic : MonoBehaviour
     public void ChangeMelee()
     {
         swappingSystem.DestroyCurrentGun();
-        Instantiate
+        attackCollider.center = equipment.attackCenter;
+        attackCollider.size = equipment.attackSize;
+        meleeObj = Instantiate
             (
             equipment.weaponPrefab,
             swappingSystem.gunModel.transform.position,
             swappingSystem.gunModel.transform.rotation,
             swappingSystem.gunModel.transform
             );
+
+        colorOg = meleeObj.GetComponent<Renderer>().material.color;
     }
 }

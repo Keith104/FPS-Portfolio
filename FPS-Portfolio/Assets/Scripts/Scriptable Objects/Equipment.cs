@@ -45,6 +45,8 @@ public class Equipment : ScriptableObject
 
 
     [Header("Melee Data")]
+    public Vector3 attackCenter;
+    public Vector3 attackSize;
     public float attackRecharge;
     [Tooltip("DO NOT make this number bigger than attackRecharge")]
     public float attackLength;

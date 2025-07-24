@@ -356,6 +356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3300704738007250449, guid: 173c869eadace3840900003ec4002ef5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -618,6 +622,22 @@ PrefabInstance:
     - target: {fileID: 5712681884881234073, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317999352187811320, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: m_Size.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317999352187811320, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: m_Size.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317999352187811320, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: m_Size.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6317999352187811320, guid: 78d2512cf56e7354a8c2a06c49e70e22, type: 3}
+      propertyPath: m_Center.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
