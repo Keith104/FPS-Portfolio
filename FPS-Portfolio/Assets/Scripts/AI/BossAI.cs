@@ -17,6 +17,6 @@ public class BossAI : EnemyAI, IDamage
     public override void Shoot()
     {
         base.Shoot();
-        Instantiate(bomb, shootPos.position, Quaternion.LookRotation(playerDir));
+        Instantiate(bomb, shootPos.position, transform.localRotation);
     }
 }
