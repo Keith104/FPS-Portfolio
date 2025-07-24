@@ -30,9 +30,11 @@ MonoBehaviour:
   shootSound: {fileID: 0}
   weaponPrefab: {fileID: 1698056052845220, guid: 5a2bf64643e1fb0439ea39c0fc9b00ff, type: 3}
   weaponImage: {fileID: 21300000, guid: 45bb5e70723d6424fb15e5f5128e317a, type: 3}
-  isSpining: 0
-  spinSpeed: 0
+  isSpining: 1
+  spinSpeed: 500
   isSticky: 0
   isImpact: 0
   forceMult: 3
   detonationCountdown: 3
+  attackRecharge: 0
+  attackLength: 0

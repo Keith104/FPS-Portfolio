@@ -70,6 +70,7 @@ public class Throwable : MonoBehaviour
             // adds instantaneous force in the forward direction of camera
             throwLR.enabled = false;
             throwRB.isKinematic = false;
+            throwRB.useGravity = true;
             transform.SetParent(null); // sets object to root
             throwRB.AddForce(transform.forward * currentThrowForce, ForceMode.Impulse);
             thrown = true;
@@ -81,7 +82,7 @@ public class Throwable : MonoBehaviour
 
     void Spin()
     {
-        transform.Rotate(0, equipment.spinSpeed * Time.deltaTime, 0);
+        transform.Rotate(equipment.spinSpeed * Time.deltaTime, 0, 0);
     }
 
     void Explode()
