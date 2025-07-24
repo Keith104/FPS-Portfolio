@@ -67,8 +67,12 @@ MonoBehaviour:
   animSpeedTrans: 8
   animate: {fileID: 3668017332229305853}
   drops:
+  - {fileID: 1852314703275394051, guid: 35d549fa55d3b4f43938f54ab787284e, type: 3}
+  - {fileID: 1852314703275394051, guid: 7b63a9f13a233e8458976a455c2d21b8, type: 3}
   - {fileID: 8614272058881122083, guid: 7f9fb8b12650af24ebb4ef26d19ea484, type: 3}
   - {fileID: 1852314703275394051, guid: 572121470623dfe4889bffa803cee22c, type: 3}
+  - {fileID: 1852314703275394051, guid: 99f34ccb2bfbdac4d9ad11c97267fcd7, type: 3}
+  - {fileID: 1852314703275394051, guid: 961bacc61be93b14cab0f1bd6999e949, type: 3}
 --- !u!195 &-7038150734010124613
 NavMeshAgent:
   m_ObjectHideFlags: 0

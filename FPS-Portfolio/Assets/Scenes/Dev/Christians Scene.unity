@@ -168,7 +168,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1096,6 +1096,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7000672466628610473, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8186451529743000458, guid: cd19b02fb84034d4383722cc20da82b0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1216,10 +1220,10 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -1323,6 +1327,8 @@ MonoBehaviour:
   stationary: 0
   animSpeedTrans: 0
   animate: {fileID: 263344047}
+  drops: []
+  bomb: {fileID: 7578920183299569025, guid: 28eb7a280c415a546b006135bec85d3d, type: 3}
 --- !u!195 &1279822716
 NavMeshAgent:
   m_ObjectHideFlags: 0
