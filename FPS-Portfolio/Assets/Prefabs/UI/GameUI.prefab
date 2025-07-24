@@ -6080,11 +6080,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   regEnemyPrefabs:
-  - {fileID: 1714978057165969180, guid: 8065590a81234ba4cb4b1cb02c7cab67, type: 3}
+  - {fileID: 3300704738007250449, guid: 173c869eadace3840900003ec4002ef5, type: 3}
   - {fileID: 4215054295470024060, guid: a3af2eae6b5590d4f86a3fdc5c808fab, type: 3}
   nonMoveEnemySpawns:
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
