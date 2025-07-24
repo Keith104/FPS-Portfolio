@@ -20,8 +20,10 @@ public class Equipment : ScriptableObject
     public int damageAmount;
 
     public int burstAmount;
-    public float spreadRange; // put 0 for no spread, I suggest not going above 1
-    public int pellets; // amount of bullets per shot, only used when spreadRange is in effect
+    [Tooltip("put 0 for no spread, I suggest not going above 1")]
+    public float spreadRange;
+    [Tooltip("amount of bullets per shot, only used when spreadRange is in effect")]
+    public int pellets;
 
     public int reloadSpeed;
     public float fireRate;
@@ -39,5 +41,11 @@ public class Equipment : ScriptableObject
     public bool isImpact;
     public int forceMult;
     public float detonationCountdown;
+
+
+    [Header("Melee Data")]
+    public float attackRecharge;
+    [Tooltip("DO NOT make this number bigger than attackRecharge")]
+    public float attackLength;
 
 }

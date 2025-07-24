@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3228651162478480891}
   - component: {fileID: 6376690068820246176}
   - component: {fileID: 4977255634361438124}
-  - component: {fileID: 6255751744024768213}
   m_Layer: 9
   m_Name: Gun Model
   m_TagString: Untagged
@@ -88,27 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6255751744024768213
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 671953342972522164}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3012270775875327958
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8da435d0e9b624cb61271b5a986d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: 1b11c4eddf210e448813604c136af873, type: 2}
+  equipment: {fileID: 0}
   reloadTime: 0
   needsReload: 0
   currentAmmo: 0
@@ -490,8 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swappingSystem: {fileID: 3417368602840669168}
-  equipment: {fileID: 11400000, guid: 4553c16a9626a3649a53756d763e2aea, type: 2}
-  weapon: {fileID: 2936142714183354369, guid: 2b88392d5b8c65f42a8a88dd078114ce, type: 3}
+  equipment: {fileID: 0}
   attackIgnoreLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -666,6 +643,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasGrenadeBullet: 0
+  dotTimer: 0
+  damageRate: 0
+  damageAmount: 0
 --- !u!143 &8001360252822506829
 CharacterController:
   m_ObjectHideFlags: 0
@@ -901,14 +881,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swappingSystem: {fileID: 3417368602840669168}
-  equipment: {fileID: 11400000, guid: f8443e3507e12d54fbde27226eeb9a5c, type: 2}
+  equipment: {fileID: 0}
   source: {fileID: 8601504742888450305}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  weapon: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
   shootPos: {fileID: 529341645847824788}
   bullet: {fileID: 6595943304737969214, guid: 3dadeec6bbe529243b610033dcbdbf89, type: 3}
+  currentAmmo: 0
   currentHeldAmmo: 0
 --- !u!1 &7138164589278799401
 GameObject:
@@ -954,7 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a8da435d0e9b624cb61271b5a986d94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipment: {fileID: 11400000, guid: b39ed9068cb8e0a4eb4136b79adafbda, type: 2}
+  equipment: {fileID: 0}
   reloadTime: 0
   needsReload: 0
   currentAmmo: 0
@@ -1060,12 +1040,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swappingSystem: {fileID: 3417368602840669168}
-  equipment: {fileID: 11400000, guid: 2614b5d2611d06d42a917ee2740e7d6e, type: 2}
+  equipment: {fileID: 0}
   source: {fileID: 8601504742888450305}
   ignoreLayer:
     serializedVersion: 2
     m_Bits: 8
-  weapon: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
   shootPos: {fileID: 529341645847824788}
   bullet: {fileID: 6595943304737969214, guid: 3dadeec6bbe529243b610033dcbdbf89, type: 3}
+  currentAmmo: 0
   currentHeldAmmo: 0

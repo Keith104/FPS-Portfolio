@@ -3,14 +3,16 @@ using UnityEngine;
 public class MeleeLogic : MonoBehaviour
 {
     [SerializeField] SwappingSystem swappingSystem;
+    [SerializeField] Damage damage;
     public Equipment equipment;
     [SerializeField] LayerMask attackIgnoreLayer;
     [SerializeField] BoxCollider attackCollider;
-    private float AttackRechargeTimer;
+    private float attackRechargeTimer;
+    private float attackLengthTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -21,42 +23,36 @@ public class MeleeLogic : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetMouseButton(0) && AttackRechargeTimer == 0)
+        if (Input.GetMouseButton(0) && attackRechargeTimer == 0)
         {
-            HitCheck();
+            attackCollider.enabled = true;
             AttackRecharge();
         }
-        else if(AttackRechargeTimer > 0)
+        else if(attackRechargeTimer > 0)
         {
             AttackRecharge();
-        }
-    }
-
-    void HitCheck()
-    {
-        Collider[] hitColliders = Physics.OverlapBox(attackCollider.center, attackCollider.size / 2, Quaternion.identity, attackIgnoreLayer);
-
-        foreach (Collider collider in hitColliders)
-        {
-            IDamage dmg = collider.GetComponent<IDamage>();
-
-            if (dmg != null)
-            {
-                dmg.TakeDamage(equipment.damageAmount, Damage.damagetype.stationary);
-            }
         }
     }
 
     void AttackRecharge()
     {
-        AttackRechargeTimer += Time.deltaTime;
-        if (AttackRechargeTimer >= equipment.fireRate)
+        attackRechargeTimer += Time.deltaTime;
+        attackLengthTimer += Time.deltaTime;
+
+        if (attackRechargeTimer >= equipment.attackLength)
         {
-            AttackRechargeTimer = 0;
+            attackLengthTimer = 0;
+            attackCollider.enabled = false;
+        }
+
+        if (attackRechargeTimer >= equipment.fireRate)
+        {
+            attackRechargeTimer = 0;
         }
     }
     public void updateMeleeUI()
     {
+        damage.damageAmount = equipment.damageAmount;
         UIManager.instance.SetGun(equipment.weaponImage, "", 0, 0);
     }
     public void ChangeMelee()

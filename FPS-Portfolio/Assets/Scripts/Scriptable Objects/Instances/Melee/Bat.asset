@@ -24,7 +24,7 @@ MonoBehaviour:
   spreadRange: 0
   pellets: 0
   reloadSpeed: 0
-  fireRate: 0.1
+  fireRate: 0
   maxAmmo: 0
   currentMag: 0
   shootSound: {fileID: 8300000, guid: a99f1b891c15c564180eb1ccd682c913, type: 3}
@@ -36,3 +36,5 @@ MonoBehaviour:
   isImpact: 0
   forceMult: 0
   detonationCountdown: 0
+  attackRecharge: 0.5
+  attackLength: 0.3
