@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2613400053779934122
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7299600285005525874}
+  m_Layer: 6
+  m_Name: BombPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7299600285005525874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2613400053779934122}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.25, y: 0.04552269, z: 0.7270565}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6740084502674781849}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4087447245591523273
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +69,7 @@ Transform:
   m_Children:
   - {fileID: 3906365310094498273}
   - {fileID: 1777931314665742777}
+  - {fileID: 7299600285005525874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!114 &9113699234745383627
@@ -69,14 +101,31 @@ MonoBehaviour:
   animate: {fileID: 0}
   drops: []
   audio: {fileID: 8671860918730456495}
-  audioHurt: []
+  audioHurt:
+  - {fileID: 8300000, guid: 8850d4e0740edf040957e5c2b73ae970, type: 3}
+  - {fileID: 8300000, guid: d2b981ba60eac794a82a71ed3405167a, type: 3}
+  - {fileID: 8300000, guid: 934180b12f77056448edf8258b99aa09, type: 3}
+  - {fileID: 8300000, guid: 5e936f3af43783c479725d14c82ca4ea, type: 3}
+  - {fileID: 8300000, guid: f2cf733e18d4bb04ea225a801e67db0f, type: 3}
+  - {fileID: 8300000, guid: 02322e35f832ffb47b426124c2b04fb0, type: 3}
   audioHurtVol: 0.5
-  audioStep: []
+  audioStep:
+  - {fileID: 8300000, guid: 390b609d6ecd5b8428a8992032796702, type: 3}
+  - {fileID: 8300000, guid: fd6117e572743204bb8f3adc4ce3dd27, type: 3}
+  - {fileID: 8300000, guid: 4d46ae468af56d04ca84daea71a51780, type: 3}
+  - {fileID: 8300000, guid: c0351ec8faebc994d922067cb0918f84, type: 3}
+  - {fileID: 8300000, guid: 92019faf873de90439f9eb55a03fc9a0, type: 3}
+  - {fileID: 8300000, guid: 687146dbee351e64bb67945062e775b8, type: 3}
+  - {fileID: 8300000, guid: 367f22fdade87224cb4f2a304379173f, type: 3}
+  - {fileID: 8300000, guid: 0ea0d53b56116754a9b752fba9651719, type: 3}
+  - {fileID: 8300000, guid: 42c13ca2c1e240344a4186672c4d0ac6, type: 3}
   audioStepVol: 0.5
   audioShoot:
   - {fileID: 8300000, guid: f35601480f2672a4cb5a4fbbbe19e608, type: 3}
+  - {fileID: 8300000, guid: f35601480f2672a4cb5a4fbbbe19e608, type: 3}
   audioShootVol: 0.5
   bomb: {fileID: 7578920183299569025, guid: 381ec19673be71847a189941d08f43c5, type: 3}
+  bombPos: {fileID: 7299600285005525874}
 --- !u!195 &8439439788938241666
 NavMeshAgent:
   m_ObjectHideFlags: 0

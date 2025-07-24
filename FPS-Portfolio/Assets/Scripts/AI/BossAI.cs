@@ -3,6 +3,7 @@ using UnityEngine;
 public class BossAI : EnemyAI, IDamage
 {
     [SerializeField] GameObject bomb;
+    [SerializeField] Transform bombPos;
 
     public override void Start()
     {
@@ -17,6 +18,6 @@ public class BossAI : EnemyAI, IDamage
     public override void Shoot()
     {
         base.Shoot();
-        Instantiate(bomb, shootPos.position, transform.localRotation);
+        Instantiate(bomb, bombPos.position, transform.localRotation);
     }
 }
