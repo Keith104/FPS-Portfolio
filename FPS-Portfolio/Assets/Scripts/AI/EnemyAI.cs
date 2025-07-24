@@ -72,7 +72,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             SearchCheck();
         }
-        else if(isStunned == false)
+        else
         {
             SearchCheck();
         }
@@ -88,13 +88,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     
     public void TakeDamage(float amount, Damage.damagetype damagetype)
     {
-        Debug.Log("I'm not crazy");
-        Debug.Log(damagetype);
         if (damagetype != Damage.damagetype.stun)
             health -= amount;
         else if (damagetype == Damage.damagetype.stun)
         {
             isStunned = true;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
             StartCoroutine(stunTime(amount));
         }
 
@@ -146,6 +145,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         yield return new WaitForSeconds(stunTime);
         isStunned = false;
+        gameObject.GetComponent<NavMeshAgent>().enabled = true;
     }
 
     void SearchCheck()
@@ -192,9 +192,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public virtual bool CanSeePlayer()
     {
-        if(isStunned == true)
-            return false;
-
         playerDir = player.transform.position - transform.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
@@ -251,13 +248,16 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     public virtual void Shoot()
     {
-        shootTimer = 0;
+        if (isStunned == false)
+        {
+            shootTimer = 0;
 
-        animate.SetTrigger("Shoot");
+            animate.SetTrigger("Shoot");
 
-        audio.PlayOneShot(audioShoot[Random.Range(0, audioShoot.Length)], audioShootVol);
+            audio.PlayOneShot(audioShoot[Random.Range(0, audioShoot.Length)], audioShootVol);
 
-        Instantiate(bullet, shootPos.position, transform.localRotation);
+            Instantiate(bullet, shootPos.position, transform.localRotation);
+        }
     }
 
     void Drops()
