@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class Throwable : MonoBehaviour
 {
     [SerializeField] float chargeInc;
+    [SerializeField] bool instaThrow;
 
     [SerializeField] GameObject throwFab;
     [SerializeField] GameObject explosion;
@@ -20,7 +21,10 @@ public class Throwable : MonoBehaviour
     private bool thrown;
     private float detCountdown;
     private float currentThrowForce;
-    private Equipment equipment;
+
+
+    [Tooltip("don't set if it's a prefab for lethal/nonLethal")]
+    [SerializeField] Equipment equipment;
     
     public ThrowableSpawner throwableSpawner;
 
@@ -28,9 +32,12 @@ public class Throwable : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        equipment = GetComponentInParent<ThrowableSpawner>().equipment;
+        if (transform.parent != null)
+        {
+            equipment = GetComponentInParent<ThrowableSpawner>().equipment;
+            throwableSpawner = transform.parent.GetComponent<ThrowableSpawner>();
+        }
         detCountdown = equipment.detonationCountdown;
-        throwableSpawner = transform.parent.GetComponent<ThrowableSpawner>();
         currentThrowForce = equipment.forceMult;
     }
 
@@ -40,7 +47,8 @@ public class Throwable : MonoBehaviour
         ChargeForce();
         if (thrown == false)
         {
-            transform.position = transform.parent.position;
+            if(transform.parent != null)
+                transform.position = transform.parent.position;
             transform.localRotation = Quaternion.identity;
             Throw();
         }
@@ -65,14 +73,14 @@ public class Throwable : MonoBehaviour
 
     void Throw()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) || instaThrow == true)
         {
             // adds instantaneous force in the forward direction of camera
             throwLR.enabled = false;
             throwRB.isKinematic = false;
             throwRB.useGravity = true;
             transform.SetParent(null); // sets object to root
-            throwRB.AddForce(transform.forward * currentThrowForce, ForceMode.Impulse);
+            throwRB.AddForce(Camera.main.transform.forward * currentThrowForce, ForceMode.Impulse);
             thrown = true;
             throwableSpawner.reloadTime = true;
             throwableSpawner.currentAmmo--;

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3137541153918352640}
   - component: {fileID: 7485527792797323585}
   m_Layer: 3
-  m_Name: Frag
+  m_Name: BulletFrag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chargeInc: 0.1
-  instaThrow: 0
+  instaThrow: 1
   throwFab: {fileID: 7578920183299569025}
   explosion: {fileID: 2834845088996039618, guid: bd9eb6df629a93d4ba973c7a634df390, type: 3}
   throwPos: {x: 0.45, y: 0.756, z: 0.62}
@@ -114,7 +114,7 @@ MonoBehaviour:
   trajectoryLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  equipment: {fileID: 0}
+  equipment: {fileID: 11400000, guid: 5d92885c13d11e1469a1847e4ddd7dd5, type: 2}
   throwableSpawner: {fileID: 0}
 --- !u!65 &6476164810388587356
 BoxCollider:

@@ -20,4 +20,4 @@ MonoBehaviour:
   lethalAmmoInc: 0
   pickUpSound: {fileID: 0}
   model: {fileID: 0}
-  bulletModel: {fileID: 7578920183299569025, guid: 28eb7a280c415a546b006135bec85d3d, type: 3}
+  bulletModel: {fileID: 7578920183299569025, guid: 381ec19673be71847a189941d08f43c5, type: 3}
