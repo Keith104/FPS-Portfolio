@@ -90,16 +90,22 @@ public class WaveManager : MonoBehaviour
             );
         }
 
-        // initial fill-up spawn
         int initialSpawn = Mathf.Min(maxEnemiesAllowed, totalToSpawnLeft);
         for (int i = 0; i < initialSpawn; i++)
             SpawnNextEnemy();
     }
 
+    public void EnemyDestroyed()
+    {
+        if (totalToSpawnLeft <= 0) return;
+
+        int aliveEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        if (aliveEnemies < maxEnemiesAllowed)
+            SpawnNextEnemy();
+    }
+
     void SpawnNextEnemy()
     {
-        Debug.Log("Spawning enemy");
-
         bool regular = Random.value < 0.5f;
         var spawns = regular ? regEnemySpawns : nonMoveEnemySpawns;
         var prefabs = regular ? regEnemyPrefabs : nonMoveEnemyPrefabs;
