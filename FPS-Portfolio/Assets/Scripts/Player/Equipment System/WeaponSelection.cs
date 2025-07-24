@@ -148,8 +148,28 @@ public class WeaponSelection : MonoBehaviour
     void fire()
     {
         AudioManager.instance.AudioGunShot(source);
-        GameObject nbullet = Instantiate(bullet,  shootPos.position, Camera.main.transform.rotation);
-        if(GameManager.instance.player.GetComponent<PickupSystem>().hasGrenadeBullet)
+        GameObject nbullet = null;
+
+        if (equipment.spreadRange == 0)
+            nbullet = Instantiate(bullet, shootPos.position, Camera.main.transform.rotation);
+        else
+        {
+            for (int shotDex = 0; shotDex < equipment.pellets; shotDex++)
+            {
+                Vector3 dirRan = Camera.main.transform.forward;
+                dirRan.y += Random.Range(-equipment.spreadRange, equipment.spreadRange);
+                dirRan.x += Random.Range(-equipment.spreadRange, equipment.spreadRange);
+                nbullet = Instantiate(bullet, shootPos.position, Camera.main.transform.rotation * Quaternion.Euler(dirRan));
+
+
+                if (GameManager.instance.player.GetComponent<PickupSystem>().hasGrenadeBullet)
+                {
+                    nbullet.transform.SetParent(shootPos.transform);
+                }
+            }
+        }
+
+        if (GameManager.instance.player.GetComponent<PickupSystem>().hasGrenadeBullet)
         {
             nbullet.transform.SetParent(shootPos.transform);
         }
