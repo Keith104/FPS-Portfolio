@@ -432,8 +432,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6794873811030061029}
   - component: {fileID: 4649622160630893502}
+  - component: {fileID: 3819630262397521664}
   - component: {fileID: 6317999352187811320}
-  m_Layer: 3
+  - component: {fileID: 8484457192257841381}
+  m_Layer: 7
   m_Name: Melee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,17 +464,42 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4638441092449465101}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1dcb9f06ab53ca145a116195cefa943f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   swappingSystem: {fileID: 3417368602840669168}
+  damage: {fileID: 3819630262397521664}
   equipment: {fileID: 0}
   attackIgnoreLayer:
     serializedVersion: 2
     m_Bits: 8
   attackCollider: {fileID: 6317999352187811320}
+--- !u!114 &3819630262397521664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4638441092449465101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9168ec6de7cb9aa49aefe2359e451500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  rb: {fileID: 8484457192257841381}
+  checkRadius: 0
+  targetTag: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  damageAmount: 0
+  damageRate: 0
+  regSpeed: 0
+  homeSpeed: 0
+  destroyTime: 0
 --- !u!65 &6317999352187811320
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -488,12 +515,39 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 1.26}
+--- !u!54 &8484457192257841381
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4638441092449465101}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5403371236253308638
 GameObject:
   m_ObjectHideFlags: 0

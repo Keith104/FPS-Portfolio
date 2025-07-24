@@ -50,9 +50,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rb: {fileID: 6972947022277095902}
+  checkRadius: 0
+  targetTag: 
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   damageAmount: 2
   damageRate: 0
-  speed: 100
+  regSpeed: 50
+  homeSpeed: 0
   destroyTime: 5
 --- !u!135 &5844919197472278835
 SphereCollider:

@@ -100,9 +100,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  damageAmount: 0
+  damageAmount: 1
   damageRate: 0
-  regSpeed: 0
+  regSpeed: 50
   homeSpeed: 0
   destroyTime: 3
 --- !u!135 &5844919197472278835

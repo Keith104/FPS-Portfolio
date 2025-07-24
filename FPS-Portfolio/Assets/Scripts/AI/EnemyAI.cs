@@ -257,7 +257,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         audio.PlayOneShot(audioShoot[Random.Range(0, audioShoot.Length)], audioShootVol);
 
-        Instantiate(bullet, shootPos.position, Quaternion.LookRotation(playerDir));
+        Instantiate(bullet, shootPos.position, transform.localRotation);
     }
 
     void Drops()
