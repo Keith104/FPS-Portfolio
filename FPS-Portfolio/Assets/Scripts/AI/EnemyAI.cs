@@ -115,9 +115,9 @@ public class EnemyAI : MonoBehaviour, IDamage
         if (health <= 0)
         {
             
-            int randNum = Random.Range(0, 10);
+            int randNum = Random.Range(0, 5);
 
-            if (randNum == 10)
+            if (randNum == 5)
             {
                 Drops();
             }
